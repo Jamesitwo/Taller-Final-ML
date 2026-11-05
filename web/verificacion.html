@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Verificación numérica · JS vs PyTorch</title>
+<style>
+  body { font-family: Consolas, monospace; background: #10231a; color: #d7f2e1; padding: 24px; }
+  h1 { font-size: 1.2rem; }
+  .ok { color: #7fd6a2; } .mal { color: #ff8a80; }
+  table { border-collapse: collapse; margin-top: 14px; }
+  td, th { border: 1px solid #2c5942; padding: 6px 12px; text-align: left; }
+  pre { background: #071410; padding: 12px; border-radius: 8px; overflow: auto; }
+</style>
+</head>
+<body>
+<h1>Verificación numérica: implementación JavaScript vs modelo PyTorch</h1>
+<p id="estado">Cargando…</p>
+<table id="tabla"></table>
+<pre id="detalle"></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script>
+var MANIFIESTO = null;
+/* =====================================================================
+   IMPLEMENTACIÓN DE LA RED NEURONAL CONVOLUCIONAL (MobileNetV2)
+   ---------------------------------------------------------------------
+   Cada capa está implementada explícitamente con operaciones de
+   TensorFlow.js: convolución, convolución en profundidad (depthwise),
+   normalización por lotes, ReLU6, suma residual, promedio global y
+   capa densa final con softmax.
+
+   Requiere:
+     - TensorFlow.js cargado (global `tf`)
+     - `MANIFIESTO` con la arquitectura y la ubicación de los pesos
+   ===================================================================== */
+
+const CONFIG_BLOQUES = [
+  // expandir, canales_salida, paso(stride), residual (entrada == salida)
+  { expandir: 1, sal: 16,  paso: 1, res: false },
+  { expandir: 6, sal: 24,  paso: 2, res: false },
+  { expandir: 6, sal: 24,  paso: 1, res: true  },
+  { expandir: 6, sal: 32,  paso: 2, res: false },
+  { expandir: 6, sal: 32,  paso: 1, res: true  },
+  { expandir: 6, sal: 32,  paso: 1, res: true  },
+  { expandir: 6, sal: 64,  paso: 2, res: false },
+  { expandir: 6, sal: 64,  paso: 1, res: true  },
+  { expandir: 6, sal: 64,  paso: 1, res: true  },
+  { expandir: 6, sal: 64,  paso: 1, res: true  },
+  { expandir: 6, sal: 96,  paso: 1, res: false },
+  { expandir: 6, sal: 96,  paso: 1, res: true  },
+  { expandir: 6, sal: 96,  paso: 1, res: true  },
+  { expandir: 6, sal: 160, paso: 2, res: false },
+  { expandir: 6, sal: 160, paso: 1, res: true  },
+  { expandir: 6, sal: 160, paso: 1, res: true  },
+  { expandir: 6, sal: 320, paso: 1, res: false },
+];
+
+class RedNeuronalConvolucional {
+  constructor(manifiesto, bufferPesos) {
+    this.manifiesto = manifiesto;
+    this.pesos = {};
+    const vista = new DataView(bufferPesos);
+    for (const nombre of manifiesto.orden) {
+      const t = manifiesto.tensores[nombre];
+      const n = t.shape.reduce((a, b) => a * b, 1);
+      let datos;
+      if (t.dtype === "f32") {
+        if (t.offset % 4 === 0) {
+          datos = new Float32Array(bufferPesos, t.offset, n);
+        } else {                                    // respaldo si no está alineado
+          datos = new Float32Array(n);
+          for (let i = 0; i < n; i++) datos[i] = vista.getFloat32(t.offset + i * 4, true);
+        }
+      } else if (t.dtype === "f16") {
+        datos = new Float32Array(n);
+        for (let i = 0; i < n; i++) datos[i] = medioAFlotante(vista.getUint16(t.offset + i * 2, true));
+      } else if (t.dtype === "i8") {
+        datos = new Float32Array(n);
+        const entero = new Int8Array(bufferPesos, t.offset, n);
+        for (let i = 0; i < n; i++) datos[i] = entero[i] * t.escala;
+      }
+      this.pesos[nombre] = tf.tensor(datos, t.shape, "float32");
+    }
+  }
+
+  /* --- operaciones elementales de la CNN --- */
+
+  normalizarPorLotes(x, prefijo) {
+    return tf.batchNorm(
+      x,
+      this.pesos[prefijo + ".running_mean"],
+      this.pesos[prefijo + ".running_var"],
+      this.pesos[prefijo + ".bias"],
+      this.pesos[prefijo + ".weight"],
+      1e-5
+    );
+  }
+
+  convolucion(x, prefijo, tamFiltro, paso) {
+    const w = this.pesos[prefijo + ".0.weight"];      // [alto, ancho, entrada, salida]
+    const relleno = Math.floor(tamFiltro / 2);
+    let h = relleno > 0
+      ? tf.pad(x, [[0, 0], [relleno, relleno], [relleno, relleno], [0, 0]])
+      : x;
+    h = tf.conv2d(h, w, paso, "valid");
+    return this.normalizarPorLotes(h, prefijo + ".1");
+  }
+
+  convolucionProfunda(x, prefijo, tamFiltro, paso) {
+    const w = this.pesos[prefijo + ".0.weight"];      // [alto, ancho, entrada, multiplicador]
+    const relleno = Math.floor(tamFiltro / 2);
+    let h = tf.pad(x, [[0, 0], [relleno, relleno], [relleno, relleno], [0, 0]]);
+    h = tf.depthwiseConv2d(h, w, paso, "valid");
+    return this.normalizarPorLotes(h, prefijo + ".1");
+  }
+
+  /** ReLU6: max(0, min(6, x)) — función de activación de MobileNetV2 */
+  reLu6(x) { return tf.clipByValue(x, 0, 6); }
+
+  /** Capa convolucional completa: convolución + normalización + ReLU6 */
+  bloqueConv(x, prefijo, tamFiltro, paso) {
+    return this.reLu6(this.convolucion(x, prefijo, tamFiltro, paso));
+  }
+
+  /** Proyección 1×1 del bloque residual (convolución sin activación) */
+  proyectar(x, prefijoPeso, prefijoBN) {
+    const w = this.pesos[prefijoPeso];                // [1, 1, entrada, salida]
+    const h = tf.conv2d(x, w, 1, "valid");
+    return this.normalizarPorLotes(h, prefijoBN);
+  }
+
+  /**
+   * Bloque residual invertido (InvertedResidual) de MobileNetV2:
+   *   1. expansión 1×1 (más canales)
+   *   2. convolución en profundidad 3×3
+   *   3. proyección 1×1 (vuelve a comprimir)
+   *   4. suma con la entrada (conexión residual) cuando el tamaño coincide
+   */
+  bloqueResidualInvertido(x, i, cfg) {
+    const p = "features." + i;
+    if (cfg.expandir === 1) {
+      // bloque sin capa de expansión (MobileNetV2): conv.0 = profundidad,
+      // conv.1 = proyección y conv.2 = normalización de la proyección
+      const h = this.reLu6(this.convolucionProfunda(x, p + ".conv.0", 3, cfg.paso));
+      const proyeccion = this.proyectar(h, p + ".conv.1.weight", p + ".conv.2");
+      return cfg.res ? tf.add(x, proyeccion) : proyeccion;
+    }
+    let h = this.bloqueConv(x, p + ".conv.0", 1, 1);
+    h = this.reLu6(this.convolucionProfunda(h, p + ".conv.1", 3, cfg.paso));
+    const proyeccion = this.proyectar(h, p + ".conv.2.weight", p + ".conv.3");   // sin activación
+    return cfg.res ? tf.add(x, proyeccion) : proyeccion;
+  }
+
+  /** Propagación hacia adelante completa (forward pass) */
+  propagar(entrada) {
+    return tf.tidy(() => {
+      let x = this.bloqueConv(entrada, "features.0", 3, 2);        // 224 -> 112
+      for (let i = 0; i < CONFIG_BLOQUES.length; i++) {
+        x = this.bloqueResidualInvertido(x, i + 1, CONFIG_BLOQUES[i]);
+      }
+      x = this.bloqueConv(x, "features.18", 1, 1);                  // 1280 canales
+      x = tf.mean(x, [1, 2]);                                       // promedio global -> [1,1280]
+      const kernel = this.pesos["classifier.1.weight"];             // [185, 1280]
+      const sesgo = this.pesos["classifier.1.bias"];
+      const logits = tf.add(tf.matMul(x, kernel, false, true), sesgo);
+      return tf.softmax(logits);                                    // probabilidades
+    });
+  }
+}
+
+/** Convierte un número en formato coma flotante de 16 bits a 32 bits */
+function medioAFlotante(h) {
+  const s = (h & 0x8000) >> 15, e = (h & 0x7c00) >> 10, f = h & 0x03ff;
+  if (e === 0) return (s ? -1 : 1) * Math.pow(2, -14) * (f / 1024);
+  if (e === 0x1f) return f ? NaN : (s ? -Infinity : Infinity);
+  return (s ? -1 : 1) * Math.pow(2, e - 15) * (1 + f / 1024);
+}
+
+/** Decodifica la cadena base64 de los pesos a un ArrayBuffer */
+function decodificarBase64(cadena) {
+  const binario = atob(cadena);
+  const bytes = new Uint8Array(binario.length);
+  for (let i = 0; i < binario.length; i++) bytes[i] = binario.charCodeAt(i);
+  return bytes.buffer;
+}
+
+/* =====================================================================
+   PREPROCESADO DE LA IMAGEN (idéntico al del entrenamiento)
+   ===================================================================== */
+function preprocesar(imagen) {
+  const LOTE = 256, SALIDA = 224;
+  const c256 = document.createElement("canvas");
+  c256.width = c256.height = LOTE;
+  const ctx = c256.getContext("2d", { willReadFrequently: true });
+  ctx.fillStyle = "rgb(128,128,128)";               // mismo gris que el entrenamiento
+  ctx.fillRect(0, 0, LOTE, LOTE);
+  const escala = LOTE / Math.max(imagen.width, imagen.height);
+  const w = Math.round(imagen.width * escala), h = Math.round(imagen.height * escala);
+  ctx.drawImage(imagen, (LOTE - w) / 2, (LOTE - h) / 2, w, h);   // conserva proporción
+
+  const recorte = Math.floor((LOTE - SALIDA) / 2);                // recorte central 224
+  const pixeles = ctx.getImageData(recorte, recorte, SALIDA, SALIDA).data;
+
+  const media = MANIFIESTO.normalizacion.media;
+  const desv = MANIFIESTO.normalizacion.desv;
+  const datos = new Float32Array(1 * SALIDA * SALIDA * 3);
+  for (let i = 0, j = 0; i < pixeles.length; i += 4, j += 3) {
+    datos[j]     = (pixeles[i]     / 255 - media[0]) / desv[0];
+    datos[j + 1] = (pixeles[i + 1] / 255 - media[1]) / desv[1];
+    datos[j + 2] = (pixeles[i + 2] / 255 - media[2]) / desv[2];
+  }
+  return tf.tensor4d(datos, [1, SALIDA, SALIDA, 3], "float32");
+}
+
+
+async function verificar() {
+  const estado = document.getElementById("estado");
+  try {
+    await tf.ready();
+    const manifiesto = await (await fetch("modelo/manifiesto.json")).json();
+    MANIFIESTO = manifiesto;
+    const pesos = await (await fetch("modelo/pesos.bin")).arrayBuffer();
+    const entrada = new Float32Array(await (await fetch("modelo/verificacion/entrada.bin")).arrayBuffer());
+    const esperado = await (await fetch("modelo/verificacion/salida_esperada.json")).json();
+
+    const red = new RedNeuronalConvolucional(manifiesto, pesos);
+    const x = tf.tensor4d(entrada, [1, manifiesto.entrada, manifiesto.entrada, 3], "float32");
+    const y = red.propagar(x);
+    const obtenido = Array.from(await y.data());
+
+    const esperados = esperado.probabilidades;
+    let maxDif = 0, sumaDif = 0;
+    for (let i = 0; i < esperados.length; i++) {
+      const d = Math.abs(obtenido[i] - esperados[i]);
+      maxDif = Math.max(maxDif, d);
+      sumaDif += d;
+    }
+    const argmax = (a) => a.indexOf(Math.max(...a));
+    const top5 = (a) => a.map((v, i) => [v, i]).sort((p, q) => q[0] - p[0]).slice(0, 5).map((p) => p[1]);
+
+    const mismoArgmax = argmax(obtenido) === argmax(esperados);
+    const mismoTop5 = JSON.stringify(top5(obtenido)) === JSON.stringify(top5(esperados));
+    const aprobado = maxDif < 0.02 && mismoArgmax && mismoTop5;
+
+    const filas = [
+      ["Máxima diferencia absoluta", maxDif.toExponential(3) + (maxDif < 0.02 ? " ✅" : " ❌")],
+      ["Diferencia media", (sumaDif / esperados.length).toExponential(3)],
+      ["Predicha (argmax) idéntica", mismoArgmax ? "✅ sí" : "❌ no"],
+      ["Top-5 idéntico", mismoTop5 ? "✅ sí" : "❌ no"],
+      ["Clase más probable (PyTorch)", esperado.clases[argmax(esperados)]],
+      ["Clase más probable (JavaScript)", esperado.clases[argmax(obtenido)]],
+      ["Resultado global", aprobado ? "✅ APROBADO" : "❌ RECHAZADO"],
+    ];
+    document.getElementById("tabla").innerHTML =
+      filas.map((f) => "<tr><th>" + f[0] + "</th><td>" + f[1] + "</td></tr>").join("");
+    document.getElementById("detalle").textContent =
+      "Esperado (PyTorch):\n" + JSON.stringify(esperado.top5, null, 1) +
+      "\n\nObtenido (JavaScript):\n" + JSON.stringify(
+        top5(obtenido).map((i) => ({ clase: esperado.clases[i], probabilidad: obtenido[i] })), null, 1);
+    estado.innerHTML = aprobado
+      ? '<span class="ok">La implementación en JavaScript reproduce el modelo de PyTorch.</span>'
+      : '<span class="mal">Hay diferencias entre ambas implementaciones.</span>';
+
+    console.log("VERIFICACION " + (aprobado ? "APROBADA" : "RECHAZADA") +
+      " | maxDif=" + maxDif.toExponential(3) + " | argmax=" + mismoArgmax + " | top5=" + mismoTop5);
+    window.__RESULTADO_VERIFICACION = { aprobado, maxDif, mismoArgmax, mismoTop5 };
+  } catch (e) {
+    estado.innerHTML = '<span class="mal">Error: ' + e.message + "</span>";
+    console.error(e);
+    window.__RESULTADO_VERIFICACION = { aprobado: false, error: e.message };
+  }
+}
+verificar();
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Verificación numérica · JS vs PyTorch</title>
+<style>
+  body { font-family: Consolas, monospace; background: #10231a; color: #d7f2e1; padding: 24px; }
+  h1 { font-size: 1.2rem; }
+  .ok { color: #7fd6a2; } .mal { color: #ff8a80; }
+  table { border-collapse: collapse; margin-top: 14px; }
+  td, th { border: 1px solid #2c5942; padding: 6px 12px; text-align: left; }
+  pre { background: #071410; padding: 12px; border-radius: 8px; overflow: auto; }
+</style>
+</head>
+<body>
+<h1>Verificación numérica: implementación JavaScript vs modelo PyTorch</h1>
+<p id="estado">Cargando…</p>
+<table id="tabla"></table>
+<pre id="detalle"></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script>
+var MANIFIESTO = null;
+__RED_JS__
+
+async function verificar() {
+  const estado = document.getElementById("estado");
+  try {
+    await tf.ready();
+    const manifiesto = await (await fetch("modelo/manifiesto.json")).json();
+    MANIFIESTO = manifiesto;
+    const pesos = await (await fetch("modelo/pesos.bin")).arrayBuffer();
+    const entrada = new Float32Array(await (await fetch("modelo/verificacion/entrada.bin")).arrayBuffer());
+    const esperado = await (await fetch("modelo/verificacion/salida_esperada.json")).json();
+
+    const red = new RedNeuronalConvolucional(manifiesto, pesos);
+    const x = tf.tensor4d(entrada, [1, manifiesto.entrada, manifiesto.entrada, 3], "float32");
+    const y = red.propagar(x);
+    const obtenido = Array.from(await y.data());
+
+    const esperados = esperado.probabilidades;
+    let maxDif = 0, sumaDif = 0;
+    for (let i = 0; i < esperados.length; i++) {
+      const d = Math.abs(obtenido[i] - esperados[i]);
+      maxDif = Math.max(maxDif, d);
+      sumaDif += d;
+    }
+    const argmax = (a) => a.indexOf(Math.max(...a));
+    const top5 = (a) => a.map((v, i) => [v, i]).sort((p, q) => q[0] - p[0]).slice(0, 5).map((p) => p[1]);
+
+    const mismoArgmax = argmax(obtenido) === argmax(esperados);
+    const mismoTop5 = JSON.stringify(top5(obtenido)) === JSON.stringify(top5(esperados));
+    const aprobado = maxDif < 0.02 && mismoArgmax && mismoTop5;
+
+    const filas = [
+      ["Máxima diferencia absoluta", maxDif.toExponential(3) + (maxDif < 0.02 ? " ✅" : " ❌")],
+      ["Diferencia media", (sumaDif / esperados.length).toExponential(3)],
+      ["Predicha (argmax) idéntica", mismoArgmax ? "✅ sí" : "❌ no"],
+      ["Top-5 idéntico", mismoTop5 ? "✅ sí" : "❌ no"],
+      ["Clase más probable (PyTorch)", esperado.clases[argmax(esperados)]],
+      ["Clase más probable (JavaScript)", esperado.clases[argmax(obtenido)]],
+      ["Resultado global", aprobado ? "✅ APROBADO" : "❌ RECHAZADO"],
+    ];
+    document.getElementById("tabla").innerHTML =
+      filas.map((f) => "<tr><th>" + f[0] + "</th><td>" + f[1] + "</td></tr>").join("");
+    document.getElementById("detalle").textContent =
+      "Esperado (PyTorch):\n" + JSON.stringify(esperado.top5, null, 1) +
+      "\n\nObtenido (JavaScript):\n" + JSON.stringify(
+        top5(obtenido).map((i) => ({ clase: esperado.clases[i], probabilidad: obtenido[i] })), null, 1);
+    estado.innerHTML = aprobado
+      ? '<span class="ok">La implementación en JavaScript reproduce el modelo de PyTorch.</span>'
+      : '<span class="mal">Hay diferencias entre ambas implementaciones.</span>';
+
+    console.log("VERIFICACION " + (aprobado ? "APROBADA" : "RECHAZADA") +
+      " | maxDif=" + maxDif.toExponential(3) + " | argmax=" + mismoArgmax + " | top5=" + mismoTop5);
+    window.__RESULTADO_VERIFICACION = { aprobado, maxDif, mismoArgmax, mismoTop5 };
+  } catch (e) {
+    estado.innerHTML = '<span class="mal">Error: ' + e.message + "</span>";
+    console.error(e);
+    window.__RESULTADO_VERIFICACION = { aprobado: false, error: e.message };
+  }
+}
+verificar();
+</script>
+</body>
+</html>

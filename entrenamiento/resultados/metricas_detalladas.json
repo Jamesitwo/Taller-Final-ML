@@ -1,0 +1,865 @@
+{
+ "prueba": {
+  "top1": 0.8241260250323694,
+  "top5": 0.9814415192058696,
+  "imagenes": 4634
+ },
+ "por_fuente": {
+  "lab": {
+   "top1": 0.857389801210026,
+   "top5": 0.9855949294151541,
+   "imagenes": 3471
+  },
+  "field": {
+   "top1": 0.7248495270851246,
+   "top5": 0.9690455717970765,
+   "imagenes": 1163
+  }
+ },
+ "por_clase": {
+  "Abies concolor": {
+   "imagenes": 38,
+   "exactitud": 0.8157894736842105
+  },
+  "Abies nordmanniana": {
+   "imagenes": 24,
+   "exactitud": 0.7083333333333334
+  },
+  "Acer campestre": {
+   "imagenes": 21,
+   "exactitud": 0.9047619047619048
+  },
+  "Acer ginnala": {
+   "imagenes": 23,
+   "exactitud": 0.7391304347826086
+  },
+  "Acer griseum": {
+   "imagenes": 19,
+   "exactitud": 0.7368421052631579
+  },
+  "Acer negundo": {
+   "imagenes": 34,
+   "exactitud": 0.9705882352941176
+  },
+  "Acer palmatum": {
+   "imagenes": 32,
+   "exactitud": 0.96875
+  },
+  "Acer pensylvanicum": {
+   "imagenes": 23,
+   "exactitud": 0.9130434782608695
+  },
+  "Acer platanoides": {
+   "imagenes": 21,
+   "exactitud": 0.8571428571428571
+  },
+  "Acer pseudoplatanus": {
+   "imagenes": 20,
+   "exactitud": 0.85
+  },
+  "Acer rubrum": {
+   "imagenes": 45,
+   "exactitud": 0.7555555555555555
+  },
+  "Acer saccharinum": {
+   "imagenes": 28,
+   "exactitud": 1.0
+  },
+  "Acer saccharum": {
+   "imagenes": 28,
+   "exactitud": 0.9642857142857143
+  },
+  "Aesculus flava": {
+   "imagenes": 19,
+   "exactitud": 0.6842105263157895
+  },
+  "Aesculus glabra": {
+   "imagenes": 25,
+   "exactitud": 0.84
+  },
+  "Aesculus hippocastamon": {
+   "imagenes": 21,
+   "exactitud": 1.0
+  },
+  "Aesculus pavi": {
+   "imagenes": 34,
+   "exactitud": 0.7647058823529411
+  },
+  "Ailanthus altissima": {
+   "imagenes": 18,
+   "exactitud": 0.8333333333333334
+  },
+  "Albizia julibrissin": {
+   "imagenes": 21,
+   "exactitud": 0.9523809523809523
+  },
+  "Amelanchier arborea": {
+   "imagenes": 19,
+   "exactitud": 0.5263157894736842
+  },
+  "Amelanchier canadensis": {
+   "imagenes": 23,
+   "exactitud": 0.6956521739130435
+  },
+  "Amelanchier laevis": {
+   "imagenes": 23,
+   "exactitud": 0.9565217391304348
+  },
+  "Asimina triloba": {
+   "imagenes": 37,
+   "exactitud": 0.8918918918918919
+  },
+  "Betula alleghaniensis": {
+   "imagenes": 23,
+   "exactitud": 0.5652173913043478
+  },
+  "Betula jacqemontii": {
+   "imagenes": 21,
+   "exactitud": 0.8095238095238095
+  },
+  "Betula lenta": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Betula nigra": {
+   "imagenes": 21,
+   "exactitud": 0.8095238095238095
+  },
+  "Betula populifolia": {
+   "imagenes": 22,
+   "exactitud": 0.9090909090909091
+  },
+  "Broussonettia papyrifera": {
+   "imagenes": 44,
+   "exactitud": 0.75
+  },
+  "Carpinus betulus": {
+   "imagenes": 20,
+   "exactitud": 0.55
+  },
+  "Carpinus caroliniana": {
+   "imagenes": 27,
+   "exactitud": 0.3333333333333333
+  },
+  "Carya cordiformis": {
+   "imagenes": 30,
+   "exactitud": 0.7333333333333333
+  },
+  "Carya glabra": {
+   "imagenes": 27,
+   "exactitud": 0.8518518518518519
+  },
+  "Carya ovata": {
+   "imagenes": 23,
+   "exactitud": 0.7391304347826086
+  },
+  "Carya tomentosa": {
+   "imagenes": 26,
+   "exactitud": 0.8076923076923077
+  },
+  "Castanea dentata": {
+   "imagenes": 24,
+   "exactitud": 0.7916666666666666
+  },
+  "Catalpa bignonioides": {
+   "imagenes": 33,
+   "exactitud": 0.9696969696969697
+  },
+  "Catalpa speciosa": {
+   "imagenes": 29,
+   "exactitud": 0.7931034482758621
+  },
+  "Cedrus atlantica": {
+   "imagenes": 24,
+   "exactitud": 0.5833333333333334
+  },
+  "Cedrus deodara": {
+   "imagenes": 18,
+   "exactitud": 0.5555555555555556
+  },
+  "Cedrus libani": {
+   "imagenes": 25,
+   "exactitud": 0.36
+  },
+  "Celtis occidentalis": {
+   "imagenes": 20,
+   "exactitud": 0.75
+  },
+  "Celtis tenuifolia": {
+   "imagenes": 22,
+   "exactitud": 0.9090909090909091
+  },
+  "Cercidiphyllum japonicum": {
+   "imagenes": 21,
+   "exactitud": 0.9523809523809523
+  },
+  "Cercis canadensis": {
+   "imagenes": 33,
+   "exactitud": 1.0
+  },
+  "Chamaecyparis pisifera": {
+   "imagenes": 26,
+   "exactitud": 0.8846153846153846
+  },
+  "Chamaecyparis thyoides": {
+   "imagenes": 25,
+   "exactitud": 0.96
+  },
+  "Chionanthus retusus": {
+   "imagenes": 21,
+   "exactitud": 0.9523809523809523
+  },
+  "Chionanthus virginicus": {
+   "imagenes": 33,
+   "exactitud": 0.8484848484848485
+  },
+  "Cladrastis lutea": {
+   "imagenes": 26,
+   "exactitud": 1.0
+  },
+  "Cornus florida": {
+   "imagenes": 27,
+   "exactitud": 0.8148148148148148
+  },
+  "Cornus kousa": {
+   "imagenes": 20,
+   "exactitud": 0.45
+  },
+  "Cornus mas": {
+   "imagenes": 25,
+   "exactitud": 0.76
+  },
+  "Corylus colurna": {
+   "imagenes": 12,
+   "exactitud": 0.9166666666666666
+  },
+  "Crataegus crus-galli": {
+   "imagenes": 17,
+   "exactitud": 0.5882352941176471
+  },
+  "Crataegus laevigata": {
+   "imagenes": 21,
+   "exactitud": 0.9523809523809523
+  },
+  "Crataegus phaenopyrum": {
+   "imagenes": 21,
+   "exactitud": 0.7619047619047619
+  },
+  "Crataegus pruinosa": {
+   "imagenes": 23,
+   "exactitud": 0.9565217391304348
+  },
+  "Crataegus viridis": {
+   "imagenes": 25,
+   "exactitud": 0.8
+  },
+  "Cryptomeria japonica": {
+   "imagenes": 32,
+   "exactitud": 0.96875
+  },
+  "Diospyros virginiana": {
+   "imagenes": 37,
+   "exactitud": 0.7027027027027027
+  },
+  "Eucommia ulmoides": {
+   "imagenes": 29,
+   "exactitud": 0.896551724137931
+  },
+  "Evodia daniellii": {
+   "imagenes": 17,
+   "exactitud": 0.8235294117647058
+  },
+  "Fagus grandifolia": {
+   "imagenes": 23,
+   "exactitud": 0.8695652173913043
+  },
+  "Ficus carica": {
+   "imagenes": 25,
+   "exactitud": 0.92
+  },
+  "Fraxinus americana": {
+   "imagenes": 15,
+   "exactitud": 0.6
+  },
+  "Fraxinus nigra": {
+   "imagenes": 31,
+   "exactitud": 0.8709677419354839
+  },
+  "Fraxinus pennsylvanica": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Ginkgo biloba": {
+   "imagenes": 21,
+   "exactitud": 1.0
+  },
+  "Gleditsia triacanthos": {
+   "imagenes": 30,
+   "exactitud": 1.0
+  },
+  "Gymnocladus dioicus": {
+   "imagenes": 22,
+   "exactitud": 1.0
+  },
+  "Halesia tetraptera": {
+   "imagenes": 22,
+   "exactitud": 0.7272727272727273
+  },
+  "Ilex opaca": {
+   "imagenes": 36,
+   "exactitud": 0.8611111111111112
+  },
+  "Juglans cinerea": {
+   "imagenes": 33,
+   "exactitud": 0.8181818181818182
+  },
+  "Juglans nigra": {
+   "imagenes": 24,
+   "exactitud": 0.9583333333333334
+  },
+  "Juniperus virginiana": {
+   "imagenes": 17,
+   "exactitud": 0.8235294117647058
+  },
+  "Koelreuteria paniculata": {
+   "imagenes": 29,
+   "exactitud": 0.9310344827586207
+  },
+  "Larix decidua": {
+   "imagenes": 22,
+   "exactitud": 0.7272727272727273
+  },
+  "Liquidambar styraciflua": {
+   "imagenes": 25,
+   "exactitud": 0.92
+  },
+  "Liriodendron tulipifera": {
+   "imagenes": 36,
+   "exactitud": 1.0
+  },
+  "Maclura pomifera": {
+   "imagenes": 68,
+   "exactitud": 0.9411764705882353
+  },
+  "Magnolia acuminata": {
+   "imagenes": 22,
+   "exactitud": 0.5909090909090909
+  },
+  "Magnolia denudata": {
+   "imagenes": 27,
+   "exactitud": 0.8148148148148148
+  },
+  "Magnolia grandiflora": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Magnolia macrophylla": {
+   "imagenes": 22,
+   "exactitud": 1.0
+  },
+  "Magnolia soulangiana": {
+   "imagenes": 8,
+   "exactitud": 0.625
+  },
+  "Magnolia stellata": {
+   "imagenes": 25,
+   "exactitud": 0.6
+  },
+  "Magnolia tripetala": {
+   "imagenes": 23,
+   "exactitud": 0.9130434782608695
+  },
+  "Magnolia virginiana": {
+   "imagenes": 27,
+   "exactitud": 0.8888888888888888
+  },
+  "Malus angustifolia": {
+   "imagenes": 12,
+   "exactitud": 0.25
+  },
+  "Malus baccata": {
+   "imagenes": 23,
+   "exactitud": 0.8695652173913043
+  },
+  "Malus coronaria": {
+   "imagenes": 23,
+   "exactitud": 0.6956521739130435
+  },
+  "Malus floribunda": {
+   "imagenes": 23,
+   "exactitud": 0.782608695652174
+  },
+  "Malus hupehensis": {
+   "imagenes": 23,
+   "exactitud": 0.6956521739130435
+  },
+  "Malus pumila": {
+   "imagenes": 26,
+   "exactitud": 0.8461538461538461
+  },
+  "Metasequoia glyptostroboides": {
+   "imagenes": 26,
+   "exactitud": 0.9615384615384616
+  },
+  "Morus alba": {
+   "imagenes": 21,
+   "exactitud": 0.9047619047619048
+  },
+  "Morus rubra": {
+   "imagenes": 21,
+   "exactitud": 0.8571428571428571
+  },
+  "Nyssa sylvatica": {
+   "imagenes": 25,
+   "exactitud": 0.64
+  },
+  "Ostrya virginiana": {
+   "imagenes": 32,
+   "exactitud": 0.875
+  },
+  "Oxydendrum arboreum": {
+   "imagenes": 25,
+   "exactitud": 1.0
+  },
+  "Paulownia tomentosa": {
+   "imagenes": 21,
+   "exactitud": 0.7619047619047619
+  },
+  "Phellodendron amurense": {
+   "imagenes": 22,
+   "exactitud": 0.7272727272727273
+  },
+  "Picea abies": {
+   "imagenes": 25,
+   "exactitud": 0.96
+  },
+  "Picea orientalis": {
+   "imagenes": 25,
+   "exactitud": 0.88
+  },
+  "Picea pungens": {
+   "imagenes": 25,
+   "exactitud": 0.56
+  },
+  "Pinus bungeana": {
+   "imagenes": 26,
+   "exactitud": 0.6538461538461539
+  },
+  "Pinus cembra": {
+   "imagenes": 27,
+   "exactitud": 0.8148148148148148
+  },
+  "Pinus densiflora": {
+   "imagenes": 25,
+   "exactitud": 0.68
+  },
+  "Pinus echinata": {
+   "imagenes": 24,
+   "exactitud": 0.7916666666666666
+  },
+  "Pinus flexilis": {
+   "imagenes": 26,
+   "exactitud": 0.6153846153846154
+  },
+  "Pinus koraiensis": {
+   "imagenes": 24,
+   "exactitud": 0.625
+  },
+  "Pinus nigra": {
+   "imagenes": 24,
+   "exactitud": 0.6666666666666666
+  },
+  "Pinus parviflora": {
+   "imagenes": 26,
+   "exactitud": 0.9615384615384616
+  },
+  "Pinus peucea": {
+   "imagenes": 24,
+   "exactitud": 0.875
+  },
+  "Pinus pungens": {
+   "imagenes": 24,
+   "exactitud": 0.875
+  },
+  "Pinus resinosa": {
+   "imagenes": 26,
+   "exactitud": 0.6923076923076923
+  },
+  "Pinus rigida": {
+   "imagenes": 25,
+   "exactitud": 0.6
+  },
+  "Pinus strobus": {
+   "imagenes": 21,
+   "exactitud": 0.9047619047619048
+  },
+  "Pinus sylvestris": {
+   "imagenes": 23,
+   "exactitud": 0.9130434782608695
+  },
+  "Pinus taeda": {
+   "imagenes": 24,
+   "exactitud": 0.9166666666666666
+  },
+  "Pinus thunbergii": {
+   "imagenes": 20,
+   "exactitud": 0.6
+  },
+  "Pinus virginiana": {
+   "imagenes": 25,
+   "exactitud": 0.52
+  },
+  "Pinus wallichiana": {
+   "imagenes": 24,
+   "exactitud": 1.0
+  },
+  "Platanus acerifolia": {
+   "imagenes": 21,
+   "exactitud": 0.7142857142857143
+  },
+  "Platanus occidentalis": {
+   "imagenes": 28,
+   "exactitud": 1.0
+  },
+  "Populus deltoides": {
+   "imagenes": 25,
+   "exactitud": 1.0
+  },
+  "Populus grandidentata": {
+   "imagenes": 24,
+   "exactitud": 1.0
+  },
+  "Populus tremuloides": {
+   "imagenes": 24,
+   "exactitud": 0.8333333333333334
+  },
+  "Prunus pensylvanica": {
+   "imagenes": 22,
+   "exactitud": 0.8636363636363636
+  },
+  "Prunus sargentii": {
+   "imagenes": 43,
+   "exactitud": 0.6744186046511628
+  },
+  "Prunus serotina": {
+   "imagenes": 22,
+   "exactitud": 0.5454545454545454
+  },
+  "Prunus serrulata": {
+   "imagenes": 20,
+   "exactitud": 0.85
+  },
+  "Prunus subhirtella": {
+   "imagenes": 25,
+   "exactitud": 0.72
+  },
+  "Prunus virginiana": {
+   "imagenes": 45,
+   "exactitud": 0.9111111111111111
+  },
+  "Prunus yedoensis": {
+   "imagenes": 21,
+   "exactitud": 0.7619047619047619
+  },
+  "Pseudolarix amabilis": {
+   "imagenes": 23,
+   "exactitud": 0.6956521739130435
+  },
+  "Ptelea trifoliata": {
+   "imagenes": 41,
+   "exactitud": 1.0
+  },
+  "Pyrus calleryana": {
+   "imagenes": 26,
+   "exactitud": 0.8461538461538461
+  },
+  "Quercus acutissima": {
+   "imagenes": 25,
+   "exactitud": 1.0
+  },
+  "Quercus alba": {
+   "imagenes": 26,
+   "exactitud": 0.9615384615384616
+  },
+  "Quercus bicolor": {
+   "imagenes": 22,
+   "exactitud": 0.5454545454545454
+  },
+  "Quercus cerris": {
+   "imagenes": 20,
+   "exactitud": 0.95
+  },
+  "Quercus coccinea": {
+   "imagenes": 21,
+   "exactitud": 0.7619047619047619
+  },
+  "Quercus falcata": {
+   "imagenes": 9,
+   "exactitud": 0.8888888888888888
+  },
+  "Quercus imbricaria": {
+   "imagenes": 21,
+   "exactitud": 0.8095238095238095
+  },
+  "Quercus macrocarpa": {
+   "imagenes": 25,
+   "exactitud": 0.92
+  },
+  "Quercus marilandica": {
+   "imagenes": 27,
+   "exactitud": 0.9629629629629629
+  },
+  "Quercus michauxii": {
+   "imagenes": 25,
+   "exactitud": 0.96
+  },
+  "Quercus montana": {
+   "imagenes": 37,
+   "exactitud": 0.972972972972973
+  },
+  "Quercus muehlenbergii": {
+   "imagenes": 34,
+   "exactitud": 0.6176470588235294
+  },
+  "Quercus nigra": {
+   "imagenes": 25,
+   "exactitud": 0.88
+  },
+  "Quercus palustris": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Quercus phellos": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Quercus robur": {
+   "imagenes": 21,
+   "exactitud": 1.0
+  },
+  "Quercus rubra": {
+   "imagenes": 11,
+   "exactitud": 0.7272727272727273
+  },
+  "Quercus shumardii": {
+   "imagenes": 24,
+   "exactitud": 0.9583333333333334
+  },
+  "Quercus stellata": {
+   "imagenes": 26,
+   "exactitud": 0.9230769230769231
+  },
+  "Quercus velutina": {
+   "imagenes": 26,
+   "exactitud": 1.0
+  },
+  "Quercus virginiana": {
+   "imagenes": 25,
+   "exactitud": 0.88
+  },
+  "Robinia pseudo-acacia": {
+   "imagenes": 22,
+   "exactitud": 1.0
+  },
+  "Salix babylonica": {
+   "imagenes": 26,
+   "exactitud": 0.8076923076923077
+  },
+  "Salix caroliniana": {
+   "imagenes": 25,
+   "exactitud": 1.0
+  },
+  "Salix matsudana": {
+   "imagenes": 25,
+   "exactitud": 0.84
+  },
+  "Salix nigra": {
+   "imagenes": 30,
+   "exactitud": 0.8666666666666667
+  },
+  "Sassafras albidum": {
+   "imagenes": 20,
+   "exactitud": 0.85
+  },
+  "Staphylea trifolia": {
+   "imagenes": 32,
+   "exactitud": 0.84375
+  },
+  "Stewartia pseudocamellia": {
+   "imagenes": 25,
+   "exactitud": 0.8
+  },
+  "Styrax japonica": {
+   "imagenes": 34,
+   "exactitud": 0.5588235294117647
+  },
+  "Styrax obassia": {
+   "imagenes": 12,
+   "exactitud": 0.5
+  },
+  "Syringa reticulata": {
+   "imagenes": 15,
+   "exactitud": 0.8666666666666667
+  },
+  "Taxodium distichum": {
+   "imagenes": 26,
+   "exactitud": 0.9615384615384616
+  },
+  "Tilia americana": {
+   "imagenes": 24,
+   "exactitud": 0.9583333333333334
+  },
+  "Tilia cordata": {
+   "imagenes": 30,
+   "exactitud": 0.8
+  },
+  "Tilia europaea": {
+   "imagenes": 20,
+   "exactitud": 0.9
+  },
+  "Tilia tomentosa": {
+   "imagenes": 22,
+   "exactitud": 0.8636363636363636
+  },
+  "Toona sinensis": {
+   "imagenes": 10,
+   "exactitud": 1.0
+  },
+  "Tsuga canadensis": {
+   "imagenes": 28,
+   "exactitud": 0.5714285714285714
+  },
+  "Ulmus americana": {
+   "imagenes": 32,
+   "exactitud": 0.875
+  },
+  "Ulmus glabra": {
+   "imagenes": 24,
+   "exactitud": 0.9583333333333334
+  },
+  "Ulmus parvifolia": {
+   "imagenes": 25,
+   "exactitud": 0.96
+  },
+  "Ulmus procera": {
+   "imagenes": 18,
+   "exactitud": 0.5
+  },
+  "Ulmus pumila": {
+   "imagenes": 40,
+   "exactitud": 0.8
+  },
+  "Ulmus rubra": {
+   "imagenes": 47,
+   "exactitud": 0.7872340425531915
+  },
+  "Zelkova serrata": {
+   "imagenes": 27,
+   "exactitud": 0.4444444444444444
+  }
+ },
+ "pares_confundidos": [
+  {
+   "real": "Prunus sargentii",
+   "predicha": "Quercus muehlenbergii",
+   "veces": 12
+  },
+  {
+   "real": "Quercus muehlenbergii",
+   "predicha": "Prunus sargentii",
+   "veces": 11
+  },
+  {
+   "real": "Carpinus caroliniana",
+   "predicha": "Ostrya virginiana",
+   "veces": 9
+  },
+  {
+   "real": "Zelkova serrata",
+   "predicha": "Ulmus pumila",
+   "veces": 9
+  },
+  {
+   "real": "Picea pungens",
+   "predicha": "Abies concolor",
+   "veces": 7
+  },
+  {
+   "real": "Prunus subhirtella",
+   "predicha": "Prunus virginiana",
+   "veces": 7
+  },
+  {
+   "real": "Quercus bicolor",
+   "predicha": "Quercus robur",
+   "veces": 7
+  },
+  {
+   "real": "Acer rubrum",
+   "predicha": "Acer saccharum",
+   "veces": 6
+  },
+  {
+   "real": "Nyssa sylvatica",
+   "predicha": "Chionanthus retusus",
+   "veces": 6
+  },
+  {
+   "real": "Pinus densiflora",
+   "predicha": "Pinus parviflora",
+   "veces": 6
+  },
+  {
+   "real": "Pinus nigra",
+   "predicha": "Pinus strobus",
+   "veces": 6
+  },
+  {
+   "real": "Pinus thunbergii",
+   "predicha": "Pinus peucea",
+   "veces": 6
+  },
+  {
+   "real": "Pinus virginiana",
+   "predicha": "Prunus virginiana",
+   "veces": 6
+  },
+  {
+   "real": "Aesculus pavi",
+   "predicha": "Aesculus glabra",
+   "veces": 5
+  },
+  {
+   "real": "Cedrus atlantica",
+   "predicha": "Pseudolarix amabilis",
+   "veces": 5
+  },
+  {
+   "real": "Cedrus deodara",
+   "predicha": "Pinus peucea",
+   "veces": 5
+  },
+  {
+   "real": "Cedrus libani",
+   "predicha": "Cedrus atlantica",
+   "veces": 5
+  },
+  {
+   "real": "Malus coronaria",
+   "predicha": "Amelanchier laevis",
+   "veces": 5
+  },
+  {
+   "real": "Pinus flexilis",
+   "predicha": "Pinus parviflora",
+   "veces": 5
+  },
+  {
+   "real": "Quercus coccinea",
+   "predicha": "Quercus shumardii",
+   "veces": 5
+  }
+ ],
+ "clases": 185,
+ "imagen": 224
+}

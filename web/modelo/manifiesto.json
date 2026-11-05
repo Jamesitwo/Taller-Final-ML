@@ -1,0 +1,3087 @@
+{
+ "formato": "f16",
+ "arquitectura": "MobileNetV2",
+ "entrada": 224,
+ "normalizacion": {
+  "media": [
+   0.485,
+   0.456,
+   0.406
+  ],
+  "desv": [
+   0.229,
+   0.224,
+   0.225
+  ]
+ },
+ "clases": [
+  "Abies concolor",
+  "Abies nordmanniana",
+  "Acer campestre",
+  "Acer ginnala",
+  "Acer griseum",
+  "Acer negundo",
+  "Acer palmatum",
+  "Acer pensylvanicum",
+  "Acer platanoides",
+  "Acer pseudoplatanus",
+  "Acer rubrum",
+  "Acer saccharinum",
+  "Acer saccharum",
+  "Aesculus flava",
+  "Aesculus glabra",
+  "Aesculus hippocastamon",
+  "Aesculus pavi",
+  "Ailanthus altissima",
+  "Albizia julibrissin",
+  "Amelanchier arborea",
+  "Amelanchier canadensis",
+  "Amelanchier laevis",
+  "Asimina triloba",
+  "Betula alleghaniensis",
+  "Betula jacqemontii",
+  "Betula lenta",
+  "Betula nigra",
+  "Betula populifolia",
+  "Broussonettia papyrifera",
+  "Carpinus betulus",
+  "Carpinus caroliniana",
+  "Carya cordiformis",
+  "Carya glabra",
+  "Carya ovata",
+  "Carya tomentosa",
+  "Castanea dentata",
+  "Catalpa bignonioides",
+  "Catalpa speciosa",
+  "Cedrus atlantica",
+  "Cedrus deodara",
+  "Cedrus libani",
+  "Celtis occidentalis",
+  "Celtis tenuifolia",
+  "Cercidiphyllum japonicum",
+  "Cercis canadensis",
+  "Chamaecyparis pisifera",
+  "Chamaecyparis thyoides",
+  "Chionanthus retusus",
+  "Chionanthus virginicus",
+  "Cladrastis lutea",
+  "Cornus florida",
+  "Cornus kousa",
+  "Cornus mas",
+  "Corylus colurna",
+  "Crataegus crus-galli",
+  "Crataegus laevigata",
+  "Crataegus phaenopyrum",
+  "Crataegus pruinosa",
+  "Crataegus viridis",
+  "Cryptomeria japonica",
+  "Diospyros virginiana",
+  "Eucommia ulmoides",
+  "Evodia daniellii",
+  "Fagus grandifolia",
+  "Ficus carica",
+  "Fraxinus americana",
+  "Fraxinus nigra",
+  "Fraxinus pennsylvanica",
+  "Ginkgo biloba",
+  "Gleditsia triacanthos",
+  "Gymnocladus dioicus",
+  "Halesia tetraptera",
+  "Ilex opaca",
+  "Juglans cinerea",
+  "Juglans nigra",
+  "Juniperus virginiana",
+  "Koelreuteria paniculata",
+  "Larix decidua",
+  "Liquidambar styraciflua",
+  "Liriodendron tulipifera",
+  "Maclura pomifera",
+  "Magnolia acuminata",
+  "Magnolia denudata",
+  "Magnolia grandiflora",
+  "Magnolia macrophylla",
+  "Magnolia soulangiana",
+  "Magnolia stellata",
+  "Magnolia tripetala",
+  "Magnolia virginiana",
+  "Malus angustifolia",
+  "Malus baccata",
+  "Malus coronaria",
+  "Malus floribunda",
+  "Malus hupehensis",
+  "Malus pumila",
+  "Metasequoia glyptostroboides",
+  "Morus alba",
+  "Morus rubra",
+  "Nyssa sylvatica",
+  "Ostrya virginiana",
+  "Oxydendrum arboreum",
+  "Paulownia tomentosa",
+  "Phellodendron amurense",
+  "Picea abies",
+  "Picea orientalis",
+  "Picea pungens",
+  "Pinus bungeana",
+  "Pinus cembra",
+  "Pinus densiflora",
+  "Pinus echinata",
+  "Pinus flexilis",
+  "Pinus koraiensis",
+  "Pinus nigra",
+  "Pinus parviflora",
+  "Pinus peucea",
+  "Pinus pungens",
+  "Pinus resinosa",
+  "Pinus rigida",
+  "Pinus strobus",
+  "Pinus sylvestris",
+  "Pinus taeda",
+  "Pinus thunbergii",
+  "Pinus virginiana",
+  "Pinus wallichiana",
+  "Platanus acerifolia",
+  "Platanus occidentalis",
+  "Populus deltoides",
+  "Populus grandidentata",
+  "Populus tremuloides",
+  "Prunus pensylvanica",
+  "Prunus sargentii",
+  "Prunus serotina",
+  "Prunus serrulata",
+  "Prunus subhirtella",
+  "Prunus virginiana",
+  "Prunus yedoensis",
+  "Pseudolarix amabilis",
+  "Ptelea trifoliata",
+  "Pyrus calleryana",
+  "Quercus acutissima",
+  "Quercus alba",
+  "Quercus bicolor",
+  "Quercus cerris",
+  "Quercus coccinea",
+  "Quercus falcata",
+  "Quercus imbricaria",
+  "Quercus macrocarpa",
+  "Quercus marilandica",
+  "Quercus michauxii",
+  "Quercus montana",
+  "Quercus muehlenbergii",
+  "Quercus nigra",
+  "Quercus palustris",
+  "Quercus phellos",
+  "Quercus robur",
+  "Quercus rubra",
+  "Quercus shumardii",
+  "Quercus stellata",
+  "Quercus velutina",
+  "Quercus virginiana",
+  "Robinia pseudo-acacia",
+  "Salix babylonica",
+  "Salix caroliniana",
+  "Salix matsudana",
+  "Salix nigra",
+  "Sassafras albidum",
+  "Staphylea trifolia",
+  "Stewartia pseudocamellia",
+  "Styrax japonica",
+  "Styrax obassia",
+  "Syringa reticulata",
+  "Taxodium distichum",
+  "Tilia americana",
+  "Tilia cordata",
+  "Tilia europaea",
+  "Tilia tomentosa",
+  "Toona sinensis",
+  "Tsuga canadensis",
+  "Ulmus americana",
+  "Ulmus glabra",
+  "Ulmus parvifolia",
+  "Ulmus procera",
+  "Ulmus pumila",
+  "Ulmus rubra",
+  "Zelkova serrata"
+ ],
+ "orden": [
+  "features.0.0.weight",
+  "features.0.1.weight",
+  "features.0.1.bias",
+  "features.0.1.running_mean",
+  "features.0.1.running_var",
+  "features.0.1.num_batches_tracked",
+  "features.1.conv.0.0.weight",
+  "features.1.conv.0.1.weight",
+  "features.1.conv.0.1.bias",
+  "features.1.conv.0.1.running_mean",
+  "features.1.conv.0.1.running_var",
+  "features.1.conv.0.1.num_batches_tracked",
+  "features.1.conv.1.weight",
+  "features.1.conv.2.weight",
+  "features.1.conv.2.bias",
+  "features.1.conv.2.running_mean",
+  "features.1.conv.2.running_var",
+  "features.1.conv.2.num_batches_tracked",
+  "features.2.conv.0.0.weight",
+  "features.2.conv.0.1.weight",
+  "features.2.conv.0.1.bias",
+  "features.2.conv.0.1.running_mean",
+  "features.2.conv.0.1.running_var",
+  "features.2.conv.0.1.num_batches_tracked",
+  "features.2.conv.1.0.weight",
+  "features.2.conv.1.1.weight",
+  "features.2.conv.1.1.bias",
+  "features.2.conv.1.1.running_mean",
+  "features.2.conv.1.1.running_var",
+  "features.2.conv.1.1.num_batches_tracked",
+  "features.2.conv.2.weight",
+  "features.2.conv.3.weight",
+  "features.2.conv.3.bias",
+  "features.2.conv.3.running_mean",
+  "features.2.conv.3.running_var",
+  "features.2.conv.3.num_batches_tracked",
+  "features.3.conv.0.0.weight",
+  "features.3.conv.0.1.weight",
+  "features.3.conv.0.1.bias",
+  "features.3.conv.0.1.running_mean",
+  "features.3.conv.0.1.running_var",
+  "features.3.conv.0.1.num_batches_tracked",
+  "features.3.conv.1.0.weight",
+  "features.3.conv.1.1.weight",
+  "features.3.conv.1.1.bias",
+  "features.3.conv.1.1.running_mean",
+  "features.3.conv.1.1.running_var",
+  "features.3.conv.1.1.num_batches_tracked",
+  "features.3.conv.2.weight",
+  "features.3.conv.3.weight",
+  "features.3.conv.3.bias",
+  "features.3.conv.3.running_mean",
+  "features.3.conv.3.running_var",
+  "features.3.conv.3.num_batches_tracked",
+  "features.4.conv.0.0.weight",
+  "features.4.conv.0.1.weight",
+  "features.4.conv.0.1.bias",
+  "features.4.conv.0.1.running_mean",
+  "features.4.conv.0.1.running_var",
+  "features.4.conv.0.1.num_batches_tracked",
+  "features.4.conv.1.0.weight",
+  "features.4.conv.1.1.weight",
+  "features.4.conv.1.1.bias",
+  "features.4.conv.1.1.running_mean",
+  "features.4.conv.1.1.running_var",
+  "features.4.conv.1.1.num_batches_tracked",
+  "features.4.conv.2.weight",
+  "features.4.conv.3.weight",
+  "features.4.conv.3.bias",
+  "features.4.conv.3.running_mean",
+  "features.4.conv.3.running_var",
+  "features.4.conv.3.num_batches_tracked",
+  "features.5.conv.0.0.weight",
+  "features.5.conv.0.1.weight",
+  "features.5.conv.0.1.bias",
+  "features.5.conv.0.1.running_mean",
+  "features.5.conv.0.1.running_var",
+  "features.5.conv.0.1.num_batches_tracked",
+  "features.5.conv.1.0.weight",
+  "features.5.conv.1.1.weight",
+  "features.5.conv.1.1.bias",
+  "features.5.conv.1.1.running_mean",
+  "features.5.conv.1.1.running_var",
+  "features.5.conv.1.1.num_batches_tracked",
+  "features.5.conv.2.weight",
+  "features.5.conv.3.weight",
+  "features.5.conv.3.bias",
+  "features.5.conv.3.running_mean",
+  "features.5.conv.3.running_var",
+  "features.5.conv.3.num_batches_tracked",
+  "features.6.conv.0.0.weight",
+  "features.6.conv.0.1.weight",
+  "features.6.conv.0.1.bias",
+  "features.6.conv.0.1.running_mean",
+  "features.6.conv.0.1.running_var",
+  "features.6.conv.0.1.num_batches_tracked",
+  "features.6.conv.1.0.weight",
+  "features.6.conv.1.1.weight",
+  "features.6.conv.1.1.bias",
+  "features.6.conv.1.1.running_mean",
+  "features.6.conv.1.1.running_var",
+  "features.6.conv.1.1.num_batches_tracked",
+  "features.6.conv.2.weight",
+  "features.6.conv.3.weight",
+  "features.6.conv.3.bias",
+  "features.6.conv.3.running_mean",
+  "features.6.conv.3.running_var",
+  "features.6.conv.3.num_batches_tracked",
+  "features.7.conv.0.0.weight",
+  "features.7.conv.0.1.weight",
+  "features.7.conv.0.1.bias",
+  "features.7.conv.0.1.running_mean",
+  "features.7.conv.0.1.running_var",
+  "features.7.conv.0.1.num_batches_tracked",
+  "features.7.conv.1.0.weight",
+  "features.7.conv.1.1.weight",
+  "features.7.conv.1.1.bias",
+  "features.7.conv.1.1.running_mean",
+  "features.7.conv.1.1.running_var",
+  "features.7.conv.1.1.num_batches_tracked",
+  "features.7.conv.2.weight",
+  "features.7.conv.3.weight",
+  "features.7.conv.3.bias",
+  "features.7.conv.3.running_mean",
+  "features.7.conv.3.running_var",
+  "features.7.conv.3.num_batches_tracked",
+  "features.8.conv.0.0.weight",
+  "features.8.conv.0.1.weight",
+  "features.8.conv.0.1.bias",
+  "features.8.conv.0.1.running_mean",
+  "features.8.conv.0.1.running_var",
+  "features.8.conv.0.1.num_batches_tracked",
+  "features.8.conv.1.0.weight",
+  "features.8.conv.1.1.weight",
+  "features.8.conv.1.1.bias",
+  "features.8.conv.1.1.running_mean",
+  "features.8.conv.1.1.running_var",
+  "features.8.conv.1.1.num_batches_tracked",
+  "features.8.conv.2.weight",
+  "features.8.conv.3.weight",
+  "features.8.conv.3.bias",
+  "features.8.conv.3.running_mean",
+  "features.8.conv.3.running_var",
+  "features.8.conv.3.num_batches_tracked",
+  "features.9.conv.0.0.weight",
+  "features.9.conv.0.1.weight",
+  "features.9.conv.0.1.bias",
+  "features.9.conv.0.1.running_mean",
+  "features.9.conv.0.1.running_var",
+  "features.9.conv.0.1.num_batches_tracked",
+  "features.9.conv.1.0.weight",
+  "features.9.conv.1.1.weight",
+  "features.9.conv.1.1.bias",
+  "features.9.conv.1.1.running_mean",
+  "features.9.conv.1.1.running_var",
+  "features.9.conv.1.1.num_batches_tracked",
+  "features.9.conv.2.weight",
+  "features.9.conv.3.weight",
+  "features.9.conv.3.bias",
+  "features.9.conv.3.running_mean",
+  "features.9.conv.3.running_var",
+  "features.9.conv.3.num_batches_tracked",
+  "features.10.conv.0.0.weight",
+  "features.10.conv.0.1.weight",
+  "features.10.conv.0.1.bias",
+  "features.10.conv.0.1.running_mean",
+  "features.10.conv.0.1.running_var",
+  "features.10.conv.0.1.num_batches_tracked",
+  "features.10.conv.1.0.weight",
+  "features.10.conv.1.1.weight",
+  "features.10.conv.1.1.bias",
+  "features.10.conv.1.1.running_mean",
+  "features.10.conv.1.1.running_var",
+  "features.10.conv.1.1.num_batches_tracked",
+  "features.10.conv.2.weight",
+  "features.10.conv.3.weight",
+  "features.10.conv.3.bias",
+  "features.10.conv.3.running_mean",
+  "features.10.conv.3.running_var",
+  "features.10.conv.3.num_batches_tracked",
+  "features.11.conv.0.0.weight",
+  "features.11.conv.0.1.weight",
+  "features.11.conv.0.1.bias",
+  "features.11.conv.0.1.running_mean",
+  "features.11.conv.0.1.running_var",
+  "features.11.conv.0.1.num_batches_tracked",
+  "features.11.conv.1.0.weight",
+  "features.11.conv.1.1.weight",
+  "features.11.conv.1.1.bias",
+  "features.11.conv.1.1.running_mean",
+  "features.11.conv.1.1.running_var",
+  "features.11.conv.1.1.num_batches_tracked",
+  "features.11.conv.2.weight",
+  "features.11.conv.3.weight",
+  "features.11.conv.3.bias",
+  "features.11.conv.3.running_mean",
+  "features.11.conv.3.running_var",
+  "features.11.conv.3.num_batches_tracked",
+  "features.12.conv.0.0.weight",
+  "features.12.conv.0.1.weight",
+  "features.12.conv.0.1.bias",
+  "features.12.conv.0.1.running_mean",
+  "features.12.conv.0.1.running_var",
+  "features.12.conv.0.1.num_batches_tracked",
+  "features.12.conv.1.0.weight",
+  "features.12.conv.1.1.weight",
+  "features.12.conv.1.1.bias",
+  "features.12.conv.1.1.running_mean",
+  "features.12.conv.1.1.running_var",
+  "features.12.conv.1.1.num_batches_tracked",
+  "features.12.conv.2.weight",
+  "features.12.conv.3.weight",
+  "features.12.conv.3.bias",
+  "features.12.conv.3.running_mean",
+  "features.12.conv.3.running_var",
+  "features.12.conv.3.num_batches_tracked",
+  "features.13.conv.0.0.weight",
+  "features.13.conv.0.1.weight",
+  "features.13.conv.0.1.bias",
+  "features.13.conv.0.1.running_mean",
+  "features.13.conv.0.1.running_var",
+  "features.13.conv.0.1.num_batches_tracked",
+  "features.13.conv.1.0.weight",
+  "features.13.conv.1.1.weight",
+  "features.13.conv.1.1.bias",
+  "features.13.conv.1.1.running_mean",
+  "features.13.conv.1.1.running_var",
+  "features.13.conv.1.1.num_batches_tracked",
+  "features.13.conv.2.weight",
+  "features.13.conv.3.weight",
+  "features.13.conv.3.bias",
+  "features.13.conv.3.running_mean",
+  "features.13.conv.3.running_var",
+  "features.13.conv.3.num_batches_tracked",
+  "features.14.conv.0.0.weight",
+  "features.14.conv.0.1.weight",
+  "features.14.conv.0.1.bias",
+  "features.14.conv.0.1.running_mean",
+  "features.14.conv.0.1.running_var",
+  "features.14.conv.0.1.num_batches_tracked",
+  "features.14.conv.1.0.weight",
+  "features.14.conv.1.1.weight",
+  "features.14.conv.1.1.bias",
+  "features.14.conv.1.1.running_mean",
+  "features.14.conv.1.1.running_var",
+  "features.14.conv.1.1.num_batches_tracked",
+  "features.14.conv.2.weight",
+  "features.14.conv.3.weight",
+  "features.14.conv.3.bias",
+  "features.14.conv.3.running_mean",
+  "features.14.conv.3.running_var",
+  "features.14.conv.3.num_batches_tracked",
+  "features.15.conv.0.0.weight",
+  "features.15.conv.0.1.weight",
+  "features.15.conv.0.1.bias",
+  "features.15.conv.0.1.running_mean",
+  "features.15.conv.0.1.running_var",
+  "features.15.conv.0.1.num_batches_tracked",
+  "features.15.conv.1.0.weight",
+  "features.15.conv.1.1.weight",
+  "features.15.conv.1.1.bias",
+  "features.15.conv.1.1.running_mean",
+  "features.15.conv.1.1.running_var",
+  "features.15.conv.1.1.num_batches_tracked",
+  "features.15.conv.2.weight",
+  "features.15.conv.3.weight",
+  "features.15.conv.3.bias",
+  "features.15.conv.3.running_mean",
+  "features.15.conv.3.running_var",
+  "features.15.conv.3.num_batches_tracked",
+  "features.16.conv.0.0.weight",
+  "features.16.conv.0.1.weight",
+  "features.16.conv.0.1.bias",
+  "features.16.conv.0.1.running_mean",
+  "features.16.conv.0.1.running_var",
+  "features.16.conv.0.1.num_batches_tracked",
+  "features.16.conv.1.0.weight",
+  "features.16.conv.1.1.weight",
+  "features.16.conv.1.1.bias",
+  "features.16.conv.1.1.running_mean",
+  "features.16.conv.1.1.running_var",
+  "features.16.conv.1.1.num_batches_tracked",
+  "features.16.conv.2.weight",
+  "features.16.conv.3.weight",
+  "features.16.conv.3.bias",
+  "features.16.conv.3.running_mean",
+  "features.16.conv.3.running_var",
+  "features.16.conv.3.num_batches_tracked",
+  "features.17.conv.0.0.weight",
+  "features.17.conv.0.1.weight",
+  "features.17.conv.0.1.bias",
+  "features.17.conv.0.1.running_mean",
+  "features.17.conv.0.1.running_var",
+  "features.17.conv.0.1.num_batches_tracked",
+  "features.17.conv.1.0.weight",
+  "features.17.conv.1.1.weight",
+  "features.17.conv.1.1.bias",
+  "features.17.conv.1.1.running_mean",
+  "features.17.conv.1.1.running_var",
+  "features.17.conv.1.1.num_batches_tracked",
+  "features.17.conv.2.weight",
+  "features.17.conv.3.weight",
+  "features.17.conv.3.bias",
+  "features.17.conv.3.running_mean",
+  "features.17.conv.3.running_var",
+  "features.17.conv.3.num_batches_tracked",
+  "features.18.0.weight",
+  "features.18.1.weight",
+  "features.18.1.bias",
+  "features.18.1.running_mean",
+  "features.18.1.running_var",
+  "features.18.1.num_batches_tracked",
+  "classifier.1.weight",
+  "classifier.1.bias"
+ ],
+ "tensores": {
+  "features.0.0.weight": {
+   "shape": [
+    3,
+    3,
+    3,
+    32
+   ],
+   "offset": 0,
+   "dtype": "f16",
+   "bytes": 1728
+  },
+  "features.0.1.weight": {
+   "shape": [
+    32
+   ],
+   "offset": 1728,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.0.1.bias": {
+   "shape": [
+    32
+   ],
+   "offset": 1856,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.0.1.running_mean": {
+   "shape": [
+    32
+   ],
+   "offset": 1984,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.0.1.running_var": {
+   "shape": [
+    32
+   ],
+   "offset": 2112,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 2240,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.1.conv.0.0.weight": {
+   "shape": [
+    3,
+    3,
+    32,
+    1
+   ],
+   "offset": 2244,
+   "dtype": "f16",
+   "bytes": 576
+  },
+  "features.1.conv.0.1.weight": {
+   "shape": [
+    32
+   ],
+   "offset": 2820,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.1.conv.0.1.bias": {
+   "shape": [
+    32
+   ],
+   "offset": 2948,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.1.conv.0.1.running_mean": {
+   "shape": [
+    32
+   ],
+   "offset": 3076,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.1.conv.0.1.running_var": {
+   "shape": [
+    32
+   ],
+   "offset": 3204,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.1.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 3332,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.1.conv.1.weight": {
+   "shape": [
+    1,
+    1,
+    32,
+    16
+   ],
+   "offset": 3336,
+   "dtype": "f16",
+   "bytes": 1024
+  },
+  "features.1.conv.2.weight": {
+   "shape": [
+    16
+   ],
+   "offset": 4360,
+   "dtype": "f32",
+   "bytes": 64
+  },
+  "features.1.conv.2.bias": {
+   "shape": [
+    16
+   ],
+   "offset": 4424,
+   "dtype": "f32",
+   "bytes": 64
+  },
+  "features.1.conv.2.running_mean": {
+   "shape": [
+    16
+   ],
+   "offset": 4488,
+   "dtype": "f32",
+   "bytes": 64
+  },
+  "features.1.conv.2.running_var": {
+   "shape": [
+    16
+   ],
+   "offset": 4552,
+   "dtype": "f32",
+   "bytes": 64
+  },
+  "features.1.conv.2.num_batches_tracked": {
+   "shape": [],
+   "offset": 4616,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.2.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    16,
+    96
+   ],
+   "offset": 4620,
+   "dtype": "f16",
+   "bytes": 3072
+  },
+  "features.2.conv.0.1.weight": {
+   "shape": [
+    96
+   ],
+   "offset": 7692,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.0.1.bias": {
+   "shape": [
+    96
+   ],
+   "offset": 8076,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.0.1.running_mean": {
+   "shape": [
+    96
+   ],
+   "offset": 8460,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.0.1.running_var": {
+   "shape": [
+    96
+   ],
+   "offset": 8844,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 9228,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.2.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    96,
+    1
+   ],
+   "offset": 9232,
+   "dtype": "f16",
+   "bytes": 1728
+  },
+  "features.2.conv.1.1.weight": {
+   "shape": [
+    96
+   ],
+   "offset": 10960,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.1.1.bias": {
+   "shape": [
+    96
+   ],
+   "offset": 11344,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.1.1.running_mean": {
+   "shape": [
+    96
+   ],
+   "offset": 11728,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.1.1.running_var": {
+   "shape": [
+    96
+   ],
+   "offset": 12112,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.2.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 12496,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.2.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    96,
+    24
+   ],
+   "offset": 12500,
+   "dtype": "f16",
+   "bytes": 4608
+  },
+  "features.2.conv.3.weight": {
+   "shape": [
+    24
+   ],
+   "offset": 17108,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.2.conv.3.bias": {
+   "shape": [
+    24
+   ],
+   "offset": 17204,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.2.conv.3.running_mean": {
+   "shape": [
+    24
+   ],
+   "offset": 17300,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.2.conv.3.running_var": {
+   "shape": [
+    24
+   ],
+   "offset": 17396,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.2.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 17492,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.3.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    24,
+    144
+   ],
+   "offset": 17496,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.3.conv.0.1.weight": {
+   "shape": [
+    144
+   ],
+   "offset": 24408,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.0.1.bias": {
+   "shape": [
+    144
+   ],
+   "offset": 24984,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.0.1.running_mean": {
+   "shape": [
+    144
+   ],
+   "offset": 25560,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.0.1.running_var": {
+   "shape": [
+    144
+   ],
+   "offset": 26136,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 26712,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.3.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    144,
+    1
+   ],
+   "offset": 26716,
+   "dtype": "f16",
+   "bytes": 2592
+  },
+  "features.3.conv.1.1.weight": {
+   "shape": [
+    144
+   ],
+   "offset": 29308,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.1.1.bias": {
+   "shape": [
+    144
+   ],
+   "offset": 29884,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.1.1.running_mean": {
+   "shape": [
+    144
+   ],
+   "offset": 30460,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.1.1.running_var": {
+   "shape": [
+    144
+   ],
+   "offset": 31036,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.3.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 31612,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.3.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    144,
+    24
+   ],
+   "offset": 31616,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.3.conv.3.weight": {
+   "shape": [
+    24
+   ],
+   "offset": 38528,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.3.conv.3.bias": {
+   "shape": [
+    24
+   ],
+   "offset": 38624,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.3.conv.3.running_mean": {
+   "shape": [
+    24
+   ],
+   "offset": 38720,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.3.conv.3.running_var": {
+   "shape": [
+    24
+   ],
+   "offset": 38816,
+   "dtype": "f32",
+   "bytes": 96
+  },
+  "features.3.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 38912,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.4.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    24,
+    144
+   ],
+   "offset": 38916,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.4.conv.0.1.weight": {
+   "shape": [
+    144
+   ],
+   "offset": 45828,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.0.1.bias": {
+   "shape": [
+    144
+   ],
+   "offset": 46404,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.0.1.running_mean": {
+   "shape": [
+    144
+   ],
+   "offset": 46980,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.0.1.running_var": {
+   "shape": [
+    144
+   ],
+   "offset": 47556,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 48132,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.4.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    144,
+    1
+   ],
+   "offset": 48136,
+   "dtype": "f16",
+   "bytes": 2592
+  },
+  "features.4.conv.1.1.weight": {
+   "shape": [
+    144
+   ],
+   "offset": 50728,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.1.1.bias": {
+   "shape": [
+    144
+   ],
+   "offset": 51304,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.1.1.running_mean": {
+   "shape": [
+    144
+   ],
+   "offset": 51880,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.1.1.running_var": {
+   "shape": [
+    144
+   ],
+   "offset": 52456,
+   "dtype": "f32",
+   "bytes": 576
+  },
+  "features.4.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 53032,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.4.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    144,
+    32
+   ],
+   "offset": 53036,
+   "dtype": "f16",
+   "bytes": 9216
+  },
+  "features.4.conv.3.weight": {
+   "shape": [
+    32
+   ],
+   "offset": 62252,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.4.conv.3.bias": {
+   "shape": [
+    32
+   ],
+   "offset": 62380,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.4.conv.3.running_mean": {
+   "shape": [
+    32
+   ],
+   "offset": 62508,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.4.conv.3.running_var": {
+   "shape": [
+    32
+   ],
+   "offset": 62636,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.4.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 62764,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.5.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    32,
+    192
+   ],
+   "offset": 62768,
+   "dtype": "f16",
+   "bytes": 12288
+  },
+  "features.5.conv.0.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 75056,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.0.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 75824,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.0.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 76592,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.0.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 77360,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 78128,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.5.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    192,
+    1
+   ],
+   "offset": 78132,
+   "dtype": "f16",
+   "bytes": 3456
+  },
+  "features.5.conv.1.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 81588,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.1.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 82356,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.1.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 83124,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.1.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 83892,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.5.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 84660,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.5.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    192,
+    32
+   ],
+   "offset": 84664,
+   "dtype": "f16",
+   "bytes": 12288
+  },
+  "features.5.conv.3.weight": {
+   "shape": [
+    32
+   ],
+   "offset": 96952,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.5.conv.3.bias": {
+   "shape": [
+    32
+   ],
+   "offset": 97080,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.5.conv.3.running_mean": {
+   "shape": [
+    32
+   ],
+   "offset": 97208,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.5.conv.3.running_var": {
+   "shape": [
+    32
+   ],
+   "offset": 97336,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.5.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 97464,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.6.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    32,
+    192
+   ],
+   "offset": 97468,
+   "dtype": "f16",
+   "bytes": 12288
+  },
+  "features.6.conv.0.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 109756,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.0.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 110524,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.0.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 111292,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.0.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 112060,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 112828,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.6.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    192,
+    1
+   ],
+   "offset": 112832,
+   "dtype": "f16",
+   "bytes": 3456
+  },
+  "features.6.conv.1.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 116288,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.1.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 117056,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.1.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 117824,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.1.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 118592,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.6.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 119360,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.6.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    192,
+    32
+   ],
+   "offset": 119364,
+   "dtype": "f16",
+   "bytes": 12288
+  },
+  "features.6.conv.3.weight": {
+   "shape": [
+    32
+   ],
+   "offset": 131652,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.6.conv.3.bias": {
+   "shape": [
+    32
+   ],
+   "offset": 131780,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.6.conv.3.running_mean": {
+   "shape": [
+    32
+   ],
+   "offset": 131908,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.6.conv.3.running_var": {
+   "shape": [
+    32
+   ],
+   "offset": 132036,
+   "dtype": "f32",
+   "bytes": 128
+  },
+  "features.6.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 132164,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.7.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    32,
+    192
+   ],
+   "offset": 132168,
+   "dtype": "f16",
+   "bytes": 12288
+  },
+  "features.7.conv.0.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 144456,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.0.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 145224,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.0.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 145992,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.0.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 146760,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 147528,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.7.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    192,
+    1
+   ],
+   "offset": 147532,
+   "dtype": "f16",
+   "bytes": 3456
+  },
+  "features.7.conv.1.1.weight": {
+   "shape": [
+    192
+   ],
+   "offset": 150988,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.1.1.bias": {
+   "shape": [
+    192
+   ],
+   "offset": 151756,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.1.1.running_mean": {
+   "shape": [
+    192
+   ],
+   "offset": 152524,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.1.1.running_var": {
+   "shape": [
+    192
+   ],
+   "offset": 153292,
+   "dtype": "f32",
+   "bytes": 768
+  },
+  "features.7.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 154060,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.7.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    192,
+    64
+   ],
+   "offset": 154064,
+   "dtype": "f16",
+   "bytes": 24576
+  },
+  "features.7.conv.3.weight": {
+   "shape": [
+    64
+   ],
+   "offset": 178640,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.7.conv.3.bias": {
+   "shape": [
+    64
+   ],
+   "offset": 178896,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.7.conv.3.running_mean": {
+   "shape": [
+    64
+   ],
+   "offset": 179152,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.7.conv.3.running_var": {
+   "shape": [
+    64
+   ],
+   "offset": 179408,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.7.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 179664,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.8.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    64,
+    384
+   ],
+   "offset": 179668,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.8.conv.0.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 228820,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.0.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 230356,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.0.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 231892,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.0.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 233428,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 234964,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.8.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    384,
+    1
+   ],
+   "offset": 234968,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.8.conv.1.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 241880,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.1.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 243416,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.1.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 244952,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.1.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 246488,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.8.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 248024,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.8.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    384,
+    64
+   ],
+   "offset": 248028,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.8.conv.3.weight": {
+   "shape": [
+    64
+   ],
+   "offset": 297180,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.8.conv.3.bias": {
+   "shape": [
+    64
+   ],
+   "offset": 297436,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.8.conv.3.running_mean": {
+   "shape": [
+    64
+   ],
+   "offset": 297692,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.8.conv.3.running_var": {
+   "shape": [
+    64
+   ],
+   "offset": 297948,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.8.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 298204,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.9.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    64,
+    384
+   ],
+   "offset": 298208,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.9.conv.0.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 347360,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.0.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 348896,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.0.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 350432,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.0.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 351968,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 353504,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.9.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    384,
+    1
+   ],
+   "offset": 353508,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.9.conv.1.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 360420,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.1.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 361956,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.1.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 363492,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.1.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 365028,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.9.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 366564,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.9.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    384,
+    64
+   ],
+   "offset": 366568,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.9.conv.3.weight": {
+   "shape": [
+    64
+   ],
+   "offset": 415720,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.9.conv.3.bias": {
+   "shape": [
+    64
+   ],
+   "offset": 415976,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.9.conv.3.running_mean": {
+   "shape": [
+    64
+   ],
+   "offset": 416232,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.9.conv.3.running_var": {
+   "shape": [
+    64
+   ],
+   "offset": 416488,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.9.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 416744,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.10.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    64,
+    384
+   ],
+   "offset": 416748,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.10.conv.0.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 465900,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.0.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 467436,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.0.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 468972,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.0.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 470508,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 472044,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.10.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    384,
+    1
+   ],
+   "offset": 472048,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.10.conv.1.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 478960,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.1.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 480496,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.1.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 482032,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.1.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 483568,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.10.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 485104,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.10.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    384,
+    64
+   ],
+   "offset": 485108,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.10.conv.3.weight": {
+   "shape": [
+    64
+   ],
+   "offset": 534260,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.10.conv.3.bias": {
+   "shape": [
+    64
+   ],
+   "offset": 534516,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.10.conv.3.running_mean": {
+   "shape": [
+    64
+   ],
+   "offset": 534772,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.10.conv.3.running_var": {
+   "shape": [
+    64
+   ],
+   "offset": 535028,
+   "dtype": "f32",
+   "bytes": 256
+  },
+  "features.10.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 535284,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.11.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    64,
+    384
+   ],
+   "offset": 535288,
+   "dtype": "f16",
+   "bytes": 49152
+  },
+  "features.11.conv.0.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 584440,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.0.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 585976,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.0.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 587512,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.0.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 589048,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 590584,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.11.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    384,
+    1
+   ],
+   "offset": 590588,
+   "dtype": "f16",
+   "bytes": 6912
+  },
+  "features.11.conv.1.1.weight": {
+   "shape": [
+    384
+   ],
+   "offset": 597500,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.1.1.bias": {
+   "shape": [
+    384
+   ],
+   "offset": 599036,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.1.1.running_mean": {
+   "shape": [
+    384
+   ],
+   "offset": 600572,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.1.1.running_var": {
+   "shape": [
+    384
+   ],
+   "offset": 602108,
+   "dtype": "f32",
+   "bytes": 1536
+  },
+  "features.11.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 603644,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.11.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    384,
+    96
+   ],
+   "offset": 603648,
+   "dtype": "f16",
+   "bytes": 73728
+  },
+  "features.11.conv.3.weight": {
+   "shape": [
+    96
+   ],
+   "offset": 677376,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.11.conv.3.bias": {
+   "shape": [
+    96
+   ],
+   "offset": 677760,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.11.conv.3.running_mean": {
+   "shape": [
+    96
+   ],
+   "offset": 678144,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.11.conv.3.running_var": {
+   "shape": [
+    96
+   ],
+   "offset": 678528,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.11.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 678912,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.12.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    96,
+    576
+   ],
+   "offset": 678916,
+   "dtype": "f16",
+   "bytes": 110592
+  },
+  "features.12.conv.0.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 789508,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.0.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 791812,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.0.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 794116,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.0.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 796420,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 798724,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.12.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    576,
+    1
+   ],
+   "offset": 798728,
+   "dtype": "f16",
+   "bytes": 10368
+  },
+  "features.12.conv.1.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 809096,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.1.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 811400,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.1.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 813704,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.1.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 816008,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.12.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 818312,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.12.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    576,
+    96
+   ],
+   "offset": 818316,
+   "dtype": "f16",
+   "bytes": 110592
+  },
+  "features.12.conv.3.weight": {
+   "shape": [
+    96
+   ],
+   "offset": 928908,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.12.conv.3.bias": {
+   "shape": [
+    96
+   ],
+   "offset": 929292,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.12.conv.3.running_mean": {
+   "shape": [
+    96
+   ],
+   "offset": 929676,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.12.conv.3.running_var": {
+   "shape": [
+    96
+   ],
+   "offset": 930060,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.12.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 930444,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.13.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    96,
+    576
+   ],
+   "offset": 930448,
+   "dtype": "f16",
+   "bytes": 110592
+  },
+  "features.13.conv.0.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 1041040,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.0.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 1043344,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.0.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 1045648,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.0.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 1047952,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1050256,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.13.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    576,
+    1
+   ],
+   "offset": 1050260,
+   "dtype": "f16",
+   "bytes": 10368
+  },
+  "features.13.conv.1.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 1060628,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.1.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 1062932,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.1.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 1065236,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.1.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 1067540,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.13.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1069844,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.13.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    576,
+    96
+   ],
+   "offset": 1069848,
+   "dtype": "f16",
+   "bytes": 110592
+  },
+  "features.13.conv.3.weight": {
+   "shape": [
+    96
+   ],
+   "offset": 1180440,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.13.conv.3.bias": {
+   "shape": [
+    96
+   ],
+   "offset": 1180824,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.13.conv.3.running_mean": {
+   "shape": [
+    96
+   ],
+   "offset": 1181208,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.13.conv.3.running_var": {
+   "shape": [
+    96
+   ],
+   "offset": 1181592,
+   "dtype": "f32",
+   "bytes": 384
+  },
+  "features.13.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 1181976,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.14.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    96,
+    576
+   ],
+   "offset": 1181980,
+   "dtype": "f16",
+   "bytes": 110592
+  },
+  "features.14.conv.0.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 1292572,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.0.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 1294876,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.0.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 1297180,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.0.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 1299484,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1301788,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.14.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    576,
+    1
+   ],
+   "offset": 1301792,
+   "dtype": "f16",
+   "bytes": 10368
+  },
+  "features.14.conv.1.1.weight": {
+   "shape": [
+    576
+   ],
+   "offset": 1312160,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.1.1.bias": {
+   "shape": [
+    576
+   ],
+   "offset": 1314464,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.1.1.running_mean": {
+   "shape": [
+    576
+   ],
+   "offset": 1316768,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.1.1.running_var": {
+   "shape": [
+    576
+   ],
+   "offset": 1319072,
+   "dtype": "f32",
+   "bytes": 2304
+  },
+  "features.14.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1321376,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.14.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    576,
+    160
+   ],
+   "offset": 1321380,
+   "dtype": "f16",
+   "bytes": 184320
+  },
+  "features.14.conv.3.weight": {
+   "shape": [
+    160
+   ],
+   "offset": 1505700,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.14.conv.3.bias": {
+   "shape": [
+    160
+   ],
+   "offset": 1506340,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.14.conv.3.running_mean": {
+   "shape": [
+    160
+   ],
+   "offset": 1506980,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.14.conv.3.running_var": {
+   "shape": [
+    160
+   ],
+   "offset": 1507620,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.14.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 1508260,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.15.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    160,
+    960
+   ],
+   "offset": 1508264,
+   "dtype": "f16",
+   "bytes": 307200
+  },
+  "features.15.conv.0.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 1815464,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.0.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 1819304,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.0.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 1823144,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.0.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 1826984,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1830824,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.15.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    960,
+    1
+   ],
+   "offset": 1830828,
+   "dtype": "f16",
+   "bytes": 17280
+  },
+  "features.15.conv.1.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 1848108,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.1.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 1851948,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.1.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 1855788,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.1.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 1859628,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.15.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 1863468,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.15.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    960,
+    160
+   ],
+   "offset": 1863472,
+   "dtype": "f16",
+   "bytes": 307200
+  },
+  "features.15.conv.3.weight": {
+   "shape": [
+    160
+   ],
+   "offset": 2170672,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.15.conv.3.bias": {
+   "shape": [
+    160
+   ],
+   "offset": 2171312,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.15.conv.3.running_mean": {
+   "shape": [
+    160
+   ],
+   "offset": 2171952,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.15.conv.3.running_var": {
+   "shape": [
+    160
+   ],
+   "offset": 2172592,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.15.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 2173232,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.16.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    160,
+    960
+   ],
+   "offset": 2173236,
+   "dtype": "f16",
+   "bytes": 307200
+  },
+  "features.16.conv.0.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 2480436,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.0.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 2484276,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.0.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 2488116,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.0.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 2491956,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 2495796,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.16.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    960,
+    1
+   ],
+   "offset": 2495800,
+   "dtype": "f16",
+   "bytes": 17280
+  },
+  "features.16.conv.1.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 2513080,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.1.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 2516920,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.1.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 2520760,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.1.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 2524600,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.16.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 2528440,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.16.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    960,
+    160
+   ],
+   "offset": 2528444,
+   "dtype": "f16",
+   "bytes": 307200
+  },
+  "features.16.conv.3.weight": {
+   "shape": [
+    160
+   ],
+   "offset": 2835644,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.16.conv.3.bias": {
+   "shape": [
+    160
+   ],
+   "offset": 2836284,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.16.conv.3.running_mean": {
+   "shape": [
+    160
+   ],
+   "offset": 2836924,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.16.conv.3.running_var": {
+   "shape": [
+    160
+   ],
+   "offset": 2837564,
+   "dtype": "f32",
+   "bytes": 640
+  },
+  "features.16.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 2838204,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.17.conv.0.0.weight": {
+   "shape": [
+    1,
+    1,
+    160,
+    960
+   ],
+   "offset": 2838208,
+   "dtype": "f16",
+   "bytes": 307200
+  },
+  "features.17.conv.0.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 3145408,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.0.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 3149248,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.0.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 3153088,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.0.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 3156928,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.0.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 3160768,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.17.conv.1.0.weight": {
+   "shape": [
+    3,
+    3,
+    960,
+    1
+   ],
+   "offset": 3160772,
+   "dtype": "f16",
+   "bytes": 17280
+  },
+  "features.17.conv.1.1.weight": {
+   "shape": [
+    960
+   ],
+   "offset": 3178052,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.1.1.bias": {
+   "shape": [
+    960
+   ],
+   "offset": 3181892,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.1.1.running_mean": {
+   "shape": [
+    960
+   ],
+   "offset": 3185732,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.1.1.running_var": {
+   "shape": [
+    960
+   ],
+   "offset": 3189572,
+   "dtype": "f32",
+   "bytes": 3840
+  },
+  "features.17.conv.1.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 3193412,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.17.conv.2.weight": {
+   "shape": [
+    1,
+    1,
+    960,
+    320
+   ],
+   "offset": 3193416,
+   "dtype": "f16",
+   "bytes": 614400
+  },
+  "features.17.conv.3.weight": {
+   "shape": [
+    320
+   ],
+   "offset": 3807816,
+   "dtype": "f32",
+   "bytes": 1280
+  },
+  "features.17.conv.3.bias": {
+   "shape": [
+    320
+   ],
+   "offset": 3809096,
+   "dtype": "f32",
+   "bytes": 1280
+  },
+  "features.17.conv.3.running_mean": {
+   "shape": [
+    320
+   ],
+   "offset": 3810376,
+   "dtype": "f32",
+   "bytes": 1280
+  },
+  "features.17.conv.3.running_var": {
+   "shape": [
+    320
+   ],
+   "offset": 3811656,
+   "dtype": "f32",
+   "bytes": 1280
+  },
+  "features.17.conv.3.num_batches_tracked": {
+   "shape": [],
+   "offset": 3812936,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "features.18.0.weight": {
+   "shape": [
+    1,
+    1,
+    320,
+    1280
+   ],
+   "offset": 3812940,
+   "dtype": "f16",
+   "bytes": 819200
+  },
+  "features.18.1.weight": {
+   "shape": [
+    1280
+   ],
+   "offset": 4632140,
+   "dtype": "f32",
+   "bytes": 5120
+  },
+  "features.18.1.bias": {
+   "shape": [
+    1280
+   ],
+   "offset": 4637260,
+   "dtype": "f32",
+   "bytes": 5120
+  },
+  "features.18.1.running_mean": {
+   "shape": [
+    1280
+   ],
+   "offset": 4642380,
+   "dtype": "f32",
+   "bytes": 5120
+  },
+  "features.18.1.running_var": {
+   "shape": [
+    1280
+   ],
+   "offset": 4647500,
+   "dtype": "f32",
+   "bytes": 5120
+  },
+  "features.18.1.num_batches_tracked": {
+   "shape": [],
+   "offset": 4652620,
+   "dtype": "f32",
+   "bytes": 4
+  },
+  "classifier.1.weight": {
+   "shape": [
+    185,
+    1280
+   ],
+   "offset": 4652624,
+   "dtype": "f16",
+   "bytes": 473600
+  },
+  "classifier.1.bias": {
+   "shape": [
+    185
+   ],
+   "offset": 5126224,
+   "dtype": "f32",
+   "bytes": 740
+  }
+ }
+}

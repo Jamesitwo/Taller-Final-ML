@@ -1,0 +1,16 @@
+# ── Dataset (muy pesado: no se sube al repositorio) ──────────────────
+datos/leafsnap/
+datos/procesado/
+datos/leafsnap-dataset.tar
+
+# ── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+
+# ── Node ─────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Sistema ──────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

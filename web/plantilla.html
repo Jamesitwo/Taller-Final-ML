@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Reconocimiento de hojas de plantas con una red neuronal convolucional (MobileNetV2) que funciona directamente en el navegador. Proyecto final de Machine Learning.">
+<title>🌿 Identificador de Hojas · RNA Convolucional</title>
+<style>
+  :root {
+    --verde-900: #14432a;
+    --verde-700: #1f6b3d;
+    --verde-500: #2e9e5b;
+    --verde-300: #7fd6a2;
+    --verde-050: #eef7f0;
+    --crema: #f7faf6;
+    --texto: #1d2a22;
+    --texto-suave: #55645b;
+    --blanco: #ffffff;
+    --sombra: 0 10px 30px rgba(20, 67, 42, .12);
+    --radio: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--verde-050), var(--crema) 30%, var(--blanco));
+    color: var(--texto);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  .contenedor { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Cabecera ---------- */
+  header {
+    background: radial-gradient(1200px 400px at 80% -10%, rgba(127, 214, 162, .35), transparent),
+                linear-gradient(135deg, var(--verde-900), var(--verde-700));
+    color: var(--blanco);
+    padding: 30px 0 22px;
+  }
+  .marca { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .logo {
+    width: 58px; height: 58px; border-radius: 16px; flex: none;
+    background: rgba(255, 255, 255, .14); display: grid; place-items: center; font-size: 30px;
+  }
+  h1 { font-size: clamp(1.35rem, 4.5vw, 2.15rem); line-height: 1.15; letter-spacing: -.02em; }
+  .subtitulo { opacity: .92; font-size: clamp(.92rem, 2.6vw, 1.06rem); max-width: 60ch; margin-top: 8px; }
+  .insignias { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .insignia {
+    background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .22);
+    padding: 5px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600;
+  }
+
+  /* ---------- Pestañas ---------- */
+  nav.pestanas {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e3ebe4;
+  }
+  .pestanas .contenedor { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .pestanas .contenedor::-webkit-scrollbar { display: none; }
+  .pestana {
+    border: 0; background: none; padding: 14px 16px; font-size: .95rem; font-weight: 600;
+    color: var(--texto-suave); cursor: pointer; white-space: nowrap;
+    border-bottom: 3px solid transparent; transition: .18s;
+  }
+  .pestana.activa { color: var(--verde-700); border-bottom-color: var(--verde-500); }
+
+  main { padding: 26px 0 60px; }
+  section.panel { display: none; animation: aparecer .35s ease; }
+  section.panel.visible { display: block; }
+  @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .tarjeta {
+    background: var(--blanco); border-radius: var(--radio); box-shadow: var(--sombra);
+    padding: 22px; margin-bottom: 18px; border: 1px solid #e8efe9;
+  }
+  h2 { font-size: clamp(1.15rem, 3.5vw, 1.5rem); margin-bottom: 6px; letter-spacing: -.01em; }
+  h3 { font-size: 1.02rem; margin: 18px 0 8px; }
+  p { color: var(--texto-suave); }
+  .etiqueta {
+    display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--verde-700); background: var(--verde-050);
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+
+  /* ---------- Botones ---------- */
+  .botones { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 18px 0 6px; }
+  .boton {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 18px; border-radius: 14px; border: 1px solid transparent;
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .12s, box-shadow .2s, background .2s;
+  }
+  .boton:active { transform: scale(.97); }
+  .boton.primario { background: var(--verde-700); color: white; box-shadow: 0 8px 20px rgba(31, 107, 61, .32); }
+  .boton.primario:hover { background: var(--verde-900); }
+  .boton.secundario { background: var(--verde-050); color: var(--verde-700); border-color: #cfe6d6; }
+  .boton.secundario:hover { background: #e0f0e5; }
+  .boton.ghost { background: transparent; color: var(--texto-suave); border-color: #dde6df; }
+  .boton[disabled] { opacity: .55; cursor: not-allowed; }
+  .nota { font-size: .84rem; color: var(--texto-suave); margin-top: 10px; }
+
+  /* ---------- Visor / resultados ---------- */
+  .visor { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 760px) { .visor { grid-template-columns: 300px 1fr; } }
+  .marco-foto {
+    position: relative; border-radius: 16px; overflow: hidden; background: #eef2ee;
+    border: 1px solid #e0e8e1; aspect-ratio: 1 / 1; display: grid; place-items: center;
+  }
+  .marco-foto img, .marco-foto canvas { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .marco-foto .vacio { text-align: center; color: #93a69a; font-size: .92rem; padding: 22px; }
+  .marco-foto .vacio .hoja { font-size: 46px; display: block; margin-bottom: 8px; opacity: .55; }
+
+  .cargando {
+    display: none; align-items: center; gap: 12px; margin-top: 14px;
+    background: var(--verde-050); border-radius: 12px; padding: 13px 16px; color: var(--verde-700); font-weight: 600;
+  }
+  .cargando.visible { display: flex; }
+  .spinner {
+    width: 20px; height: 20px; border-radius: 50%; flex: none;
+    border: 3px solid var(--verde-300); border-top-color: var(--verde-700);
+    animation: girar .8s linear infinite;
+  }
+  @keyframes girar { to { transform: rotate(360deg); } }
+
+  .resultado { display: none; }
+  .resultado.visible { display: block; animation: aparecer .35s ease; }
+  .ganador {
+    background: linear-gradient(135deg, var(--verde-900), var(--verde-700));
+    color: white; border-radius: 16px; padding: 18px 20px; margin-bottom: 16px;
+  }
+  .ganador .nombre { font-size: clamp(1.25rem, 4vw, 1.7rem); font-weight: 800; letter-spacing: -.01em; }
+  .ganador .cientifico { font-style: italic; opacity: .92; margin-top: 2px; }
+  .ganador .confianza { margin-top: 12px; font-size: .88rem; opacity: .9; }
+  .barra-confianza { height: 10px; background: rgba(255, 255, 255, .25); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+  .barra-confianza > div { height: 100%; background: var(--verde-300); border-radius: 999px; transition: width .6s ease; }
+
+  .ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 14px; }
+  .ficha .dato { background: rgba(255, 255, 255, .12); border-radius: 10px; padding: 9px 12px; font-size: .84rem; }
+  .ficha .dato b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; opacity: .8; font-weight: 700; }
+
+  .alternativas { list-style: none; }
+  .alternativas li { margin-bottom: 10px; }
+  .alt-fila { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: .92rem; }
+  .alt-fila .nom { font-weight: 600; }
+  .alt-fila .nom i { color: var(--texto-suave); font-weight: 500; }
+  .alt-fila .pct { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--verde-700); }
+  .alt-barra { height: 8px; background: #edf2ee; border-radius: 999px; overflow: hidden; margin-top: 5px; }
+  .alt-barra > div { height: 100%; background: linear-gradient(90deg, var(--verde-500), var(--verde-300)); border-radius: 999px; transition: width .5s ease; }
+
+  .aviso-baja {
+    display: none; background: #fff6e8; border: 1px solid #f2ddb4; color: #8a5b12;
+    border-radius: 12px; padding: 12px 14px; font-size: .88rem; margin-bottom: 14px;
+  }
+  .aviso-baja.visible { display: block; }
+
+  /* ---------- Cámara en vivo ---------- */
+  .modal-camara {
+    display: none; position: fixed; inset: 0; z-index: 90;
+    background: rgba(10, 24, 16, .92); padding: 16px;
+  }
+  .modal-camara.visible { display: flex; flex-direction: column; }
+  .modal-camara video { width: 100%; max-height: 66vh; border-radius: 16px; background: #000; object-fit: cover; }
+  .guia {
+    position: relative; margin: -14px auto 10px; width: min(78vw, 380px); aspect-ratio: 1/1;
+    border: 3px dashed rgba(255, 255, 255, .75); border-radius: 24px; pointer-events: none;
+  }
+  .guia span {
+    position: absolute; bottom: -34px; left: 0; right: 0; text-align: center;
+    color: rgba(255, 255, 255, .9); font-size: .85rem;
+  }
+  .modal-botones { display: flex; gap: 12px; justify-content: center; margin-top: 46px; }
+  .modal-botones .boton { min-width: 150px; }
+
+  /* ---------- Métricas ---------- */
+  .rejilla-metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
+  .metrica { background: var(--verde-050); border: 1px solid #d9e9de; border-radius: 14px; padding: 16px; text-align: center; }
+  .metrica .valor { font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; color: var(--verde-700); letter-spacing: -.02em; }
+  .metrica .texto { font-size: .82rem; color: var(--texto-suave); margin-top: 2px; }
+  .grafica { width: 100%; border-radius: 12px; margin-top: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; margin-top: 10px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e6ece7; }
+  th { color: var(--texto-suave); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* ---------- Especies ---------- */
+  .buscador {
+    width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid #d7e3da;
+    font-size: 1rem; margin-bottom: 14px; outline: none;
+  }
+  .buscador:focus { border-color: var(--verde-500); box-shadow: 0 0 0 4px rgba(46, 158, 91, .15); }
+  .lista-especies { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+  .especie {
+    background: var(--blanco); border: 1px solid #e4ece6; border-radius: 13px; padding: 13px 15px;
+  }
+  .especie .nom { font-weight: 700; }
+  .especie .ci { font-style: italic; color: var(--texto-suave); font-size: .88rem; }
+  .especie .fa { font-size: .78rem; color: var(--verde-700); margin-top: 4px; }
+
+  /* ---------- Diagrama de la red ---------- */
+  .diagrama { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 6px; }
+  .capa {
+    background: var(--verde-050); border: 1px solid #cfe6d6; color: var(--verde-900);
+    padding: 9px 12px; border-radius: 11px; font-size: .8rem; font-weight: 600; text-align: center;
+  }
+  .capa.oscura { background: var(--verde-700); color: white; border-color: var(--verde-700); }
+  .flecha { color: var(--verde-300); font-size: 1.15rem; font-weight: 700; }
+
+  .pasos { counter-reset: paso; list-style: none; margin-top: 12px; }
+  .pasos li {
+    counter-increment: paso; position: relative; padding: 4px 0 16px 46px;
+    border-left: 2px solid #d7e6dc; margin-left: 16px;
+  }
+  .pasos li::before {
+    content: counter(paso); position: absolute; left: -17px; top: 0;
+    width: 32px; height: 32px; border-radius: 50%; background: var(--verde-700); color: white;
+    display: grid; place-items: center; font-weight: 800; font-size: .9rem;
+  }
+  .pasos li b { display: block; margin-bottom: 2px; }
+
+  footer {
+    background: var(--verde-900); color: rgba(255, 255, 255, .85); padding: 30px 0 40px; font-size: .86rem;
+  }
+  footer a { color: var(--verde-300); }
+  footer .contenedor > div + div { margin-top: 10px; }
+
+  .pie-ejemplos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .ejemplo {
+    border: 1px solid #d7e3da; background: white; border-radius: 12px; padding: 6px 10px 6px 6px;
+    display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: .82rem; font-weight: 600;
+    color: var(--texto); transition: .15s;
+  }
+  .ejemplo:hover { border-color: var(--verde-500); background: var(--verde-050); }
+  .ejemplo img { width: 40px; height: 40px; border-radius: 9px; object-fit: cover; }
+
+  .barra-estado {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    background: rgba(20, 67, 42, .95); color: white; text-align: center;
+    font-size: .82rem; padding: 8px 14px; transform: translateY(110%); transition: .3s;
+  }
+  .barra-estado.visible { transform: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor">
+    <div class="marca">
+      <div class="logo">🌿</div>
+      <div>
+        <h1>Identificador de Hojas</h1>
+        <div class="subtitulo">
+          Red neuronal <b>convolucional</b> que reconoce <b>185 especies de árboles</b> a partir de
+          una foto de su hoja. Todo el procesamiento ocurre en tu dispositivo: la imagen nunca sale del navegador.
+        </div>
+      </div>
+    </div>
+    <div class="insignias">
+      <span class="insignia">🧠 MobileNetV2 · Transfer Learning</span>
+      <span class="insignia">📷 Toma la foto con el celular</span>
+      <span class="insignia">🌱 Dataset Leafsnap · 30 866 imágenes</span>
+      <span class="insignia">⚡ Inferencia local (sin servidor)</span>
+    </div>
+  </div>
+</header>
+
+<nav class="pestanas">
+  <div class="contenedor">
+    <button class="pestana activa" data-panel="identificar">📸 Identificar</button>
+    <button class="pestana" data-panel="resultados">📊 Resultados</button>
+    <button class="pestana" data-panel="especies">🌲 Especies</button>
+    <button class="pestana" data-panel="como">🧠 ¿Cómo funciona?</button>
+  </div>
+</nav>
+
+<main>
+<div class="contenedor">
+
+  <!-- ======================= IDENTIFICAR ======================= -->
+  <section class="panel visible" id="panel-identificar">
+    <div class="tarjeta">
+      <span class="etiqueta">Paso 1</span>
+      <h2>Toma una foto de una hoja</h2>
+      <p>Coloca la hoja sobre un fondo que contraste, con buena luz. Puedes usar la cámara del
+         celular en vivo o elegir una foto de la galería.</p>
+      <div class="botones">
+        <button class="boton primario" id="btn-camara">📹 Cámara en vivo</button>
+        <button class="boton secundario" id="btn-foto">📸 Tomar foto</button>
+        <button class="boton secundario" id="btn-galeria">🖼️ Elegir imagen</button>
+      </div>
+      <input type="file" id="entrada-foto" accept="image/*" capture="environment" hidden>
+      <input type="file" id="entrada-galeria" accept="image/*" hidden>
+      <p class="nota">💡 En el celular, <b>«Tomar foto»</b> abre directamente la cámara. Todo el análisis
+         se realiza en tu dispositivo con la red neuronal.</p>
+
+      <div class="pie-ejemplos" id="ejemplos"></div>
+    </div>
+
+    <div class="tarjeta">
+      <span class="etiqueta">Paso 2</span>
+      <h2>Análisis con la RNA convolucional</h2>
+      <div class="visor">
+        <div>
+          <div class="marco-foto" id="marco">
+            <div class="vacio" id="marco-vacio">
+              <span class="leaf hoja">🍃</span>
+              Aquí aparecerá la hoja que fotografíes
+            </div>
+          </div>
+          <div class="botones" style="grid-template-columns:1fr;">
+            <button class="boton primario" id="btn-analizar" disabled>🔬 Analizar hoja</button>
+            <button class="boton ghost" id="btn-limpiar" disabled>↺ Empezar de nuevo</button>
+          </div>
+          <div class="cargando" id="cargando"><div class="spinner"></div><span id="cargando-texto">Analizando…</span></div>
+        </div>
+
+        <div>
+          <div class="aviso-baja" id="aviso-baja">
+            ⚠️ <b>Confianza baja.</b> El modelo no está seguro. Intenta con más luz, que la hoja
+            llene el encuadre y con un fondo que contraste.
+          </div>
+
+          <div class="resultado" id="resultado">
+            <div class="ganador">
+              <div style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">
+                Especie identificada
+              </div>
+              <div class="nombre" id="ganador-nombre">—</div>
+              <div class="cientifico" id="ganador-cientifico">—</div>
+              <div class="confianza">
+                Confianza del modelo: <b id="ganador-pct">0 %</b>
+                <div class="barra-confianza"><div id="ganador-barra" style="width:0%"></div></div>
+              </div>
+              <div class="ficha" id="ganador-ficha"></div>
+            </div>
+
+            <h3>Otras especies posibles</h3>
+            <ul class="alternativas" id="alternativas"></ul>
+          </div>
+
+          <div id="esperando" style="color:#7b8b81;font-size:.92rem;padding:22px 6px;">
+            Cuando tomes una foto, aquí aparecerán las <b>5 especies más probables</b> con su
+            porcentaje de confianza y una ficha con su nombre común, familia botánica y más datos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= RESULTADOS ======================= -->
+  <section class="panel" id="panel-resultados">
+    <div class="tarjeta">
+      <span class="etiqueta">Evaluación del modelo</span>
+      <h2>Resultados del entrenamiento</h2>
+      <p>El modelo se entrenó con el dataset <b>Leafsnap</b> y se evaluó con un conjunto de
+         <b>prueba</b> separado (nunca visto durante el entrenamiento).</p>
+      <div class="rejilla-metricas" id="rejilla-metricas"></div>
+      <h3>Curvas de entrenamiento</h3>
+      <p>Pérdida y exactitud por época durante las dos fases (cabeza de clasificación y ajuste fino).</p>
+      <div id="contenedor-curvas"></div>
+      <div id="contenedor-confundidos"></div>
+    </div>
+
+    <div class="tarjeta">
+      <span class="etiqueta">Arquitectura</span>
+      <h2>La red neuronal convolucional</h2>
+      <p>La red procesa la imagen con filtros convolucionales que detectan bordes, texturas y formas
+         de la hoja, y finalmente una capa densa calcula la probabilidad de cada especie.</p>
+      <div class="diagrama">
+        <div class="capa">Entrada<br>224×224×3</div>
+        <div class="flecha">→</div>
+        <div class="capa">Conv 3×3<br>32 filtros</div>
+        <div class="flecha">→</div>
+        <div class="capa">17 bloques<br>residuales</div>
+        <div class="flecha">→</div>
+        <div class="capa">Conv 1×1<br>1280 filtros</div>
+        <div class="flecha">→</div>
+        <div class="capa">Promedio<br>global</div>
+        <div class="flecha">→</div>
+        <div class="capa oscura">Densa 185<br>softmax</div>
+      </div>
+      <table>
+        <thead><tr><th>Característica</th><th>Valor</th></tr></thead>
+        <tbody id="tabla-arquitectura"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================= ESPECIES ======================= -->
+  <section class="panel" id="panel-especies">
+    <div class="tarjeta">
+      <span class="etiqueta">Base de conocimiento</span>
+      <h2>Las 185 especies que reconoce</h2>
+      <p>El dataset Leafsnap cubre todas las especies de árboles del noreste de Estados Unidos.
+         Busca por nombre común, científico o familia.</p>
+      <input class="buscador" id="buscador" type="search" placeholder="🔎 Buscar especie… (ej. arce, roble, Acer, Fagaceae)">
+      <div class="lista-especies" id="lista-especies"></div>
+    </div>
+  </section>
+
+  <!-- ======================= CÓMO FUNCIONA ======================= -->
+  <section class="panel" id="panel-como">
+    <div class="tarjeta">
+      <span class="etiqueta">Fundamento</span>
+      <h2>¿Qué es una red neuronal convolucional?</h2>
+      <p>Una <b>RNA convolucional (CNN)</b> es un tipo de red neuronal especializada en imágenes.
+         Aplica pequeños filtros que se deslizan por la foto detectando rasgos visuales:</p>
+      <ol class="pasos">
+        <li><b>Capas convolucionales</b> — detectan bordes, nervaduras, texturas y contornos de la hoja.</li>
+        <li><b>Pooling y bloques residuales</b> — reducen el tamaño y combinan los rasgos en formas
+            cada vez más abstractas (silueta, borde dentado, patrón de venas).</li>
+        <li><b>Capas densas (completamente conectadas)</b> — interpretan todos los rasgos y calculan
+            la probabilidad de cada una de las 185 especies.</li>
+      </ol>
+
+      <h3>Transfer learning: aprovechar lo que la red ya sabe</h3>
+      <p>La arquitectura <b>MobileNetV2</b> fue preentrenada con más de un millón de imágenes
+         (ImageNet). Sus primeras capas ya saben detectar bordes y texturas, así que solo
+         reentrenamos las capas finales con las fotos de hojas: se obtiene mucha más exactitud
+         con menos datos y tiempo de entrenamiento.</p>
+
+      <h3>Cómo funciona esta página</h3>
+      <ol class="pasos">
+        <li><b>Captura</b> — tomas la foto con la cámara de tu celular.</li>
+        <li><b>Preprocesado</b> — la imagen se redimensiona conservando su proporción a 224×224
+            píxeles y se normaliza con los mismos valores usados en el entrenamiento.</li>
+        <li><b>Inferencia</b> — los pesos de la CNN se ejecutan con TensorFlow.js sobre la GPU/WebGL
+            de tu dispositivo; no se envía nada a un servidor.</li>
+        <li><b>Resultado</b> — se muestran las 5 especies más probables con su ficha informativa.</li>
+      </ol>
+    </div>
+
+    <div class="tarjeta">
+      <span class="etiqueta">Dataset</span>
+      <h2>Sobre los datos de entrenamiento</h2>
+      <p><b>Leafsnap</b> (Kumar et al., ECCV 2012) es un proyecto de la Universidad de Columbia,
+         la Universidad de Maryland y el Instituto Smithsonian. Contiene imágenes de hojas
+         prensadas digitalizadas en laboratorio y fotos tomadas con teléfonos en exteriores.</p>
+      <table>
+        <thead><tr><th>Dato</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Imágenes totales</td><td>30 866</td></tr>
+          <tr><td>Imágenes de laboratorio</td><td>23 147</td></tr>
+          <tr><td>Imágenes de campo (celular)</td><td>7 719</td></tr>
+          <tr><td>Especies de árboles</td><td>185</td></tr>
+          <tr><td>División entrenamiento / validación / prueba</td><td>70 % / 15 % / 15 %</td></tr>
+        </tbody>
+      </table>
+      <p class="nota">Referencia: N. Kumar, P. N. Belhumeur, A. Biswas, D. W. Jacobs, W. J. Kress,
+         I. C. Lopez, J. V. B. Soares. <i>«Leafsnap: A Computer Vision System for Automatic Plant
+         Species Identification»</i>. ECCV 2012.</p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- ======================= CÁMARA EN VIVO ======================= -->
+<div class="modal-camara" id="modal-camara">
+  <video id="video" playsinline muted></video>
+  <div class="guia"><span>Centra la hoja dentro del marco</span></div>
+  <div class="modal-botones">
+    <button class="boton primario" id="btn-capturar">📸 Capturar</button>
+    <button class="boton ghost" id="btn-cancelar" style="color:#fff;border-color:rgba(255,255,255,.4)">✕ Cancelar</button>
+  </div>
+</div>
+
+<div class="barra-estado" id="barra-estado"></div>
+
+<footer>
+  <div class="contenedor">
+    <div><b>Proyecto final de Machine Learning</b> — Reconocimiento de imágenes de hojas de plantas con una red neuronal convolucional.</div>
+    <div>Dataset: Leafsnap · Columbia University, University of Maryland y Smithsonian Institution (ECCV 2012).</div>
+    <div>Modelo: MobileNetV2 preentrenada en ImageNet + cabeza de clasificación entrenada con PyTorch y ejecutada en el navegador con TensorFlow.js.</div>
+    <div>La inferencia se realiza 100 % en el dispositivo. Los resultados son una ayuda educativa, no sustituyen la identificación botánica profesional.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script>
+/* =====================================================================
+   DATOS DEL MODELO (generados automáticamente por entrenamiento/05_*)
+   ===================================================================== */
+const MANIFIESTO = __MANIFIESTO_JSON__;
+const PESOS_B64 = "__PESOS_BASE64__";
+const METADATOS_ESPECIES = __METADATOS_ESPECIES_JSON__;
+const METRICAS = __METRICAS_JSON__;
+const EJEMPLOS = __EJEMPLOS_JSON__;
+
+__RED_JS__
+
+/* =====================================================================
+   APLICACIÓN
+   ===================================================================== */
+let red = null;
+let imagenActual = null;
+
+const $ = (id) => document.getElementById(id);
+
+function mensaje(texto, ms = 2600) {
+  const barra = $("barra-estado");
+  barra.textContent = texto;
+  barra.classList.add("visible");
+  clearTimeout(barra._t);
+  barra._t = setTimeout(() => barra.classList.remove("visible"), ms);
+}
+
+async function cargarModelo() {
+  $("cargando-texto").textContent = "Cargando la red neuronal…";
+  $("cargando").classList.add("visible");
+  try {
+    await tf.ready();
+    if (PESOS_B64) {
+      red = new RedNeuronalConvolucional(MANIFIESTO, decodificarBase64(PESOS_B64));
+    } else {
+      const resp = await fetch("modelo/pesos.bin");
+      red = new RedNeuronalConvolucional(MANIFIESTO, await resp.arrayBuffer());
+    }
+    // calentamiento: primera predicción para inicializar WebGL
+    const x = tf.zeros([1, 224, 224, 3]);
+    const y = red.propagar(x);
+    await y.data(); x.dispose(); y.dispose();
+    $("cargando").classList.remove("visible");
+    mensaje("✅ Modelo neuronal cargado (" + MANIFIESTO.clases.length + " especies)");
+  } catch (e) {
+    $("cargando-texto").textContent = "No se pudo cargar el modelo: " + e.message;
+    console.error(e);
+  }
+}
+
+function mostrarImagen(imagen) {
+  const marco = $("marco");
+  marco.innerHTML = "";
+  const lienzo = document.createElement("canvas");
+  lienzo.width = lienzo.height = 512;
+  lienzo.getContext("2d").drawImage(imagen, 0, 0, 512, 512);
+  marco.appendChild(lienzo);
+  imagenActual = imagen;
+  $("btn-analizar").disabled = false;
+  $("btn-limpiar").disabled = false;
+  $("resultado").classList.remove("visible");
+  $("aviso-baja").classList.remove("visible");
+  $("esperando").style.display = "none";
+}
+
+function limpiar() {
+  imagenActual = null;
+  $("marco").innerHTML = '<div class="vacio" id="marco-vacio"><span class="leaf hoja">🍃</span>Aquí aparecerá la hoja que fotografíes</div>';
+  $("btn-analizar").disabled = true;
+  $("btn-limpiar").disabled = true;
+  $("resultado").classList.remove("visible");
+  $("aviso-baja").classList.remove("visible");
+  $("esperando").style.display = "block";
+}
+
+async function analizar() {
+  if (!red || !imagenActual) return;
+  $("cargando-texto").textContent = "La red neuronal está analizando la hoja…";
+  $("cargando").classList.add("visible");
+  $("btn-analizar").disabled = true;
+  await new Promise((r) => setTimeout(r, 60));   // deja pintar la interfaz
+
+  const t0 = performance.now();
+  const entrada = preprocesar(imagenActual);
+  const salida = red.propagar(entrada);
+  const probabilidades = await salida.data();
+  entrada.dispose(); salida.dispose();
+  const ms = Math.round(performance.now() - t0);
+
+  const clases = MANIFIESTO.clases;
+  const orden = Array.from(probabilidades.keys()).sort((a, b) => probabilidades[b] - probabilidades[a]);
+  const top5 = orden.slice(0, 5).map((i) => ({
+    clase: clases[i], prob: probabilidades[i],
+  }));
+
+  pintarResultado(top5, ms);
+  $("cargando").classList.remove("visible");
+  $("btn-analizar").disabled = false;
+}
+
+function pintarResultado(top5, ms) {
+  const mejor = top5[0];
+  const meta = METADATOS_ESPECIES[mejor.clase] || {};
+  $("ganador-nombre").textContent = meta.nombre_es || meta.nombre_en || mejor.clase;
+  $("ganador-cientifico").textContent = mejor.clase;
+  $("ganador-pct").textContent = (mejor.prob * 100).toFixed(1) + " %";
+  $("ganador-barra").style.width = (mejor.prob * 100).toFixed(1) + "%";
+
+  const ficha = $("ganador-ficha");
+  ficha.innerHTML = "";
+  const datos = [
+    ["Nombre común (EN)", meta.nombre_en || "—"],
+    ["Familia botánica", meta.familia ? meta.familia + (meta.familia_es ? " · " + meta.familia_es : "") : "—"],
+    ["Género", meta.genero || "—"],
+    ["Tiempo de análisis", ms + " ms"],
+  ];
+  for (const [clave, valor] of datos) {
+    const div = document.createElement("div");
+    div.className = "dato";
+    div.innerHTML = "<b>" + clave + "</b>" + valor;
+    ficha.appendChild(div);
+  }
+
+  const lista = $("alternativas");
+  lista.innerHTML = "";
+  for (const alt of top5) {
+    const m = METADATOS_ESPECIES[alt.clase] || {};
+    const li = document.createElement("li");
+    li.innerHTML =
+      '<div class="alt-fila"><span class="nom">' + (m.nombre_es || m.nombre_en || alt.clase) +
+      ' <i>' + alt.clase + '</i></span><span class="pct">' + (alt.prob * 100).toFixed(1) + ' %</span></div>' +
+      '<div class="alt-barra"><div style="width:' + (alt.prob * 100).toFixed(1) + '%"></div></div>';
+    lista.appendChild(li);
+  }
+
+  $("resultado").classList.add("visible");
+  $("aviso-baja").classList.toggle("visible", mejor.prob < 0.5);
+}
+
+/* ---------- cámara en vivo ---------- */
+let flujoVideo = null;
+
+async function abrirCamara() {
+  try {
+    flujoVideo = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 } },
+      audio: false,
+    });
+    const video = $("video");
+    video.srcObject = flujoVideo;
+    await video.play();
+    $("modal-camara").classList.add("visible");
+  } catch (e) {
+    mensaje("⚠️ No se pudo abrir la cámara: " + e.message + " (usa «Tomar foto» o «Elegir imagen»)");
+  }
+}
+
+function cerrarCamara() {
+  if (flujoVideo) flujoVideo.getTracks().forEach((t) => t.stop());
+  flujoVideo = null;
+  $("modal-camara").classList.remove("visible");
+}
+
+function capturar() {
+  const video = $("video");
+  const lado = Math.min(video.videoWidth, video.videoHeight);
+  const lienzo = document.createElement("canvas");
+  lienzo.width = lienzo.height = lado;
+  lienzo.getContext("2d").drawImage(
+    video,
+    (video.videoWidth - lado) / 2, (video.videoHeight - lado) / 2, lado, lado,
+    0, 0, lado, lado
+  );
+  cerrarCamara();
+  const img = new Image();
+  img.onload = () => { mostrarImagen(img); analizar(); };
+  img.src = lienzo.toDataURL("image/jpeg", 0.92);
+}
+
+function leerArchivo(archivo) {
+  if (!archivo) return;
+  const lector = new FileReader();
+  lector.onload = () => {
+    const img = new Image();
+    img.onload = () => { mostrarImagen(img); analizar(); };
+    img.src = lector.result;
+  };
+  lector.readAsDataURL(archivo);
+}
+
+/* ---------- pestañas ---------- */
+document.querySelectorAll(".pestana").forEach((boton) => {
+  boton.addEventListener("click", () => {
+    document.querySelectorAll(".pestana").forEach((b) => b.classList.remove("activa"));
+    document.querySelectorAll(".panel").forEach((p) => p.classList.remove("visible"));
+    boton.classList.add("activa");
+    $("panel-" + boton.dataset.panel).classList.add("visible");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+/* ---------- sección de resultados ---------- */
+function pintarMetricas() {
+  const rejilla = $("rejilla-metricas");
+  const m = METRICAS || {};
+  const tarjetas = [
+    { valor: m.top1 ? (m.top1 * 100).toFixed(1) + " %" : "—", texto: "Exactitud (top-1) en el conjunto de prueba" },
+    { valor: m.top5 ? (m.top5 * 100).toFixed(1) + " %" : "—", texto: "Exactitud considerando las 5 especies más probables (top-5)" },
+    { valor: m.top1_lab ? (m.top1_lab * 100).toFixed(1) + " %" : "—", texto: "Exactitud con imágenes de laboratorio (hojas prensadas)" },
+    { valor: m.top1_campo ? (m.top1_campo * 100).toFixed(1) + " %" : "—", texto: "Exactitud con fotos de campo (tomadas con celular)" },
+    { valor: (MANIFIESTO.clases || []).length.toString(), texto: "Especies de hojas que reconoce la red" },
+  ];
+  rejilla.innerHTML = tarjetas.map((t) =>
+    '<div class="metrica"><div class="valor">' + t.valor + '</div><div class="texto">' + t.texto + '</div></div>'
+  ).join("");
+
+  if (METRICAS && METRICAS.curvas_b64) {
+    $("contenedor-curvas").innerHTML = '<img class="grafica" alt="Curvas de entrenamiento" src="' + METRICAS.curvas_b64 + '">';
+  }
+
+  const confundidos = (METRICAS && METRICAS.pares_confundidos) || [];
+  if (confundidos.length) {
+    $("contenedor-confundidos").innerHTML =
+      "<h3>Especies que más se confunden entre sí</h3>" +
+      "<p>Errores más frecuentes del modelo en el conjunto de prueba (son especies morfológicamente muy similares).</p>" +
+      "<table><thead><tr><th>Especie real</th><th>Especie predicha por error</th><th>Imágenes</th></tr></thead><tbody>" +
+      confundidos.map((p) => "<tr><td><i>" + p.real + "</i></td><td><i>" + p.predicha + "</i></td><td>" + p.veces + "</td></tr>").join("") +
+      "</tbody></table>";
+  }
+
+  const filas = [
+    ["Arquitectura", MANIFIESTO.arquitectura + " (preentrenada en ImageNet)"],
+    ["Entrada de la red", MANIFIESTO.entrada + " × " + MANIFIESTO.entrada + " × 3 píxeles (RGB)"],
+    ["Parámetros totales", (MANIFIESTO.parametros || "3 400 000") + ""],
+    ["Capas convolucionales", "20 (incluye 17 bloques residuales invertidos)"],
+    ["Función de activación", "ReLU6 · Softmax en la capa de salida"],
+    ["Entrenamiento", "PyTorch · transfer learning (cabeza + ajuste fino)"],
+    ["Ejecución en el navegador", "TensorFlow.js sobre WebGL/WebGPU"],
+  ];
+  $("tabla-arquitectura").innerHTML = filas.map((f) =>
+    "<tr><td>" + f[0] + "</td><td><b>" + f[1] + "</b></td></tr>"
+  ).join("");
+}
+
+/* ---------- lista de especies ---------- */
+function pintarEspecies(filtro = "") {
+  const cont = $("lista-especies");
+  const texto = filtro.trim().toLowerCase();
+  const nombres = Object.keys(METADATOS_ESPECIES);
+  const filtradas = nombres.filter((n) => {
+    const m = METADATOS_ESPECIES[n];
+    return !texto ||
+      n.toLowerCase().includes(texto) ||
+      (m.nombre_es || "").toLowerCase().includes(texto) ||
+      (m.nombre_en || "").toLowerCase().includes(texto) ||
+      (m.familia || "").toLowerCase().includes(texto);
+  });
+  cont.innerHTML = filtradas.map((n) => {
+    const m = METADATOS_ESPECIES[n];
+    const principal = m.nombre_es || m.nombre_en || n;
+    return '<div class="especie"><div class="nom">' + principal + '</div>' +
+      '<div class="ci">' + n + '</div>' +
+      '<div class="fa">' + (m.familia ? m.familia + " · " + (m.familia_es || "") : "") + '</div></div>';
+  }).join("") || '<p>No se encontraron especies con ese criterio.</p>';
+}
+
+/* ---------- ejemplos precargados ---------- */
+function pintarEjemplos() {
+  const cont = $("ejemplos");
+  cont.innerHTML = EJEMPLOS.map((e, i) =>
+    '<button class="ejemplo" data-i="' + i + '"><img src="' + e.imagen + '" alt="' + e.clase + '">Probar: ' +
+    (e.nombre || e.clase) + '</button>'
+  ).join("");
+  cont.querySelectorAll(".ejemplo").forEach((b) => {
+    b.addEventListener("click", () => {
+      const e = EJEMPLOS[+b.dataset.i];
+      const img = new Image();
+      img.onload = () => { mostrarImagen(img); analizar(); };
+      img.src = e.imagen;
+    });
+  });
+}
+
+/* ---------- eventos ---------- */
+$("btn-camara").addEventListener("click", abrirCamara);
+$("btn-cancelar").addEventListener("click", cerrarCamara);
+$("btn-capturar").addEventListener("click", capturar);
+$("btn-foto").addEventListener("click", () => $("entrada-foto").click());
+$("btn-galeria").addEventListener("click", () => $("entrada-galeria").click());
+$("entrada-foto").addEventListener("change", (e) => leerArchivo(e.target.files[0]));
+$("entrada-galeria").addEventListener("change", (e) => leerArchivo(e.target.files[0]));
+$("btn-analizar").addEventListener("click", analizar);
+$("btn-limpiar").addEventListener("click", limpiar);
+$("buscador").addEventListener("input", (e) => pintarEspecies(e.target.value));
+
+/* ---------- arranque ---------- */
+pintarMetricas();
+pintarEspecies();
+pintarEjemplos();
+cargarModelo();
+</script>
+</body>
+</html>

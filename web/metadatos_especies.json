@@ -1,0 +1,1637 @@
+{
+ "Abies concolor": {
+  "nombre_cientifico": "Abies concolor",
+  "genero": "Abies",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "pino real blanco",
+  "nombre_en": "White Fir",
+  "wikidata": "Q145939"
+ },
+ "Abies nordmanniana": {
+  "nombre_cientifico": "Abies nordmanniana",
+  "genero": "Abies",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "Abeto del Cáucaso",
+  "nombre_en": "Caucasian Fir",
+  "wikidata": "Q148920"
+ },
+ "Acer campestre": {
+  "nombre_cientifico": "Acer campestre",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "Arce común",
+  "nombre_en": "Field Maple",
+  "wikidata": "Q158785"
+ },
+ "Acer ginnala": {
+  "nombre_cientifico": "Acer ginnala",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "arce de Amur",
+  "nombre_en": "Amur maple",
+  "wikidata": "Q15634290"
+ },
+ "Acer griseum": {
+  "nombre_cientifico": "Acer griseum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "paperbark maple",
+  "wikidata": "Q203985"
+ },
+ "Acer negundo": {
+  "nombre_cientifico": "Acer negundo",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "arce negundo",
+  "nombre_en": "box elder",
+  "wikidata": "Q118496517"
+ },
+ "Acer palmatum": {
+  "nombre_cientifico": "Acer palmatum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "arce japonés",
+  "nombre_en": "Japanese maple"
+ },
+ "Acer pensylvanicum": {
+  "nombre_cientifico": "Acer pensylvanicum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "Striped Maple",
+  "wikidata": "Q1190312"
+ },
+ "Acer platanoides": {
+  "nombre_cientifico": "Acer platanoides",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "Norway Maple",
+  "wikidata": "Q26745"
+ },
+ "Acer pseudoplatanus": {
+  "nombre_cientifico": "Acer pseudoplatanus",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "Arce blanco",
+  "nombre_en": "Sycamore",
+  "wikidata": "Q156944"
+ },
+ "Acer rubrum": {
+  "nombre_cientifico": "Acer rubrum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "Red Maple",
+  "wikidata": "Q161364"
+ },
+ "Acer saccharinum": {
+  "nombre_cientifico": "Acer saccharinum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "silver maple",
+  "wikidata": "Q158301"
+ },
+ "Acer saccharum": {
+  "nombre_cientifico": "Acer saccharum",
+  "genero": "Acer",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "sugar maple"
+ },
+ "Aesculus flava": {
+  "nombre_cientifico": "Aesculus flava",
+  "genero": "Aesculus",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "yellow buckeye",
+  "wikidata": "Q159620"
+ },
+ "Aesculus glabra": {
+  "nombre_cientifico": "Aesculus glabra",
+  "genero": "Aesculus",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "Ohio buckeye",
+  "wikidata": "Q1813339"
+ },
+ "Aesculus hippocastamon": {
+  "nombre_cientifico": "Aesculus hippocastamon",
+  "genero": "Aesculus",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "castaño de Indias",
+  "nombre_en": "horse chestnut"
+ },
+ "Aesculus pavi": {
+  "nombre_cientifico": "Aesculus pavi",
+  "genero": "Aesculus",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "falso castaño escarlata",
+  "nombre_en": "red buckeye",
+  "wikidata": "Q93320390"
+ },
+ "Ailanthus altissima": {
+  "nombre_cientifico": "Ailanthus altissima",
+  "genero": "Ailanthus",
+  "familia": "Simaroubaceae",
+  "familia_es": "Familia del ailanto",
+  "nombre_es": "Ailanto",
+  "nombre_en": "Tree of Heaven",
+  "wikidata": "Q159570"
+ },
+ "Albizia julibrissin": {
+  "nombre_cientifico": "Albizia julibrissin",
+  "genero": "Albizia",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "",
+  "nombre_en": "silktree",
+  "wikidata": "Q750307"
+ },
+ "Amelanchier arborea": {
+  "nombre_cientifico": "Amelanchier arborea",
+  "genero": "Amelanchier",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "common serviceberry",
+  "wikidata": "Q2842647"
+ },
+ "Amelanchier canadensis": {
+  "nombre_cientifico": "Amelanchier canadensis",
+  "genero": "Amelanchier",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Canadian serviceberry",
+  "wikidata": "Q159030"
+ },
+ "Amelanchier laevis": {
+  "nombre_cientifico": "Amelanchier laevis",
+  "genero": "Amelanchier",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Allegheny serviceberry",
+  "wikidata": "Q163825"
+ },
+ "Asimina triloba": {
+  "nombre_cientifico": "Asimina triloba",
+  "genero": "Asimina",
+  "familia": "Annonaceae",
+  "familia_es": "Familia de la chirimoya",
+  "nombre_es": "",
+  "nombre_en": "pawpaw",
+  "wikidata": "Q948827"
+ },
+ "Betula alleghaniensis": {
+  "nombre_cientifico": "Betula alleghaniensis",
+  "genero": "Betula",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "",
+  "nombre_en": "yellow birch",
+  "wikidata": "Q1499241"
+ },
+ "Betula jacqemontii": {
+  "nombre_cientifico": "Betula jacqemontii",
+  "genero": "Betula",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "abedul del Himalaya",
+  "nombre_en": "Himalayan birch"
+ },
+ "Betula lenta": {
+  "nombre_cientifico": "Betula lenta",
+  "genero": "Betula",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "",
+  "nombre_en": "sweet birch",
+  "wikidata": "Q227763"
+ },
+ "Betula nigra": {
+  "nombre_cientifico": "Betula nigra",
+  "genero": "Betula",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "",
+  "nombre_en": "river birch",
+  "wikidata": "Q1510231"
+ },
+ "Betula populifolia": {
+  "nombre_cientifico": "Betula populifolia",
+  "genero": "Betula",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "",
+  "nombre_en": "gray birch",
+  "wikidata": "Q1543680"
+ },
+ "Broussonettia papyrifera": {
+  "nombre_cientifico": "Broussonettia papyrifera",
+  "genero": "Broussonettia",
+  "familia": "Moraceae",
+  "familia_es": "Familia de la mora",
+  "nombre_es": "morera del papel",
+  "nombre_en": "paper mulberry"
+ },
+ "Carpinus betulus": {
+  "nombre_cientifico": "Carpinus betulus",
+  "genero": "Carpinus",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "Carpe blanco",
+  "nombre_en": "European hornbeam",
+  "wikidata": "Q158776"
+ },
+ "Carpinus caroliniana": {
+  "nombre_cientifico": "Carpinus caroliniana",
+  "genero": "Carpinus",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "carpe americano",
+  "nombre_en": "American hornbeam",
+  "wikidata": "Q468664"
+ },
+ "Carya cordiformis": {
+  "nombre_cientifico": "Carya cordiformis",
+  "genero": "Carya",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "bitternut hickory",
+  "wikidata": "Q879016"
+ },
+ "Carya glabra": {
+  "nombre_cientifico": "Carya glabra",
+  "genero": "Carya",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "pignut hickory",
+  "wikidata": "Q1406355"
+ },
+ "Carya ovata": {
+  "nombre_cientifico": "Carya ovata",
+  "genero": "Carya",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "shagbark hickory",
+  "wikidata": "Q2601238"
+ },
+ "Carya tomentosa": {
+  "nombre_cientifico": "Carya tomentosa",
+  "genero": "Carya",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "mockernut hickory",
+  "wikidata": "Q5047673"
+ },
+ "Castanea dentata": {
+  "nombre_cientifico": "Castanea dentata",
+  "genero": "Castanea",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "American chestnut",
+  "wikidata": "Q468698"
+ },
+ "Catalpa bignonioides": {
+  "nombre_cientifico": "Catalpa bignonioides",
+  "genero": "Catalpa",
+  "familia": "Bignoniaceae",
+  "familia_es": "Familia de la catalpa",
+  "nombre_es": "",
+  "nombre_en": "southern catalpa"
+ },
+ "Catalpa speciosa": {
+  "nombre_cientifico": "Catalpa speciosa",
+  "genero": "Catalpa",
+  "familia": "Bignoniaceae",
+  "familia_es": "Familia de la catalpa",
+  "nombre_es": "",
+  "nombre_en": "northern catalpa",
+  "wikidata": "Q159204"
+ },
+ "Cedrus atlantica": {
+  "nombre_cientifico": "Cedrus atlantica",
+  "genero": "Cedrus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Atlas Cedar",
+  "wikidata": "Q623489"
+ },
+ "Cedrus deodara": {
+  "nombre_cientifico": "Cedrus deodara",
+  "genero": "Cedrus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "Cedro del Himalaya",
+  "nombre_en": "Deodar Cedar",
+  "wikidata": "Q146935"
+ },
+ "Cedrus libani": {
+  "nombre_cientifico": "Cedrus libani",
+  "genero": "Cedrus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Lebanon Cedar",
+  "wikidata": "Q61105"
+ },
+ "Celtis occidentalis": {
+  "nombre_cientifico": "Celtis occidentalis",
+  "genero": "Celtis",
+  "familia": "Cannabaceae",
+  "familia_es": "Familia del cáñamo",
+  "nombre_es": "",
+  "nombre_en": "common hackberry",
+  "wikidata": "Q470006"
+ },
+ "Celtis tenuifolia": {
+  "nombre_cientifico": "Celtis tenuifolia",
+  "genero": "Celtis",
+  "familia": "Cannabaceae",
+  "familia_es": "Familia del cáñamo",
+  "nombre_es": "",
+  "nombre_en": "dwarf hackberry"
+ },
+ "Cercidiphyllum japonicum": {
+  "nombre_cientifico": "Cercidiphyllum japonicum",
+  "genero": "Cercidiphyllum",
+  "familia": "Cercidiphyllaceae",
+  "familia_es": "Familia del katsura",
+  "nombre_es": "",
+  "nombre_en": "katsura tree",
+  "wikidata": "Q526549"
+ },
+ "Cercis canadensis": {
+  "nombre_cientifico": "Cercis canadensis",
+  "genero": "Cercis",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "",
+  "nombre_en": "eastern redbud",
+  "wikidata": "Q2452407"
+ },
+ "Chamaecyparis pisifera": {
+  "nombre_cientifico": "Chamaecyparis pisifera",
+  "genero": "Chamaecyparis",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "",
+  "nombre_en": "Sawara Cypress",
+  "wikidata": "Q74068"
+ },
+ "Chamaecyparis thyoides": {
+  "nombre_cientifico": "Chamaecyparis thyoides",
+  "genero": "Chamaecyparis",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "",
+  "nombre_en": "White Cypress",
+  "wikidata": "Q1744650"
+ },
+ "Chionanthus retusus": {
+  "nombre_cientifico": "Chionanthus retusus",
+  "genero": "Chionanthus",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "Chinese Fringetree",
+  "wikidata": "Q1073191"
+ },
+ "Chionanthus virginicus": {
+  "nombre_cientifico": "Chionanthus virginicus",
+  "genero": "Chionanthus",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "white fringetree"
+ },
+ "Cladrastis lutea": {
+  "nombre_cientifico": "Cladrastis lutea",
+  "genero": "Cladrastis",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "arce amarillo americano",
+  "nombre_en": "American yellowwood",
+  "wikidata": "Q87599757"
+ },
+ "Cornus florida": {
+  "nombre_cientifico": "Cornus florida",
+  "genero": "Cornus",
+  "familia": "Cornaceae",
+  "familia_es": "Familia del cornejo",
+  "nombre_es": "",
+  "nombre_en": "flowering dogwood",
+  "wikidata": "Q887221"
+ },
+ "Cornus kousa": {
+  "nombre_cientifico": "Cornus kousa",
+  "genero": "Cornus",
+  "familia": "Cornaceae",
+  "familia_es": "Familia del cornejo",
+  "nombre_es": "",
+  "nombre_en": "kousa dogwood",
+  "wikidata": "Q728441"
+ },
+ "Cornus mas": {
+  "nombre_cientifico": "Cornus mas",
+  "genero": "Cornus",
+  "familia": "Cornaceae",
+  "familia_es": "Familia del cornejo",
+  "nombre_es": "cornejo macho",
+  "nombre_en": "Cornelian-cherry",
+  "wikidata": "Q158642"
+ },
+ "Corylus colurna": {
+  "nombre_cientifico": "Corylus colurna",
+  "genero": "Corylus",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "",
+  "nombre_en": "Turkish Hazel",
+  "wikidata": "Q148939"
+ },
+ "Crataegus crus-galli": {
+  "nombre_cientifico": "Crataegus crus-galli",
+  "genero": "Crataegus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "cockspur hawthorn"
+ },
+ "Crataegus laevigata": {
+  "nombre_cientifico": "Crataegus laevigata",
+  "genero": "Crataegus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "Espino navarro",
+  "nombre_en": "Midland Hawthorn",
+  "wikidata": "Q159553"
+ },
+ "Crataegus phaenopyrum": {
+  "nombre_cientifico": "Crataegus phaenopyrum",
+  "genero": "Crataegus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Washington hawthorn",
+  "wikidata": "Q3002191"
+ },
+ "Crataegus pruinosa": {
+  "nombre_cientifico": "Crataegus pruinosa",
+  "genero": "Crataegus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "waxyfruit hawthorn",
+  "wikidata": "Q5182579"
+ },
+ "Crataegus viridis": {
+  "nombre_cientifico": "Crataegus viridis",
+  "genero": "Crataegus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "green hawthorn",
+  "wikidata": "Q2084514"
+ },
+ "Cryptomeria japonica": {
+  "nombre_cientifico": "Cryptomeria japonica",
+  "genero": "Cryptomeria",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "Criptomeria japonesa",
+  "nombre_en": "Sugi",
+  "wikidata": "Q147388"
+ },
+ "Diospyros virginiana": {
+  "nombre_cientifico": "Diospyros virginiana",
+  "genero": "Diospyros",
+  "familia": "Ebenaceae",
+  "familia_es": "Familia del ébano",
+  "nombre_es": "caqui americano",
+  "nombre_en": "American persimmon"
+ },
+ "Eucommia ulmoides": {
+  "nombre_cientifico": "Eucommia ulmoides",
+  "genero": "Eucommia",
+  "familia": "Eucommiaceae",
+  "familia_es": "Familia del eucommia",
+  "nombre_es": "",
+  "nombre_en": "Du Zhong",
+  "wikidata": "Q131528"
+ },
+ "Evodia daniellii": {
+  "nombre_cientifico": "Evodia daniellii",
+  "genero": "Evodia",
+  "familia": "Rutaceae",
+  "familia_es": "Familia de los cítricos",
+  "nombre_es": "evodia coreano",
+  "nombre_en": "Korean evodia",
+  "wikidata": "Q15230789"
+ },
+ "Fagus grandifolia": {
+  "nombre_cientifico": "Fagus grandifolia",
+  "genero": "Fagus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "American Beech",
+  "wikidata": "Q149219"
+ },
+ "Ficus carica": {
+  "nombre_cientifico": "Ficus carica",
+  "genero": "Ficus",
+  "familia": "Moraceae",
+  "familia_es": "Familia de la mora",
+  "nombre_es": "Higuera",
+  "nombre_en": "Fig",
+  "wikidata": "Q36146"
+ },
+ "Fraxinus americana": {
+  "nombre_cientifico": "Fraxinus americana",
+  "genero": "Fraxinus",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "white ash",
+  "wikidata": "Q1193369"
+ },
+ "Fraxinus nigra": {
+  "nombre_cientifico": "Fraxinus nigra",
+  "genero": "Fraxinus",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "black ash"
+ },
+ "Fraxinus pennsylvanica": {
+  "nombre_cientifico": "Fraxinus pennsylvanica",
+  "genero": "Fraxinus",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "green ash",
+  "wikidata": "Q161164"
+ },
+ "Ginkgo biloba": {
+  "nombre_cientifico": "Ginkgo biloba",
+  "genero": "Ginkgo",
+  "familia": "Ginkgoaceae",
+  "familia_es": "Familia del ginkgo",
+  "nombre_es": "ginkgo",
+  "nombre_en": "ginkgo",
+  "wikidata": "Q43284"
+ },
+ "Gleditsia triacanthos": {
+  "nombre_cientifico": "Gleditsia triacanthos",
+  "genero": "Gleditsia",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "Acacia de tres espinas",
+  "nombre_en": "honeylocust",
+  "wikidata": "Q157650"
+ },
+ "Gymnocladus dioicus": {
+  "nombre_cientifico": "Gymnocladus dioicus",
+  "genero": "Gymnocladus",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "",
+  "nombre_en": "Kentucky Coffeetree",
+  "wikidata": "Q549418"
+ },
+ "Halesia tetraptera": {
+  "nombre_cientifico": "Halesia tetraptera",
+  "genero": "Halesia",
+  "familia": "Styracaceae",
+  "familia_es": "Familia del estorace",
+  "nombre_es": "",
+  "nombre_en": "mountain silverbell",
+  "wikidata": "Q5641512"
+ },
+ "Ilex opaca": {
+  "nombre_cientifico": "Ilex opaca",
+  "genero": "Ilex",
+  "familia": "Aquifoliaceae",
+  "familia_es": "Familia del acebo",
+  "nombre_es": "",
+  "nombre_en": "American Holly"
+ },
+ "Juglans cinerea": {
+  "nombre_cientifico": "Juglans cinerea",
+  "genero": "Juglans",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "butternut",
+  "wikidata": "Q630288"
+ },
+ "Juglans nigra": {
+  "nombre_cientifico": "Juglans nigra",
+  "genero": "Juglans",
+  "familia": "Juglandaceae",
+  "familia_es": "Familia del nogal",
+  "nombre_es": "",
+  "nombre_en": "Black Walnut",
+  "wikidata": "Q852572"
+ },
+ "Juniperus virginiana": {
+  "nombre_cientifico": "Juniperus virginiana",
+  "genero": "Juniperus",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "",
+  "nombre_en": "Eastern Juniper",
+  "wikidata": "Q157522"
+ },
+ "Koelreuteria paniculata": {
+  "nombre_cientifico": "Koelreuteria paniculata",
+  "genero": "Koelreuteria",
+  "familia": "Sapindaceae",
+  "familia_es": "Familia del arce",
+  "nombre_es": "",
+  "nombre_en": "goldenrain tree",
+  "wikidata": "Q844835"
+ },
+ "Larix decidua": {
+  "nombre_cientifico": "Larix decidua",
+  "genero": "Larix",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "European Larch",
+  "wikidata": "Q146048"
+ },
+ "Liquidambar styraciflua": {
+  "nombre_cientifico": "Liquidambar styraciflua",
+  "genero": "Liquidambar",
+  "familia": "Altingiaceae",
+  "familia_es": "Familia del liquidámbar",
+  "nombre_es": "Árbol del Ámbar",
+  "nombre_en": "American Sweetgum"
+ },
+ "Liriodendron tulipifera": {
+  "nombre_cientifico": "Liriodendron tulipifera",
+  "genero": "Liriodendron",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "tuliptree",
+  "wikidata": "Q158783"
+ },
+ "Maclura pomifera": {
+  "nombre_cientifico": "Maclura pomifera",
+  "genero": "Maclura",
+  "familia": "Moraceae",
+  "familia_es": "Familia de la mora",
+  "nombre_es": "",
+  "nombre_en": "Osage-orange",
+  "wikidata": "Q1066106"
+ },
+ "Magnolia acuminata": {
+  "nombre_cientifico": "Magnolia acuminata",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "Cucumber Magnolia",
+  "wikidata": "Q1249099"
+ },
+ "Magnolia denudata": {
+  "nombre_cientifico": "Magnolia denudata",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "lilytree",
+  "wikidata": "Q794061"
+ },
+ "Magnolia grandiflora": {
+  "nombre_cientifico": "Magnolia grandiflora",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "southern magnolia",
+  "wikidata": "Q161116"
+ },
+ "Magnolia macrophylla": {
+  "nombre_cientifico": "Magnolia macrophylla",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "bigleaf magnolia"
+ },
+ "Magnolia soulangiana": {
+  "nombre_cientifico": "Magnolia soulangiana",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "magnolia lila",
+  "nombre_en": "saucer magnolia",
+  "wikidata": "Q119761801"
+ },
+ "Magnolia stellata": {
+  "nombre_cientifico": "Magnolia stellata",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "star magnolia",
+  "wikidata": "Q839507"
+ },
+ "Magnolia tripetala": {
+  "nombre_cientifico": "Magnolia tripetala",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "umbrella-tree",
+  "wikidata": "Q990982"
+ },
+ "Magnolia virginiana": {
+  "nombre_cientifico": "Magnolia virginiana",
+  "genero": "Magnolia",
+  "familia": "Magnoliaceae",
+  "familia_es": "Familia de la magnolia",
+  "nombre_es": "",
+  "nombre_en": "sweetbay",
+  "wikidata": "Q1859063"
+ },
+ "Malus angustifolia": {
+  "nombre_cientifico": "Malus angustifolia",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "southern crab apple",
+  "wikidata": "Q4535958"
+ },
+ "Malus baccata": {
+  "nombre_cientifico": "Malus baccata",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Siberian crab apple"
+ },
+ "Malus coronaria": {
+  "nombre_cientifico": "Malus coronaria",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "sweet crab apple",
+  "wikidata": "Q1936759"
+ },
+ "Malus floribunda": {
+  "nombre_cientifico": "Malus floribunda",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Japanese Crabapple",
+  "wikidata": "Q1683370"
+ },
+ "Malus hupehensis": {
+  "nombre_cientifico": "Malus hupehensis",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Chinese crab apple",
+  "wikidata": "Q1712421"
+ },
+ "Malus pumila": {
+  "nombre_cientifico": "Malus pumila",
+  "genero": "Malus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "manzano",
+  "nombre_en": "apple tree",
+  "wikidata": "Q2827722"
+ },
+ "Metasequoia glyptostroboides": {
+  "nombre_cientifico": "Metasequoia glyptostroboides",
+  "genero": "Metasequoia",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "Metasecuoya",
+  "nombre_en": "Dawn Redwood",
+  "wikidata": "Q156800"
+ },
+ "Morus alba": {
+  "nombre_cientifico": "Morus alba",
+  "genero": "Morus",
+  "familia": "Moraceae",
+  "familia_es": "Familia de la mora",
+  "nombre_es": "Morera blanca",
+  "nombre_en": "White Mulberry"
+ },
+ "Morus rubra": {
+  "nombre_cientifico": "Morus rubra",
+  "genero": "Morus",
+  "familia": "Moraceae",
+  "familia_es": "Familia de la mora",
+  "nombre_es": "",
+  "nombre_en": "red mulberry",
+  "wikidata": "Q1520764"
+ },
+ "Nyssa sylvatica": {
+  "nombre_cientifico": "Nyssa sylvatica",
+  "genero": "Nyssa",
+  "familia": "Nyssaceae",
+  "familia_es": "Familia del tupelo",
+  "nombre_es": "",
+  "nombre_en": "blackgum",
+  "wikidata": "Q3179665"
+ },
+ "Ostrya virginiana": {
+  "nombre_cientifico": "Ostrya virginiana",
+  "genero": "Ostrya",
+  "familia": "Betulaceae",
+  "familia_es": "Familia del abedul",
+  "nombre_es": "guapaque",
+  "nombre_en": "hophornbeam",
+  "wikidata": "Q1489573"
+ },
+ "Oxydendrum arboreum": {
+  "nombre_cientifico": "Oxydendrum arboreum",
+  "genero": "Oxydendrum",
+  "familia": "Ericaceae",
+  "familia_es": "Familia del brezo",
+  "nombre_es": "",
+  "nombre_en": "sourwood",
+  "wikidata": "Q48677"
+ },
+ "Paulownia tomentosa": {
+  "nombre_cientifico": "Paulownia tomentosa",
+  "genero": "Paulownia",
+  "familia": "Paulowniaceae",
+  "familia_es": "Familia de la paulonia",
+  "nombre_es": "",
+  "nombre_en": "princesstree",
+  "wikidata": "Q157393"
+ },
+ "Phellodendron amurense": {
+  "nombre_cientifico": "Phellodendron amurense",
+  "genero": "Phellodendron",
+  "familia": "Rutaceae",
+  "familia_es": "Familia de los cítricos",
+  "nombre_es": "",
+  "nombre_en": "Amur Cork Tree"
+ },
+ "Picea abies": {
+  "nombre_cientifico": "Picea abies",
+  "genero": "Picea",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "Picea de Noruega",
+  "nombre_en": "Norway Spruce",
+  "wikidata": "Q145992"
+ },
+ "Picea orientalis": {
+  "nombre_cientifico": "Picea orientalis",
+  "genero": "Picea",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Caucasian Spruce",
+  "wikidata": "Q1145286"
+ },
+ "Picea pungens": {
+  "nombre_cientifico": "Picea pungens",
+  "genero": "Picea",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Blue Spruce",
+  "wikidata": "Q146025"
+ },
+ "Pinus bungeana": {
+  "nombre_cientifico": "Pinus bungeana",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Lacebark Pine",
+  "wikidata": "Q1074872"
+ },
+ "Pinus cembra": {
+  "nombre_cientifico": "Pinus cembra",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Swiss Pine",
+  "wikidata": "Q147278"
+ },
+ "Pinus densiflora": {
+  "nombre_cientifico": "Pinus densiflora",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Japanese Red Pine"
+ },
+ "Pinus echinata": {
+  "nombre_cientifico": "Pinus echinata",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Shortleaf Pine",
+  "wikidata": "Q3237846"
+ },
+ "Pinus flexilis": {
+  "nombre_cientifico": "Pinus flexilis",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "pino torcido",
+  "nombre_en": "Limber Pine",
+  "wikidata": "Q594993"
+ },
+ "Pinus koraiensis": {
+  "nombre_cientifico": "Pinus koraiensis",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Korean Pine",
+  "wikidata": "Q301636"
+ },
+ "Pinus nigra": {
+  "nombre_cientifico": "Pinus nigra",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "Pino Salgareño",
+  "nombre_en": "European Black Pine",
+  "wikidata": "Q145954"
+ },
+ "Pinus parviflora": {
+  "nombre_cientifico": "Pinus parviflora",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "pino blanco japonés",
+  "nombre_en": "Japanese White Pine",
+  "wikidata": "Q178116"
+ },
+ "Pinus peucea": {
+  "nombre_cientifico": "Pinus peucea",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "pino de Macedonia",
+  "nombre_en": "Macedonian pine"
+ },
+ "Pinus pungens": {
+  "nombre_cientifico": "Pinus pungens",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Table Mountain Pine",
+  "wikidata": "Q3087592"
+ },
+ "Pinus resinosa": {
+  "nombre_cientifico": "Pinus resinosa",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Red Pine",
+  "wikidata": "Q2045958"
+ },
+ "Pinus rigida": {
+  "nombre_cientifico": "Pinus rigida",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Pitch Pine",
+  "wikidata": "Q837410"
+ },
+ "Pinus strobus": {
+  "nombre_cientifico": "Pinus strobus",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "Pino de Weymouth",
+  "nombre_en": "Eastern White Pine",
+  "wikidata": "Q157230"
+ },
+ "Pinus sylvestris": {
+  "nombre_cientifico": "Pinus sylvestris",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "pino silvestre",
+  "nombre_en": "Scots Pine",
+  "wikidata": "Q133128"
+ },
+ "Pinus taeda": {
+  "nombre_cientifico": "Pinus taeda",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Loblolly Pine"
+ },
+ "Pinus thunbergii": {
+  "nombre_cientifico": "Pinus thunbergii",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Japanese Black Pine",
+  "wikidata": "Q854884"
+ },
+ "Pinus virginiana": {
+  "nombre_cientifico": "Pinus virginiana",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Virginia Pine",
+  "wikidata": "Q3505749"
+ },
+ "Pinus wallichiana": {
+  "nombre_cientifico": "Pinus wallichiana",
+  "genero": "Pinus",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Blue Pine",
+  "wikidata": "Q747652"
+ },
+ "Platanus acerifolia": {
+  "nombre_cientifico": "Platanus acerifolia",
+  "genero": "Platanus",
+  "familia": "Platanaceae",
+  "familia_es": "Familia del plátano",
+  "nombre_es": "plátano de sombra",
+  "nombre_en": "London plane",
+  "wikidata": "Q55743470"
+ },
+ "Platanus occidentalis": {
+  "nombre_cientifico": "Platanus occidentalis",
+  "genero": "Platanus",
+  "familia": "Platanaceae",
+  "familia_es": "Familia del plátano",
+  "nombre_es": "",
+  "nombre_en": "American sycamore",
+  "wikidata": "Q157739"
+ },
+ "Populus deltoides": {
+  "nombre_cientifico": "Populus deltoides",
+  "genero": "Populus",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "eastern cottonwood"
+ },
+ "Populus grandidentata": {
+  "nombre_cientifico": "Populus grandidentata",
+  "genero": "Populus",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "bigtooth aspen",
+  "wikidata": "Q1536353"
+ },
+ "Populus tremuloides": {
+  "nombre_cientifico": "Populus tremuloides",
+  "genero": "Populus",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "quaking aspen",
+  "wikidata": "Q469576"
+ },
+ "Prunus pensylvanica": {
+  "nombre_cientifico": "Prunus pensylvanica",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "pin cherry",
+  "wikidata": "Q2707920"
+ },
+ "Prunus sargentii": {
+  "nombre_cientifico": "Prunus sargentii",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "cerezo de Sargent",
+  "nombre_en": "Sargent's cherry",
+  "wikidata": "Q163039"
+ },
+ "Prunus serotina": {
+  "nombre_cientifico": "Prunus serotina",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "black cherry",
+  "wikidata": "Q158987"
+ },
+ "Prunus serrulata": {
+  "nombre_cientifico": "Prunus serrulata",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "Japanese flowering cherry"
+ },
+ "Prunus subhirtella": {
+  "nombre_cientifico": "Prunus subhirtella",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "winter-flowering cherry",
+  "wikidata": "Q163070"
+ },
+ "Prunus virginiana": {
+  "nombre_cientifico": "Prunus virginiana",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "",
+  "nombre_en": "chokecherry",
+  "wikidata": "Q162829"
+ },
+ "Prunus yedoensis": {
+  "nombre_cientifico": "Prunus yedoensis",
+  "genero": "Prunus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "cerezo de Yedo",
+  "nombre_en": "Yoshino cherry",
+  "wikidata": "Q163078"
+ },
+ "Pseudolarix amabilis": {
+  "nombre_cientifico": "Pseudolarix amabilis",
+  "genero": "Pseudolarix",
+  "familia": "",
+  "familia_es": "",
+  "nombre_es": "",
+  "nombre_en": "Golden-larch",
+  "wikidata": "Q1458175"
+ },
+ "Ptelea trifoliata": {
+  "nombre_cientifico": "Ptelea trifoliata",
+  "genero": "Ptelea",
+  "familia": "Rutaceae",
+  "familia_es": "Familia de los cítricos",
+  "nombre_es": "",
+  "nombre_en": "common hoptree",
+  "wikidata": "Q1326200"
+ },
+ "Pyrus calleryana": {
+  "nombre_cientifico": "Pyrus calleryana",
+  "genero": "Pyrus",
+  "familia": "Rosaceae",
+  "familia_es": "Familia de las rosas",
+  "nombre_es": "peral de Callery",
+  "nombre_en": "Callery pear"
+ },
+ "Quercus acutissima": {
+  "nombre_cientifico": "Quercus acutissima",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "sawtooth oak",
+  "wikidata": "Q1034859"
+ },
+ "Quercus alba": {
+  "nombre_cientifico": "Quercus alba",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "White Oak",
+  "wikidata": "Q469555"
+ },
+ "Quercus bicolor": {
+  "nombre_cientifico": "Quercus bicolor",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "swamp white oak",
+  "wikidata": "Q142792"
+ },
+ "Quercus cerris": {
+  "nombre_cientifico": "Quercus cerris",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Turkey Oak",
+  "wikidata": "Q157277"
+ },
+ "Quercus coccinea": {
+  "nombre_cientifico": "Quercus coccinea",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Scarlet Oak",
+  "wikidata": "Q854714"
+ },
+ "Quercus falcata": {
+  "nombre_cientifico": "Quercus falcata",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Southern Red Oak"
+ },
+ "Quercus imbricaria": {
+  "nombre_cientifico": "Quercus imbricaria",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "shingle oak",
+  "wikidata": "Q528713"
+ },
+ "Quercus macrocarpa": {
+  "nombre_cientifico": "Quercus macrocarpa",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Bur Oak",
+  "wikidata": "Q1082365"
+ },
+ "Quercus marilandica": {
+  "nombre_cientifico": "Quercus marilandica",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "blackjack oak",
+  "wikidata": "Q845791"
+ },
+ "Quercus michauxii": {
+  "nombre_cientifico": "Quercus michauxii",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "swamp chestnut oak",
+  "wikidata": "Q1460497"
+ },
+ "Quercus montana": {
+  "nombre_cientifico": "Quercus montana",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "roble de castaña",
+  "nombre_en": "chestnut oak",
+  "wikidata": "Q1735296"
+ },
+ "Quercus muehlenbergii": {
+  "nombre_cientifico": "Quercus muehlenbergii",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "chinkapin oak"
+ },
+ "Quercus nigra": {
+  "nombre_cientifico": "Quercus nigra",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "water oak",
+  "wikidata": "Q4112855"
+ },
+ "Quercus palustris": {
+  "nombre_cientifico": "Quercus palustris",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Pin Oak",
+  "wikidata": "Q161253"
+ },
+ "Quercus phellos": {
+  "nombre_cientifico": "Quercus phellos",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "willow oak",
+  "wikidata": "Q783224"
+ },
+ "Quercus robur": {
+  "nombre_cientifico": "Quercus robur",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "roble común",
+  "nombre_en": "Pedunculate Oak",
+  "wikidata": "Q165145"
+ },
+ "Quercus rubra": {
+  "nombre_cientifico": "Quercus rubra",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Northern Red Oak",
+  "wikidata": "Q147525"
+ },
+ "Quercus shumardii": {
+  "nombre_cientifico": "Quercus shumardii",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "Shumard's oak"
+ },
+ "Quercus stellata": {
+  "nombre_cientifico": "Quercus stellata",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "post oak",
+  "wikidata": "Q2600501"
+ },
+ "Quercus velutina": {
+  "nombre_cientifico": "Quercus velutina",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "black oak",
+  "wikidata": "Q1001011"
+ },
+ "Quercus virginiana": {
+  "nombre_cientifico": "Quercus virginiana",
+  "genero": "Quercus",
+  "familia": "Fagaceae",
+  "familia_es": "Familia del roble",
+  "nombre_es": "",
+  "nombre_en": "live oak",
+  "wikidata": "Q1758722"
+ },
+ "Robinia pseudo-acacia": {
+  "nombre_cientifico": "Robinia pseudo-acacia",
+  "genero": "Robinia",
+  "familia": "Fabaceae",
+  "familia_es": "Familia de las leguminosas",
+  "nombre_es": "acacia blanca",
+  "nombre_en": "black locust"
+ },
+ "Salix babylonica": {
+  "nombre_cientifico": "Salix babylonica",
+  "genero": "Salix",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "Sauce llorón",
+  "nombre_en": "Peking Willow",
+  "wikidata": "Q156307"
+ },
+ "Salix caroliniana": {
+  "nombre_cientifico": "Salix caroliniana",
+  "genero": "Salix",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "coastal plain willow",
+  "wikidata": "Q927572"
+ },
+ "Salix matsudana": {
+  "nombre_cientifico": "Salix matsudana",
+  "genero": "Salix",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "corkscrew willow",
+  "wikidata": "Q2302697"
+ },
+ "Salix nigra": {
+  "nombre_cientifico": "Salix nigra",
+  "genero": "Salix",
+  "familia": "Salicaceae",
+  "familia_es": "Familia del sauce",
+  "nombre_es": "",
+  "nombre_en": "black willow",
+  "wikidata": "Q469220"
+ },
+ "Sassafras albidum": {
+  "nombre_cientifico": "Sassafras albidum",
+  "genero": "Sassafras",
+  "familia": "Lauraceae",
+  "familia_es": "Familia del laurel",
+  "nombre_es": "sasafrás",
+  "nombre_en": "sassafras",
+  "wikidata": "Q584469"
+ },
+ "Staphylea trifolia": {
+  "nombre_cientifico": "Staphylea trifolia",
+  "genero": "Staphylea",
+  "familia": "Staphyleaceae",
+  "familia_es": "Familia del falso pistacho",
+  "nombre_es": "",
+  "nombre_en": "American bladdernut",
+  "wikidata": "Q3496910"
+ },
+ "Stewartia pseudocamellia": {
+  "nombre_cientifico": "Stewartia pseudocamellia",
+  "genero": "Stewartia",
+  "familia": "Theaceae",
+  "familia_es": "Familia del té",
+  "nombre_es": "",
+  "nombre_en": "Japanese stewartia",
+  "wikidata": "Q1041653"
+ },
+ "Styrax japonica": {
+  "nombre_cientifico": "Styrax japonica",
+  "genero": "Styrax",
+  "familia": "Styracaceae",
+  "familia_es": "Familia del estorace",
+  "nombre_es": "estoraque japonés",
+  "nombre_en": "Japanese snowbell"
+ },
+ "Styrax obassia": {
+  "nombre_cientifico": "Styrax obassia",
+  "genero": "Styrax",
+  "familia": "Styracaceae",
+  "familia_es": "Familia del estorace",
+  "nombre_es": "estoraque de hojas grandes",
+  "nombre_en": "fragrant snowbell",
+  "wikidata": "Q845222"
+ },
+ "Syringa reticulata": {
+  "nombre_cientifico": "Syringa reticulata",
+  "genero": "Syringa",
+  "familia": "Oleaceae",
+  "familia_es": "Familia del olivo",
+  "nombre_es": "",
+  "nombre_en": "Japanese tree lilac",
+  "wikidata": "Q1683340"
+ },
+ "Taxodium distichum": {
+  "nombre_cientifico": "Taxodium distichum",
+  "genero": "Taxodium",
+  "familia": "Cupressaceae",
+  "familia_es": "Familia de los cipreses",
+  "nombre_es": "Ciprés de los pantanos",
+  "nombre_en": "Baldcypress",
+  "wikidata": "Q148950"
+ },
+ "Tilia americana": {
+  "nombre_cientifico": "Tilia americana",
+  "genero": "Tilia",
+  "familia": "Malvaceae",
+  "familia_es": "Familia del tilo",
+  "nombre_es": "",
+  "nombre_en": "American basswood",
+  "wikidata": "Q163981"
+ },
+ "Tilia cordata": {
+  "nombre_cientifico": "Tilia cordata",
+  "genero": "Tilia",
+  "familia": "Malvaceae",
+  "familia_es": "Familia del tilo",
+  "nombre_es": "Tilo norteño",
+  "nombre_en": "Small-leaved Lime",
+  "wikidata": "Q158746"
+ },
+ "Tilia europaea": {
+  "nombre_cientifico": "Tilia europaea",
+  "genero": "Tilia",
+  "familia": "Malvaceae",
+  "familia_es": "Familia del tilo",
+  "nombre_es": "tilo común",
+  "nombre_en": "common lime"
+ },
+ "Tilia tomentosa": {
+  "nombre_cientifico": "Tilia tomentosa",
+  "genero": "Tilia",
+  "familia": "Malvaceae",
+  "familia_es": "Familia del tilo",
+  "nombre_es": "",
+  "nombre_en": "Silver Lime",
+  "wikidata": "Q161382"
+ },
+ "Toona sinensis": {
+  "nombre_cientifico": "Toona sinensis",
+  "genero": "Toona",
+  "familia": "Meliaceae",
+  "familia_es": "Familia de la caoba",
+  "nombre_es": "cedro chino",
+  "nombre_en": "Chinese mahogany",
+  "wikidata": "Q855853"
+ },
+ "Tsuga canadensis": {
+  "nombre_cientifico": "Tsuga canadensis",
+  "genero": "Tsuga",
+  "familia": "Pinaceae",
+  "familia_es": "Familia de los pinos",
+  "nombre_es": "",
+  "nombre_en": "Eastern Hemlock",
+  "wikidata": "Q1137143"
+ },
+ "Ulmus americana": {
+  "nombre_cientifico": "Ulmus americana",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "",
+  "nombre_en": "American elm",
+  "wikidata": "Q469382"
+ },
+ "Ulmus glabra": {
+  "nombre_cientifico": "Ulmus glabra",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "Olmo montano",
+  "nombre_en": "Wych Elm",
+  "wikidata": "Q147498"
+ },
+ "Ulmus parvifolia": {
+  "nombre_cientifico": "Ulmus parvifolia",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "Olmo chino",
+  "nombre_en": "Chinese elm"
+ },
+ "Ulmus procera": {
+  "nombre_cientifico": "Ulmus procera",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "",
+  "nombre_en": "English elm",
+  "wikidata": "Q1342743"
+ },
+ "Ulmus pumila": {
+  "nombre_cientifico": "Ulmus pumila",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "Olmo de Siberia",
+  "nombre_en": "Siberian elm",
+  "wikidata": "Q1079824"
+ },
+ "Ulmus rubra": {
+  "nombre_cientifico": "Ulmus rubra",
+  "genero": "Ulmus",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "",
+  "nombre_en": "slippery elm",
+  "wikidata": "Q1534893"
+ },
+ "Zelkova serrata": {
+  "nombre_cientifico": "Zelkova serrata",
+  "genero": "Zelkova",
+  "familia": "Ulmaceae",
+  "familia_es": "Familia del olmo",
+  "nombre_es": "",
+  "nombre_en": "Japanese zelkova",
+  "wikidata": "Q920344"
+ }
+}

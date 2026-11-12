@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Aplicativo del vendedor viajero: ingresa el costo de ir de una ciudad a otra y encuentra la ruta óptima con un algoritmo genético.">
+<title>🧬 Vendedor Viajero · Algoritmo Genético</title>
+<style>
+  :root {
+    --violeta-950: #170d3b;
+    --violeta-900: #241257;
+    --violeta-700: #5b21b6;
+    --violeta-600: #6d28d9;
+    --violeta-400: #a78bfa;
+    --turquesa-400: #2dd4bf;
+    --ambar-400: #fbbf24;
+    --texto: #1c1233;
+    --suave: #62587a;
+    --fondo: #f2eefb;
+    --cristal: rgba(255, 255, 255, .74);
+    --borde-cristal: rgba(255, 255, 255, .65);
+    --sombra: 0 18px 45px rgba(36, 18, 87, .14);
+    --sombra-suave: 0 8px 24px rgba(36, 18, 87, .09);
+    --radio: 22px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--fondo); color: var(--texto); line-height: 1.55; min-height: 100vh;
+  }
+  .contenedor { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* ============ HERO ============ */
+  header {
+    position: relative; overflow: hidden; color: #fff;
+    background: linear-gradient(135deg, var(--violeta-950) 0%, var(--violeta-900) 45%, var(--violeta-600) 100%);
+    padding: 44px 0 56px;
+  }
+  .orb {
+    position: absolute; border-radius: 50%; opacity: .5;
+    background: radial-gradient(circle at 30% 30%, rgba(167, 139, 250, .6), rgba(45, 212, 191, .08) 70%);
+    animation: flotar 15s ease-in-out infinite;
+  }
+  .orb.o1 { width: 340px; height: 340px; top: -150px; right: -80px; }
+  .orb.o2 { width: 250px; height: 250px; bottom: -130px; left: -70px; animation-delay: -7s; }
+  .orb.o3 { width: 150px; height: 150px; top: 32%; right: 20%; animation-delay: -3s; opacity: .35; }
+  @keyframes flotar {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-26px, 22px) scale(1.08); }
+  }
+  header .contenedor { position: relative; z-index: 2; }
+  .marca { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .logo {
+    width: 66px; height: 66px; border-radius: 20px; flex: none; font-size: 34px;
+    display: grid; place-items: center;
+    background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .25);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .22); animation: girar-logo 9s ease-in-out infinite;
+  }
+  @keyframes girar-logo {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-7px); }
+  }
+  h1 { font-size: clamp(1.7rem, 5.4vw, 2.75rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 800; }
+  .subtitulo { opacity: .93; font-size: clamp(1rem, 2.8vw, 1.18rem); max-width: 62ch; margin-top: 12px; }
+  .subtitulo b { color: var(--turquesa-400); font-weight: 700; }
+  .insignias { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .insignia {
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .24);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 8px 15px; border-radius: 999px; font-size: .82rem; font-weight: 600;
+    transition: transform .2s, background .2s;
+  }
+  .insignia:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .2); }
+
+  /* ============ TARJETAS ============ */
+  main { padding: 34px 0 70px; margin-top: -26px; position: relative; z-index: 3; }
+  .tarjeta {
+    background: var(--cristal); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--borde-cristal); border-radius: var(--radio);
+    box-shadow: var(--sombra); padding: 26px; margin-bottom: 22px;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .tarjeta:hover { transform: translateY(-3px); box-shadow: 0 26px 55px rgba(36, 18, 87, .18); }
+  h2 { font-size: clamp(1.25rem, 3.8vw, 1.65rem); margin-bottom: 8px; letter-spacing: -.02em; font-weight: 800; }
+  h3 { font-size: 1.05rem; margin: 20px 0 10px; font-weight: 700; }
+  p { color: var(--suave); }
+  .etiqueta {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--violeta-700); background: linear-gradient(135deg, rgba(109, 40, 217, .13), rgba(45, 212, 191, .18));
+    padding: 6px 13px; border-radius: 999px; margin-bottom: 12px;
+  }
+
+  /* ============ PRESSETS / BOTONES ============ */
+  .presets { display: flex; flex-wrap: wrap; gap: 9px; margin: 6px 0 18px; }
+  .chip-btn {
+    border: 1.5px solid rgba(109, 40, 217, .28); background: rgba(255, 255, 255, .8);
+    color: var(--violeta-700); padding: 9px 15px; border-radius: 999px; font-size: .85rem; font-weight: 700;
+    cursor: pointer; transition: all .18s ease;
+  }
+  .chip-btn:hover {
+    background: linear-gradient(135deg, var(--violeta-600), var(--violeta-400)); color: #fff;
+    border-color: transparent; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(109, 40, 217, .35);
+  }
+  .acciones { display: flex; flex-wrap: wrap; gap: 9px; margin: 14px 0; }
+  .btn-mini {
+    border: 1.5px solid rgba(109, 40, 217, .25); background: #fff; color: var(--violeta-700);
+    padding: 8px 14px; border-radius: 12px; font-size: .83rem; font-weight: 700; cursor: pointer; transition: .18s;
+  }
+  .btn-mini:hover { border-color: var(--violeta-600); background: var(--violeta-600); color: #fff; }
+
+  .boton {
+    display: flex; align-items: center; justify-content: center; gap: 11px; width: 100%;
+    padding: 18px 20px; border-radius: 17px; border: 0; font-size: 1.12rem; font-weight: 800;
+    cursor: pointer; color: #fff; letter-spacing: -.01em;
+    background: linear-gradient(135deg, var(--violeta-600), var(--violeta-400));
+    box-shadow: 0 14px 32px rgba(109, 40, 217, .42); transition: transform .15s, box-shadow .2s;
+  }
+  .boton:hover { transform: translateY(-3px); box-shadow: 0 20px 42px rgba(109, 40, 217, .5); }
+  .boton:active { transform: translateY(0) scale(.98); }
+  .boton.secundario {
+    background: rgba(255, 255, 255, .8); color: var(--violeta-700);
+    border: 2px solid rgba(109, 40, 217, .3); box-shadow: none;
+  }
+
+  /* ============ MATRIZ ============ */
+  .panel-matriz {
+    overflow: auto; max-height: 460px; border-radius: 16px; border: 1px solid #e2d9f4;
+    background: #fff; margin-top: 12px;
+  }
+  table.matriz { border-collapse: collapse; font-size: .82rem; }
+  table.matriz th, table.matriz td { border: 1px solid #ece5fa; padding: 3px; text-align: center; }
+  table.matriz th { background: linear-gradient(135deg, var(--violeta-900), var(--violeta-700)); color: #fff; position: sticky; top: 0; z-index: 2; }
+  table.matriz th:first-child { left: 0; z-index: 3; }
+  table.matriz td.primera { background: var(--violeta-900); color: #fff; font-weight: 700; position: sticky; left: 0; }
+  .nombre-ciudad {
+    width: 110px; border: 0; border-radius: 8px; padding: 5px 7px; font-size: .8rem; font-weight: 700;
+    text-align: center; background: rgba(255, 255, 255, .92); color: var(--violeta-900); outline: none;
+  }
+  .celda-costo {
+    width: 74px; border: 1px solid transparent; border-radius: 8px; padding: 6px 5px;
+    font-size: .82rem; text-align: center; outline: none; background: #f8f5ff; color: var(--texto);
+  }
+  .celda-costo:focus { border-color: var(--violeta-600); background: #fff; box-shadow: 0 0 0 3px rgba(109, 40, 217, .15); }
+  .celda-costo.diagonal { background: #ece5fa; color: #a394c9; font-weight: 700; }
+  .btn-quitar {
+    display: block; margin: 3px auto 0; width: 20px; height: 20px; border-radius: 50%;
+    border: 0; background: rgba(255, 255, 255, .25); color: #fff; font-size: .72rem;
+    cursor: pointer; line-height: 1; transition: .15s;
+  }
+  .btn-quitar:hover { background: #f87171; }
+
+  textarea {
+    width: 100%; min-height: 110px; border-radius: 14px; border: 2px solid #e2d9f4;
+    padding: 12px 14px; font-size: .85rem; font-family: Consolas, monospace; outline: none; resize: vertical;
+    background: #fff; color: var(--texto);
+  }
+  textarea:focus { border-color: var(--violeta-600); box-shadow: 0 0 0 4px rgba(109, 40, 217, .15); }
+
+  /* ============ PARÁMETROS ============ */
+  .rejilla-params { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin: 16px 0; }
+  .campo .cabecera { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .campo label { font-weight: 700; font-size: .95rem; }
+  .pastilla {
+    background: linear-gradient(135deg, var(--violeta-600), var(--violeta-400));
+    color: #fff; font-weight: 800; font-size: .92rem; padding: 5px 13px; border-radius: 999px;
+    min-width: 74px; text-align: center; box-shadow: 0 6px 16px rgba(109, 40, 217, .35);
+  }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: 999px; outline: none;
+    background: linear-gradient(90deg, var(--violeta-600) 0%, var(--violeta-400) var(--pos, 50%), #e2d9f4 var(--pos, 50%), #e2d9f4 100%);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; border: 5px solid var(--violeta-600); cursor: pointer;
+    box-shadow: 0 6px 18px rgba(109, 40, 217, .45); transition: transform .15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.12); }
+  input[type="range"]::-moz-range-thumb {
+    width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 5px solid var(--violeta-600); cursor: pointer;
+    box-shadow: 0 6px 18px rgba(109, 40, 217, .45);
+  }
+  input[type="range"]::-moz-range-track { height: 10px; border-radius: 999px; background: #e2d9f4; }
+
+  /* progreso */
+  .progreso { margin: 18px 0 8px; display: none; }
+  .progreso.visible { display: block; }
+  .progreso .pista { height: 12px; border-radius: 999px; background: #e6dcfa; overflow: hidden; }
+  .progreso .relleno {
+    height: 100%; width: 0; border-radius: 999px;
+    background: linear-gradient(90deg, var(--violeta-600), var(--turquesa-400));
+    transition: width .25s ease;
+  }
+  .progreso .texto { display: flex; justify-content: space-between; font-size: .85rem; color: var(--suave); margin-top: 7px; font-weight: 600; }
+
+  /* ============ RESULTADO ============ */
+  .resultado {
+    position: relative; overflow: hidden; color: #fff; border-radius: var(--radio); padding: 28px;
+    background: linear-gradient(150deg, var(--violeta-950), var(--violeta-900) 55%, var(--violeta-600));
+    box-shadow: 0 22px 50px rgba(36, 18, 87, .35); margin-bottom: 22px;
+  }
+  .resultado .orb { opacity: .32; }
+  .resultado > * { position: relative; z-index: 2; }
+  .valor {
+    font-size: clamp(2.6rem, 10vw, 4.2rem); font-weight: 800; letter-spacing: -.045em; line-height: 1;
+    background: linear-gradient(120deg, #fff 30%, var(--turquesa-400));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .valor small {
+    -webkit-text-fill-color: rgba(255, 255, 255, .85); font-size: .32em; font-weight: 700; margin-left: 8px; letter-spacing: 0;
+  }
+  .ruta-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 18px; }
+  .parada {
+    background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .22);
+    padding: 6px 13px; border-radius: 999px; font-size: .85rem; font-weight: 700;
+  }
+  .parada.inicio { background: var(--turquesa-400); color: var(--violeta-950); border-color: transparent; }
+  .flecha-ruta { opacity: .7; font-size: .9rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 20px; }
+  .stat {
+    background: rgba(255, 255, 255, .11); border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 15px; padding: 13px 14px;
+  }
+  .stat .v { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; }
+  .stat .t { font-size: .76rem; opacity: .82; margin-top: 2px; }
+
+  /* gráficas */
+  .rejilla-graficas { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 880px) { .rejilla-graficas { grid-template-columns: 1fr 1fr; } }
+  .grafica { width: 100%; height: auto; display: block; margin-top: 10px; }
+  .leyenda { display: flex; gap: 20px; flex-wrap: wrap; font-size: .85rem; color: var(--suave); margin-top: 10px; font-weight: 600; }
+  .leyenda span::before { content: ""; display: inline-block; width: 22px; height: 4px; margin-right: 7px; vertical-align: middle; border-radius: 3px; }
+  .leyenda .ag::before { background: linear-gradient(90deg, var(--violeta-600), var(--turquesa-400)); }
+  .leyenda .vmc::before { background: repeating-linear-gradient(90deg, var(--ambar-400) 0 6px, transparent 6px 11px); }
+
+  /* info */
+  .diagrama { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 8px; }
+  .capa-nodo {
+    background: #fff; border: 1.5px solid rgba(109, 40, 217, .22); color: var(--violeta-900);
+    padding: 12px 16px; border-radius: 15px; font-size: .84rem; font-weight: 700; text-align: center;
+    box-shadow: var(--sombra-suave); transition: transform .2s;
+  }
+  .capa-nodo:hover { transform: translateY(-3px); }
+  .capa-nodo.oscura {
+    background: linear-gradient(135deg, var(--violeta-900), var(--violeta-600)); color: #fff;
+    border-color: transparent; box-shadow: 0 12px 26px rgba(109, 40, 217, .35);
+  }
+  .flecha { color: var(--turquesa-400); font-size: 1.35rem; font-weight: 800; }
+
+  .pasos { counter-reset: paso; list-style: none; margin-top: 16px; }
+  .pasos li {
+    counter-increment: paso; position: relative; padding: 6px 0 22px 52px;
+    border-left: 2px dashed rgba(109, 40, 217, .3); margin-left: 18px;
+  }
+  .pasos li::before {
+    content: counter(paso); position: absolute; left: -19px; top: 0;
+    width: 36px; height: 36px; border-radius: 13px;
+    background: linear-gradient(135deg, var(--violeta-600), var(--violeta-400)); color: #fff;
+    display: grid; place-items: center; font-weight: 800; font-size: .95rem;
+    box-shadow: 0 8px 18px rgba(109, 40, 217, .35);
+  }
+  .pasos li b { display: block; margin-bottom: 3px; font-size: 1.02rem; }
+
+  .aviso {
+    background: linear-gradient(135deg, rgba(45, 212, 191, .14), rgba(109, 40, 217, .1));
+    border: 1px solid rgba(45, 212, 191, .4); border-radius: 15px; padding: 15px 18px;
+    font-size: .92rem; color: var(--texto); margin-top: 14px;
+  }
+  .aviso b { color: var(--violeta-700); }
+
+  footer {
+    background: linear-gradient(135deg, var(--violeta-950), var(--violeta-900));
+    color: rgba(255, 255, 255, .85); padding: 36px 0 46px; font-size: .88rem;
+  }
+  footer a { color: var(--violeta-400); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: gap .2s; }
+  footer a:hover { gap: 13px; }
+  footer .contenedor > div + div { margin-top: 9px; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="contenedor">
+    <div class="marca">
+      <div class="logo">🧬</div>
+      <div>
+        <h1>Vendedor Viajero con<br>Algoritmo Genético</h1>
+        <div class="subtitulo">
+          Ingresa el <b>costo de ir de una ciudad a otra</b> y el algoritmo genético encontrará
+          la <b>ruta óptima</b> que visita todas las ciudades y regresa al punto de partida,
+          con el menor costo posible.
+        </div>
+      </div>
+    </div>
+    <div class="insignias">
+      <span class="insignia">🧬 Selección por torneo · cruce OX1 · mutación por inversión</span>
+      <span class="insignia">🗺️ Matriz de costos editable</span>
+      <span class="insignia">📊 Evolución en vivo</span>
+      <span class="insignia">⚡ Cálculo local · sin servidor</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="contenedor">
+
+  <!-- ============ MATRIZ DE COSTOS ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">🗺️ Paso 1 · Datos del problema</span>
+    <h2>Costo de ir de una ciudad a otra</h2>
+    <p>Edita los nombres de las ciudades y escribe en cada celda el costo (o distancia) de viajar
+       de la ciudad de la fila a la ciudad de la columna. Puedes cargar un ejemplo o pegar una
+       matriz completa.</p>
+
+    <div class="presets" id="presets"></div>
+
+    <div class="acciones">
+      <button class="btn-mini" id="btn-agregar">➕ Agregar ciudad</button>
+      <button class="btn-mini" id="btn-aleatorio">🎲 Rellenar con costos aleatorios</button>
+      <button class="btn-mini" id="btn-simetria">↔️ Hacer simétrica</button>
+      <button class="btn-mini" id="btn-vaciar">🧽 Vaciar matriz</button>
+      <button class="btn-mini" id="btn-pegado">📋 Pegar matriz desde otro programa</button>
+    </div>
+
+    <div id="panel-pegado" style="display:none">
+      <p style="margin:8px 0">Pega aquí una matriz cuadrada (una fila por línea, valores separados
+        por tabulación, coma o espacio) y pulsa «Cargar matriz pegada».</p>
+      <textarea id="pegado" placeholder="0&#9;120&#9;85&#9;140&#10;120&#9;0&#9;95&#9;60&#10;85&#9;95&#9;0&#9;110&#10;140&#9;60&#9;110&#9;0"></textarea>
+      <div class="acciones">
+        <button class="btn-mini" id="btn-cargar-pegado">✅ Cargar matriz pegada</button>
+      </div>
+    </div>
+
+    <div class="panel-matriz">
+      <table class="matriz" id="tabla-matriz"></table>
+    </div>
+  </section>
+
+  <!-- ============ PARÁMETROS ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">⚙️ Paso 2 · Algoritmo genético</span>
+    <h2>Parámetros de la evolución</h2>
+    <p>Ajusta el comportamiento del algoritmo genético. Con los valores por defecto obtendrás
+       rutas de alta calidad en segundos.</p>
+
+    <div class="rejilla-params">
+      <div class="campo">
+        <div class="cabecera"><label for="poblacion">👥 Población</label><span class="pastilla"><span id="poblacion-pastilla">250</span></span></div>
+        <input type="range" id="poblacion" min="50" max="600" step="10" value="250">
+      </div>
+      <div class="campo">
+        <div class="cabecera"><label for="generaciones">🔁 Generaciones</label><span class="pastilla"><span id="generaciones-pastilla">1200</span></span></div>
+        <input type="range" id="generaciones" min="100" max="3000" step="50" value="1200">
+      </div>
+      <div class="campo">
+        <div class="cabecera"><label for="mutacion">🧬 Prob. de mutación</label><span class="pastilla"><span id="mutacion-pastilla">0,15</span></span></div>
+        <input type="range" id="mutacion" min="0" max="0.6" step="0.01" value="0.15">
+      </div>
+      <div class="campo">
+        <div class="cabecera"><label for="elitismo">🏆 Elitismo</label><span class="pastilla"><span id="elitismo-pastilla">5</span></span></div>
+        <input type="range" id="elitismo" min="1" max="30" step="1" value="5">
+      </div>
+      <div class="campo">
+        <div class="cabecera"><label for="torneo">🎯 Tamaño del torneo</label><span class="pastilla"><span id="torneo-pastilla">5</span></span></div>
+        <input type="range" id="torneo" min="2" max="12" step="1" value="5">
+      </div>
+    </div>
+
+    <button class="boton" id="btn-ejecutar">▶️ Ejecutar algoritmo genético</button>
+    <div class="acciones" style="justify-content:center">
+      <button class="btn-mini" id="btn-detener" style="display:none">⏹ Detener evolución</button>
+    </div>
+
+    <div class="progreso" id="progreso">
+      <div class="pista"><div class="relleno" id="progreso-barra"></div></div>
+      <div class="texto">
+        <span id="progreso-texto">Generación 0</span>
+        <span>Mejor costo hasta ahora: <b id="costo-actual">—</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTADO ============ -->
+  <section class="resultado" id="panel-resultado">
+    <div class="orb o2" style="left:auto;right:-90px;bottom:-90px"></div>
+    <div style="font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;opacity:.85;font-weight:700;">
+      Ruta óptima encontrada por el algoritmo genético
+    </div>
+    <div class="valor"><span id="costo-total">—</span><small>costo total</small></div>
+    <div class="ruta-chips" id="ruta-chips"><span class="parada">Ejecuta el algoritmo para ver la ruta</span></div>
+    <div class="stats" id="estadisticas"></div>
+  </section>
+
+  <!-- ============ GRÁFICAS ============ -->
+  <section class="rejilla-graficas">
+    <div class="tarjeta">
+      <span class="etiqueta">🗺️ Recorrido</span>
+      <h2>La ruta sobre el mapa</h2>
+      <p>Las ciudades se ubican según sus coordenadas geográficas (o en círculo si no hay
+         coordenadas) y la línea muestra el recorrido óptimo encontrado.</p>
+      <svg class="grafica" id="mapa" viewBox="0 0 560 380" role="img" aria-label="Mapa de la ruta"></svg>
+      <div class="leyenda">
+        <span class="ag">Ruta óptima (algoritmo genético)</span>
+        <span class="vmc">⭐ Ciudad de partida</span>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <span class="etiqueta">📈 Evolución</span>
+      <h2>Convergencia del algoritmo</h2>
+      <p>Mejor costo encontrado en cada generación. La línea punteada es la ruta de la heurística
+         del vecino más cercano, que el algoritmo genético supera.</p>
+      <svg class="grafica" id="convergencia" viewBox="0 0 560 320" role="img" aria-label="Gráfica de convergencia"></svg>
+      <div class="leyenda">
+        <span class="ag">Mejor costo del AG por generación</span>
+        <span class="vmc">Vecino más cercano</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPLICACIÓN ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">🧠 Metodología</span>
+    <h2>Cómo funciona el algoritmo genético</h2>
+    <p>Un algoritmo genético imita la evolución natural: parte de una <b>población</b> de rutas
+       aleatorias y, generación tras generación, las <b>selecciona</b>, las <b>cruza</b> y las
+       <b>muta</b> hasta que convergen hacia la mejor ruta.</p>
+
+    <div class="diagrama">
+      <div class="capa-nodo">Población inicial<br>rutas aleatorias</div>
+      <div class="flecha">→</div>
+      <div class="capa-nodo">Selección<br>por torneo</div>
+      <div class="flecha">→</div>
+      <div class="capa-nodo">Cruce OX1<br>(order crossover)</div>
+      <div class="flecha">→</div>
+      <div class="capa-nodo">Mutación<br>inversión de tramo</div>
+      <div class="flecha">→</div>
+      <div class="capa-nodo oscura">Elitismo<br>siguiente generación</div>
+    </div>
+
+    <ol class="pasos">
+      <li><b>Representación</b> — cada individuo es una <i>permutación</i> de las ciudades:
+          una ruta completa que termina volviendo a la ciudad de partida.</li>
+      <li><b>Aptitud</b> — el costo total del recorrido; menor costo = mayor aptitud.</li>
+      <li><b>Selección por torneo</b> — compiten <i>n</i> individuos al azar y se elige el mejor;
+          así los buenos genes se transmiten sin perder diversidad.</li>
+      <li><b>Cruce OX1</b> — se copia un tramo del primer padre y el resto se completa respetando
+          el orden del segundo, sin repetir ciudades.</li>
+      <li><b>Mutación por inversión</b> — se invierte un tramo de la ruta (equivalente a un
+          intercambio 2-opt), lo que permite escapar de soluciones locales.</li>
+      <li><b>Elitismo</b> — los mejores individuos pasan intactos a la siguiente generación,
+          garantizando que la calidad nunca empeore.</li>
+    </ol>
+
+    <div class="aviso">
+      ✅ <b>Validación del algoritmo:</b> el algoritmo genético programado en Python fue
+      comparado con la solución exacta por <b>fuerza bruta</b> en una instancia de 8 ciudades
+      (5 040 permutaciones): <b id="validacion-texto">—</b>. Posteriormente se resolvió la
+      instancia de <b>22 ciudades de Colombia</b> incluida como ejemplo.
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <div><b>Taller de Machine Learning</b> — Tarea de Algoritmos Genéticos: el problema del vendedor viajero.</div>
+    <div>Algoritmo genético implementado en Python y en JavaScript puro · selección por torneo, cruce OX1, mutación por inversión y elitismo.</div>
+    <div style="margin-top:12px;opacity:.9">⚡ <b>Powered by James Pesca y Erika Julieth Villada</b></div>
+    <div style="margin-top:16px"><a href="index.html">📊 Volver a los trabajos publicados →</a></div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   DATOS PRECARGADOS (generados con el algoritmo genético en Python)
+   ===================================================================== */
+const PRESET = __PRESET_TSP_JSON__;
+
+/* =====================================================================
+   ALGORITMO GENÉTICO (la misma metodología del script de Python)
+   ===================================================================== */
+class AGVendedor {
+  constructor(matriz, cfg) {
+    this.matriz = matriz;
+    this.n = matriz.length;
+    this.cfg = cfg;
+    this.historial = [];
+    this.mejorRuta = null;
+    this.mejorCosto = Infinity;
+    this.poblacion = [];
+    for (let i = 0; i < cfg.poblacion; i++) this.poblacion.push(this._rutaAleatoria());
+  }
+
+  _rutaAleatoria() {
+    const base = Array.from({ length: this.n }, (_, i) => i);
+    for (let j = this.n - 1; j > 0; j--) {
+      const k = Math.floor(Math.random() * (j + 1));
+      [base[j], base[k]] = [base[k], base[j]];
+    }
+    return base;
+  }
+
+  /** Costo del recorrido cerrado (vuelve a la ciudad de partida) */
+  costo(ruta) {
+    let total = 0;
+    for (let i = 0; i < this.n; i++) total += this.matriz[ruta[i]][ruta[(i + 1) % this.n]];
+    return total;
+  }
+
+  _seleccionTorneo() {
+    let mejor = null, mejorCosto = Infinity;
+    for (let i = 0; i < this.cfg.torneo; i++) {
+      const ind = this.poblacion[Math.floor(Math.random() * this.poblacion.length)];
+      const c = this.costo(ind);
+      if (c < mejorCosto) { mejorCosto = c; mejor = ind; }
+    }
+    return mejor;
+  }
+
+  /** OX1 (order crossover): conserva un tramo del padre y completa con el orden de la madre */
+  _cruceOrden(padre, madre) {
+    const n = this.n;
+    let a = Math.floor(Math.random() * n), b = Math.floor(Math.random() * n);
+    if (a > b) [a, b] = [b, a];
+    const hijo = new Array(n).fill(null);
+    for (let i = a; i <= b; i++) hijo[i] = padre[i];
+    const usados = new Set(hijo.filter((x) => x !== null));
+    const relleno = madre.filter((g) => !usados.has(g));
+    let idx = 0;
+    for (let i = 0; i < n; i++) if (hijo[i] === null) hijo[i] = relleno[idx++];
+    return hijo;
+  }
+
+  /** Mutación por inversión de un tramo (estilo 2-opt) */
+  _mutar(ruta) {
+    let a = Math.floor(Math.random() * this.n), b = Math.floor(Math.random() * this.n);
+    if (a > b) [a, b] = [b, a];
+    while (a < b) { [ruta[a], ruta[b]] = [ruta[b], ruta[a]]; a++; b--; }
+    return ruta;
+  }
+
+  /** Ejecuta N generaciones de evolución */
+  evolucionar(generaciones) {
+    for (let g = 0; g < generaciones; g++) {
+      const conCosto = this.poblacion.map((ind) => ({ ind, c: this.costo(ind) }));
+      conCosto.sort((x, y) => x.c - y.c);
+      this.poblacion = conCosto.map((x) => x.ind);
+
+      const mejor = this.poblacion[0];
+      if (conCosto[0].c < this.mejorCosto) {
+        this.mejorCosto = conCosto[0].c;
+        this.mejorRuta = [...mejor];
+      }
+      this.historial.push(this.mejorCosto);
+
+      const nueva = this.poblacion.slice(0, this.cfg.elitismo).map((x) => [...x]);
+      while (nueva.length < this.cfg.poblacion) {
+        let hijo = this._cruceOrden(this._seleccionTorneo(), this._seleccionTorneo());
+        if (Math.random() < this.cfg.mutacion) hijo = this._mutar(hijo);
+        nueva.push(hijo);
+      }
+      this.poblacion = nueva;
+    }
+    return this.historial;
+  }
+}
+
+/** Heurística del vecino más cercano (referencia para comparar) */
+function vecinoMasCercano(m) {
+  const n = m.length;
+  const visitados = new Set([0]);
+  let actual = 0, total = 0;
+  for (let paso = 0; paso < n - 1; paso++) {
+    let sig = -1, mejor = Infinity;
+    for (let j = 0; j < n; j++) {
+      if (!visitados.has(j) && m[actual][j] < mejor) { mejor = m[actual][j]; sig = j; }
+    }
+    total += mejor;
+    visitados.add(sig);
+    actual = sig;
+  }
+  return total + m[actual][0];
+}
+
+/* =====================================================================
+   EDITOR DE LA MATRIZ
+   ===================================================================== */
+let ciudades = [];
+let matriz = [];
+let ag = null;
+let temporizador = null;
+
+function pintarMatriz() {
+  const tabla = document.getElementById("tabla-matriz");
+  let html = "<tr><th></th>";
+  for (let j = 0; j < ciudades.length; j++) {
+    html += `<th><input class="nombre-ciudad" data-col="${j}" value="${ciudades[j]}">
+             <button class="btn-quitar" data-quitar="${j}" title="Quitar ciudad">✕</button></th>`;
+  }
+  html += "</tr>";
+  for (let i = 0; i < ciudades.length; i++) {
+    html += `<tr><td class="primera">${ciudades[i]}</td>`;
+    for (let j = 0; j < ciudades.length; j++) {
+      const diag = i === j;
+      html += `<td><input class="celda-costo${diag ? " diagonal" : ""}" data-i="${i}" data-j="${j}"
+               value="${matriz[i][j]}" ${diag ? "disabled" : ""} inputmode="decimal"></td>`;
+    }
+    html += "</tr>";
+  }
+  tabla.innerHTML = html;
+
+  tabla.querySelectorAll(".nombre-ciudad").forEach((inp) => {
+    inp.addEventListener("input", () => {
+      const j = +inp.dataset.col;
+      ciudades[j] = inp.value || `Ciudad ${j + 1}`;
+      document.querySelectorAll(`#tabla-matriz .primera`)[j].textContent = ciudades[j];
+    });
+  });
+  tabla.querySelectorAll(".celda-costo").forEach((inp) => {
+    inp.addEventListener("input", () => {
+      const v = parseFloat(inp.value);
+      matriz[+inp.dataset.i][+inp.dataset.j] = isNaN(v) ? 0 : v;
+    });
+  });
+  tabla.querySelectorAll(".btn-quitar").forEach((b) => {
+    b.addEventListener("click", () => {
+      const j = +b.dataset.quitar;
+      if (ciudades.length <= 3) { avisar("Se necesitan al menos 3 ciudades."); return; }
+      ciudades.splice(j, 1);
+      matriz.splice(j, 1);
+      matriz.forEach((fila) => fila.splice(j, 1));
+      pintarMatriz();
+    });
+  });
+}
+
+function cargarDatos(nombres, m) {
+  ciudades = [...nombres];
+  matriz = m.map((fila) => [...fila]);
+  pintarMatriz();
+}
+
+function agregarCiudad() {
+  const n = ciudades.length;
+  if (n >= 40) { avisar("Máximo 40 ciudades para este aplicativo."); return; }
+  ciudades.push(`Ciudad ${n + 1}`);
+  for (let i = 0; i < n; i++) { matriz[i].push(0); }
+  matriz.push(new Array(n + 1).fill(0));
+  pintarMatriz();
+}
+
+function rellenarAleatorio() {
+  const n = ciudades.length;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      matriz[i][j] = i === j ? 0 : Math.round(10 + Math.random() * 490);
+    }
+  }
+  hacerSimetrica();
+  pintarMatriz();
+}
+
+function hacerSimetrica() {
+  const n = ciudades.length;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const v = Math.round((matriz[i][j] + matriz[j][i]) / 2);
+      matriz[i][j] = matriz[j][i] = v;
+    }
+  }
+  pintarMatriz();
+}
+
+function vaciarMatriz() {
+  const n = ciudades.length;
+  matriz = Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => (i === j ? 0 : 0)));
+  pintarMatriz();
+}
+
+function cargarPegado() {
+  const texto = document.getElementById("pegado").value.trim();
+  if (!texto) { avisar("Pega primero una matriz en el cuadro de texto."); return; }
+  const filas = texto.split(/\r?\n/).map((f) => f.trim()).filter(Boolean)
+    .map((f) => f.split(/[\s,;]+/).map(Number));
+  const n = filas.length;
+  if (filas.some((f) => f.length !== n || f.some(isNaN))) {
+    avisar("La matriz debe ser cuadrada y contener solo números."); return;
+  }
+  cargarDatos(Array.from({ length: n }, (_, i) => `Ciudad ${i + 1}`), filas);
+  avisar(`Matriz de ${n}×${n} cargada ✅`);
+}
+
+function avisar(texto) {
+  const barra = document.getElementById("ruta-chips");
+  const previo = barra.dataset.temporal;
+  if (previo) clearTimeout(previo);
+  barra.innerHTML = `<span class="parada" style="background:#fbbf24;color:#3b2a00;border-color:transparent">${texto}</span>`;
+  barra.dataset.temporal = setTimeout(() => mostrarRuta(ag && ag.mejorRuta), 2600);
+}
+
+/* =====================================================================
+   PARÁMETROS Y EJECUCIÓN
+   ===================================================================== */
+function leerParametros() {
+  return {
+    poblacion: +document.getElementById("poblacion").value,
+    generaciones: +document.getElementById("generaciones").value,
+    mutacion: +document.getElementById("mutacion").value,
+    elitismo: +document.getElementById("elitismo").value,
+    torneo: +document.getElementById("torneo").value,
+  };
+}
+
+function pintarRango(input) {
+  const min = parseFloat(input.min), max = parseFloat(input.max);
+  input.style.setProperty("--pos", ((parseFloat(input.value) - min) / (max - min)) * 100 + "%");
+}
+
+function ejecutar() {
+  detener();
+  const cfg = leerParametros();
+  if (ciudades.length < 3) { avisar("Agrega al menos 3 ciudades."); return; }
+
+  ag = new AGVendedor(matriz, cfg);
+  const progreso = document.getElementById("progreso");
+  progreso.classList.add("visible");
+  document.getElementById("btn-detener").style.display = "block";
+
+  const porPaso = Math.max(5, Math.round(cfg.generaciones / 120));
+  temporizador = setInterval(() => {
+    const restantes = cfg.generaciones - ag.historial.length;
+    ag.evolucionar(Math.min(porPaso, restantes));
+    actualizarProgreso(cfg.generaciones);
+    if (ag.historial.length >= cfg.generaciones) finalizar();
+  }, 40);
+}
+
+/** Versión síncrona (también usada por las pruebas automáticas) */
+function ejecutarSincrono() {
+  detener();
+  const cfg = leerParametros();
+  ag = new AGVendedor(matriz, cfg);
+  const t0 = performance.now();
+  ag.evolucionar(cfg.generaciones);
+  const ms = Math.round(performance.now() - t0);
+  document.getElementById("progreso").classList.add("visible");
+  actualizarProgreso(cfg.generaciones);
+  finalizar(ms);
+  return { costo: ag.mejorCosto, generaciones: ag.historial.length, ms };
+}
+
+function detener() {
+  if (temporizador) { clearInterval(temporizador); temporizador = null; }
+  document.getElementById("btn-detener").style.display = "none";
+}
+
+function actualizarProgreso(total) {
+  const g = ag.historial.length;
+  document.getElementById("progreso-barra").style.width = (g / total) * 100 + "%";
+  document.getElementById("progreso-texto").textContent =
+    `Generación ${g.toLocaleString("es-CO")} de ${total.toLocaleString("es-CO")}`;
+  document.getElementById("costo-actual").textContent =
+    ag.mejorCosto.toLocaleString("es-CO", { maximumFractionDigits: 1 });
+}
+
+function finalizar(ms) {
+  detener();
+  mostrarRuta(ag.mejorRuta);
+  mostrarEstadisticas(ms);
+  dibujarMapa(ag.mejorRuta);
+  dibujarConvergencia();
+}
+
+function mostrarRuta(ruta) {
+  const chips = document.getElementById("ruta-chips");
+  if (!ruta) {
+    chips.innerHTML = '<span class="parada">Ejecuta el algoritmo para ver la ruta</span>';
+    document.getElementById("costo-total").textContent = "—";
+    return;
+  }
+  document.getElementById("costo-total").textContent =
+    ag.mejorCosto.toLocaleString("es-CO", { maximumFractionDigits: 1 });
+  const completa = [...ruta, ruta[0]];
+  chips.innerHTML = completa.map((c, i) =>
+    (i ? '<span class="flecha-ruta">→</span>' : "") +
+    `<span class="parada${i === 0 ? " inicio" : ""}">${i === 0 ? "⭐ " : ""}${ciudades[c]}</span>`
+  ).join("");
+}
+
+function mostrarEstadisticas(ms) {
+  const vmc = vecinoMasCercano(matriz);
+  const mejora = vmc > 0 ? ((vmc - ag.mejorCosto) / vmc) * 100 : 0;
+  const cfg = leerParametros();
+  document.getElementById("estadisticas").innerHTML = [
+    { v: ciudades.length, t: "Ciudades visitadas" },
+    { v: (ag.historial[0] ?? 0).toLocaleString("es-CO", { maximumFractionDigits: 1 }), t: "Costo de la primera generación" },
+    { v: vmc.toLocaleString("es-CO", { maximumFractionDigits: 1 }), t: "Vecino más cercano (heurística)" },
+    { v: mejora.toFixed(1) + " %", t: "Mejora del AG sobre esa heurística" },
+    { v: cfg.generaciones.toLocaleString("es-CO"), t: "Generaciones evolucionadas" },
+    { v: ms !== undefined ? ms + " ms" : "—", t: "Tiempo de cálculo" },
+  ].map((s) => `<div class="stat"><div class="v">${s.v}</div><div class="t">${s.t}</div></div>`).join("");
+}
+
+/* =====================================================================
+   GRÁFICAS
+   ===================================================================== */
+function dibujarMapa(ruta) {
+  const svg = document.getElementById("mapa");
+  const W = 560, H = 380, margen = 44;
+  const n = ciudades.length;
+
+  // posición de las ciudades: coordenadas geográficas si existen, si no círculo
+  const coords = PRESET.coordenadas || {};
+  const hayGeo = ciudades.every((c) => coords[c]);
+  let puntos;
+  if (hayGeo) {
+    const lats = ciudades.map((c) => coords[c][0]);
+    const lons = ciudades.map((c) => coords[c][1]);
+    const latMin = Math.min(...lats), latMax = Math.max(...lats);
+    const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+    puntos = ciudades.map((c) => ({
+      x: margen + ((coords[c][1] - lonMin) / (lonMax - lonMin || 1)) * (W - 2 * margen),
+      // la latitud crece hacia el norte (arriba en el mapa)
+      y: margen + (1 - (coords[c][0] - latMin) / (latMax - latMin || 1)) * (H - 2 * margen),
+    }));
+  } else {
+    const cx = W / 2, cy = H / 2, r = Math.min(W, H) / 2 - margen;
+    puntos = Array.from({ length: n }, (_, i) => {
+      const ang = (2 * Math.PI * i) / n - Math.PI / 2;
+      return { x: cx + r * Math.cos(ang), y: cy + r * Math.sin(ang) };
+    });
+  }
+
+  if (!ruta) {
+    svg.innerHTML = puntos.map((p, i) =>
+      `<circle cx="${p.x}" cy="${p.y}" r="7" fill="#6d28d9"/>
+       <text x="${p.x + 11}" y="${p.y + 4}" font-size="11" fill="#62587a">${ciudades[i]}</text>`).join("");
+    return;
+  }
+
+  const completa = [...ruta, ruta[0]];
+  const camino = completa.map((c) => `${puntos[c].x.toFixed(1)},${puntos[c].y.toFixed(1)}`).join(" ");
+  const inicio = puntos[ruta[0]];
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="gRuta" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#6d28d9"/><stop offset="100%" stop-color="#2dd4bf"/>
+      </linearGradient>
+      <marker id="flechaMapa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2dd4bf"/>
+      </marker>
+    </defs>
+    <polyline points="${camino}" fill="none" stroke="url(#gRuta)" stroke-width="3.5"
+              stroke-linejoin="round" marker-end="url(#flechaMapa)" stroke-opacity=".9"/>
+    ${puntos.map((p, i) => `
+      <circle cx="${p.x}" cy="${p.y}" r="${i === ruta[0] ? 10 : 7}"
+              fill="${i === ruta[0] ? "#fbbf24" : "#6d28d9"}" stroke="#fff" stroke-width="2.5"/>
+      <text x="${p.x + 11}" y="${p.y + 4}" font-size="10.5" fill="#3b2e58" font-weight="700">${ciudades[i]}</text>
+    `).join("")}
+    <circle cx="${inicio.x}" cy="${inicio.y}" r="17" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 4"/>
+  `;
+}
+
+function dibujarConvergencia() {
+  const svg = document.getElementById("convergencia");
+  const W = 560, H = 320, m = { izq: 62, der: 18, arr: 18, abj: 42 };
+  const datos = ag.historial;
+  if (!datos || datos.length < 2) { svg.innerHTML = ""; return; }
+
+  const vmc = vecinoMasCercano(matriz);
+  const yMax = Math.max(...datos, vmc) * 1.06;
+  const yMin = Math.min(...datos) * 0.96;
+  const x = (i) => m.izq + (i / (datos.length - 1)) * (W - m.izq - m.der);
+  const y = (v) => H - m.abj - ((v - yMin) / (yMax - yMin || 1)) * (H - m.arr - m.abj);
+
+  let marcas = "";
+  for (let k = 0; k <= 4; k++) {
+    const v = yMin + ((yMax - yMin) * k) / 4;
+    marcas += `<line x1="${m.izq}" y1="${y(v)}" x2="${W - m.der}" y2="${y(v)}" stroke="#ece5fa"/>
+               <text x="${m.izq - 9}" y="${y(v) + 4}" text-anchor="end" font-size="10.5" fill="#62587a">${Math.round(v).toLocaleString("es-CO")}</text>`;
+  }
+  for (let k = 0; k <= 4; k++) {
+    const g = Math.round((datos.length - 1) * k / 4);
+    marcas += `<text x="${x(g)}" y="${H - m.abj + 19}" text-anchor="middle" font-size="10.5" fill="#62587a">${g}</text>`;
+  }
+
+  const puntos = datos.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="gConv" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#6d28d9"/><stop offset="100%" stop-color="#2dd4bf"/>
+      </linearGradient>
+    </defs>
+    ${marcas}
+    <text x="${(W + m.izq) / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="#62587a" font-weight="700">Generación</text>
+    <line x1="${m.izq}" y1="${y(vmc)}" x2="${W - m.der}" y2="${y(vmc)}" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="7 6"/>
+    <text x="${W - m.der - 4}" y="${y(vmc) - 7}" text-anchor="end" font-size="11" fill="#b8860b" font-weight="700">vecino más cercano</text>
+    <polyline points="${puntos}" fill="none" stroke="url(#gConv)" stroke-width="3.5" stroke-linecap="round"/>
+  `;
+}
+
+/* =====================================================================
+   PRESETS Y ARRANQUE
+   ===================================================================== */
+function pintarPresets() {
+  const lista = [
+    { texto: "🇨🇴 22 ciudades de Colombia", accion: () => cargarDatos(PRESET.ciudades, PRESET.matriz) },
+    { texto: "🎲 20 ciudades con costos aleatorios", accion: () => {
+        cargarDatos(Array.from({ length: 20 }, (_, i) => `Ciudad ${i + 1}`),
+                    Array.from({ length: 20 }, () => new Array(20).fill(0)));
+        rellenarAleatorio();
+      } },
+    { texto: "📐 Ejemplo asimétrico (5 ciudades)", accion: () => {
+        cargarDatos(["A", "B", "C", "D", "E"], [
+          [0, 12, 19, 35, 8],
+          [14, 0, 22, 9, 41],
+          [17, 25, 0, 13, 28],
+          [31, 11, 15, 0, 20],
+          [9, 38, 27, 18, 0],
+        ]);
+      } },
+    { texto: "🧽 Empezar con 4 ciudades en blanco", accion: () => {
+        cargarDatos(["Ciudad 1", "Ciudad 2", "Ciudad 3", "Ciudad 4"],
+                    Array.from({ length: 4 }, () => new Array(4).fill(0)));
+      } },
+  ];
+  document.getElementById("presets").innerHTML =
+    lista.map((p, i) => `<button class="chip-btn" data-preset="${i}">${p.texto}</button>`).join("");
+  document.querySelectorAll("[data-preset]").forEach((b) => {
+    b.addEventListener("click", () => {
+      lista[+b.dataset.preset].accion();
+      document.getElementById("ruta-chips").innerHTML =
+        '<span class="parada">Matriz cargada ✅ — pulsa «Ejecutar algoritmo genético»</span>';
+    });
+  });
+}
+
+function inicializar() {
+  cargarDatos(PRESET.ciudades, PRESET.matriz);
+  pintarPresets();
+
+  const ids = ["poblacion", "generaciones", "mutacion", "elitismo", "torneo"];
+  for (const id of ids) {
+    const input = document.getElementById(id);
+    pintarRango(input);
+    input.addEventListener("input", () => {
+      pintarRango(input);
+      document.getElementById(id + "-pastilla").textContent =
+        id === "mutacion" ? (+input.value).toFixed(2).replace(".", ",") : input.value;
+    });
+    document.getElementById(id + "-pastilla").textContent =
+      id === "mutacion" ? (+input.value).toFixed(2).replace(".", ",") : input.value;
+  }
+
+  document.getElementById("btn-agregar").addEventListener("click", agregarCiudad);
+  document.getElementById("btn-aleatorio").addEventListener("click", rellenarAleatorio);
+  document.getElementById("btn-simetria").addEventListener("click", hacerSimetrica);
+  document.getElementById("btn-vaciar").addEventListener("click", vaciarMatriz);
+  document.getElementById("btn-pegado").addEventListener("click", () => {
+    const p = document.getElementById("panel-pegado");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+  });
+  document.getElementById("btn-cargar-pegado").addEventListener("click", cargarPegado);
+  document.getElementById("btn-ejecutar").addEventListener("click", ejecutar);
+  document.getElementById("btn-detener").addEventListener("click", () => {
+    detener();
+    if (ag && ag.mejorRuta) { mostrarRuta(ag.mejorRuta); mostrarEstadisticas(); dibujarMapa(ag.mejorRuta); dibujarConvergencia(); }
+  });
+
+  // validación calculada en Python (fuerza bruta vs AG)
+  const v = PRESET.validacion;
+  document.getElementById("validacion-texto").textContent =
+    v && v.coincide
+      ? `ambos encontraron el mismo costo (${v.fuerza_bruta.toFixed(3)})`
+      : "el AG alcanzó un costo de " + (v ? v.ag.toFixed(3) : "—");
+
+  dibujarMapa(null);
+}
+
+inicializar();
+</script>
+</body>
+</html>

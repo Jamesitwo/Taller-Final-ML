@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Simulador de la altitud de un dron a partir de la temperatura y la presión atmosférica, usando una red neuronal artificial.">
+<title>🚁 Simulador de Altitud del Dron · RNA</title>
+<style>
+  :root {
+    --cielo-900: #0b2a4a; --cielo-700: #14497a; --cielo-500: #2277c4;
+    --cielo-300: #85c1f2; --cielo-050: #eaf3fc; --crema: #f7fafd;
+    --texto: #16222e; --suave: #56677a; --blanco: #fff;
+    --sombra: 0 10px 30px rgba(11, 42, 74, .12); --radio: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--cielo-050), var(--crema) 30%, var(--blanco));
+    color: var(--texto); line-height: 1.55; min-height: 100vh;
+  }
+  .contenedor { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+  header {
+    background: radial-gradient(1200px 400px at 80% -10%, rgba(133, 193, 242, .35), transparent),
+                linear-gradient(135deg, var(--cielo-900), var(--cielo-700));
+    color: var(--blanco); padding: 30px 0 24px;
+  }
+  .marca { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .logo { width: 58px; height: 58px; border-radius: 16px; flex: none; background: rgba(255,255,255,.14); display: grid; place-items: center; font-size: 30px; }
+  h1 { font-size: clamp(1.35rem, 4.5vw, 2.15rem); line-height: 1.15; letter-spacing: -.02em; }
+  .subtitulo { opacity: .92; font-size: clamp(.92rem, 2.6vw, 1.06rem); max-width: 65ch; margin-top: 8px; }
+  .insignias { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .insignia { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.22); padding: 5px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; }
+
+  main { padding: 26px 0 60px; }
+  .tarjeta { background: var(--blanco); border-radius: var(--radio); box-shadow: var(--sombra); padding: 22px; margin-bottom: 18px; border: 1px solid #e3ecf4; }
+  h2 { font-size: clamp(1.15rem, 3.5vw, 1.5rem); margin-bottom: 6px; letter-spacing: -.01em; }
+  h3 { font-size: 1.02rem; margin: 18px 0 8px; }
+  p { color: var(--suave); }
+  .etiqueta { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cielo-700); background: var(--cielo-050); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+
+  .rejilla { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 820px) { .rejilla { grid-template-columns: 1fr 1fr; } }
+
+  .campo { margin-bottom: 18px; }
+  .campo .cabecera { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .campo label { font-weight: 700; font-size: .95rem; }
+  .campo .unidad { color: var(--suave); font-size: .85rem; }
+  .fila-entrada { display: flex; gap: 12px; align-items: center; }
+  input[type="range"] { flex: 1; accent-color: var(--cielo-500); height: 34px; }
+  input[type="number"] {
+    width: 110px; padding: 10px 12px; border-radius: 12px; border: 1px solid #c9d8e6;
+    font-size: 1.05rem; font-weight: 700; text-align: center; color: var(--cielo-900); outline: none;
+  }
+  input[type="number"]:focus { border-color: var(--cielo-500); box-shadow: 0 0 0 4px rgba(34, 119, 196, .15); }
+
+  .ejemplos { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 18px; }
+  .ejemplo {
+    border: 1px solid #cfe0ee; background: var(--cielo-050); color: var(--cielo-700);
+    padding: 8px 13px; border-radius: 999px; font-size: .83rem; font-weight: 700; cursor: pointer; transition: .15s;
+  }
+  .ejemplo:hover { background: var(--cielo-500); color: #fff; border-color: var(--cielo-500); }
+
+  .boton {
+    display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+    padding: 16px 18px; border-radius: 14px; border: 0; font-size: 1.05rem; font-weight: 800;
+    cursor: pointer; background: var(--cielo-700); color: #fff; box-shadow: 0 8px 20px rgba(20, 73, 122, .3); transition: transform .12s;
+  }
+  .boton:active { transform: scale(.98); }
+
+  /* resultado */
+  .resultado { background: linear-gradient(135deg, var(--cielo-900), var(--cielo-700)); color: #fff; border-radius: var(--radio); padding: 22px; }
+  .resultado .valor { font-size: clamp(2.4rem, 9vw, 3.8rem); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .resultado .valor small { font-size: .35em; font-weight: 700; opacity: .85; margin-left: 6px; }
+  .resultado .secundario { opacity: .9; margin-top: 6px; font-size: .95rem; }
+  .comparacion { margin-top: 16px; background: rgba(255,255,255,.12); border-radius: 12px; padding: 12px 14px; font-size: .88rem; }
+  .comparacion b { color: var(--cielo-300); }
+
+  /* escala vertical */
+  .escala { position: relative; height: 240px; margin: 10px 0 4px; border-left: 3px solid rgba(255,255,255,.35); }
+  .escala .marca { position: absolute; left: 0; transform: translate(-50%, -50%); transition: top .4s ease; }
+  .escala .marca .punto { width: 18px; height: 18px; border-radius: 50%; background: var(--cielo-300); border: 3px solid #fff; margin-left: -8px; }
+  .escala .marca .texto { position: absolute; left: 22px; top: -8px; white-space: nowrap; font-size: .82rem; font-weight: 700; }
+  .escala .tramo { position: absolute; left: -3px; width: 3px; background: rgba(255,255,255,.18); }
+
+  /* gráfica */
+  .grafica { width: 100%; height: auto; display: block; margin-top: 8px; }
+  .leyenda { display: flex; gap: 18px; flex-wrap: wrap; font-size: .84rem; color: var(--suave); margin-top: 8px; }
+  .leyenda span::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 6px; vertical-align: middle; border-radius: 2px; }
+  .leyenda .rna::before { background: var(--cielo-500); }
+  .leyenda .fisica::before { background: #d98e32; }
+
+  .diagrama { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 6px; }
+  .capa { background: var(--cielo-050); border: 1px solid #cfe0ee; color: var(--cielo-900); padding: 9px 12px; border-radius: 11px; font-size: .8rem; font-weight: 600; text-align: center; }
+  .capa.oscura { background: var(--cielo-700); color: #fff; border-color: var(--cielo-700); }
+  .flecha { color: var(--cielo-300); font-size: 1.15rem; font-weight: 700; }
+
+  .rejilla-metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
+  .metrica { background: var(--cielo-050); border: 1px solid #d4e4f1; border-radius: 14px; padding: 15px; text-align: center; }
+  .metrica .v { font-size: clamp(1.35rem, 4.5vw, 1.9rem); font-weight: 800; color: var(--cielo-700); letter-spacing: -.02em; }
+  .metrica .t { font-size: .8rem; color: var(--suave); margin-top: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; margin-top: 10px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e6eef5; }
+  th { color: var(--suave); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+
+  .pasos { counter-reset: paso; list-style: none; margin-top: 12px; }
+  .pasos li { counter-increment: paso; position: relative; padding: 4px 0 16px 46px; border-left: 2px solid #d7e4ef; margin-left: 16px; }
+  .pasos li::before { content: counter(paso); position: absolute; left: -17px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--cielo-700); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .9rem; }
+  .pasos li b { display: block; margin-bottom: 2px; }
+
+  code { background: var(--cielo-050); border-radius: 6px; padding: 2px 7px; font-size: .88em; color: var(--cielo-900); }
+
+  footer { background: var(--cielo-900); color: rgba(255,255,255,.85); padding: 28px 0 38px; font-size: .86rem; }
+  footer a { color: var(--cielo-300); }
+  footer .contenedor > div + div { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor">
+    <div class="marca">
+      <div class="logo">🚁</div>
+      <div>
+        <h1>Simulador de Altitud del Dron</h1>
+        <div class="subtitulo">
+          Red neuronal artificial que estima la <b>altura de vuelo de un dron</b> a partir de
+          la <b>temperatura</b> y la <b>presión atmosférica</b> que miden sus sensores.
+          Todo el cálculo ocurre en tu navegador.
+        </div>
+      </div>
+    </div>
+    <div class="insignias">
+      <span class="insignia">🧠 RNA perceptrón multicapa · 2→32→32→1</span>
+      <span class="insignia">🌡️ Entradas: temperatura y presión</span>
+      <span class="insignia">📏 Salida: altitud en metros</span>
+      <span class="insignia">⚡ Inferencia local (sin servidor)</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="contenedor">
+
+  <!-- ============ SIMULADOR ============ -->
+  <section class="rejilla">
+    <div class="tarjeta">
+      <span class="etiqueta">Entradas del dron</span>
+      <h2>Temperatura y presión</h2>
+      <p>Mueve los controles o escribe los valores que reportarían los sensores del dron.</p>
+
+      <div class="campo" style="margin-top:16px">
+        <div class="cabecera">
+          <label for="temperatura">🌡️ Temperatura del aire</label>
+          <span class="unidad">grados Celsius (°C)</span>
+        </div>
+        <div class="fila-entrada">
+          <input type="range" id="temperatura-rango" min="-40" max="45" step="0.1" value="14">
+          <input type="number" id="temperatura" min="-40" max="45" step="0.1" value="14">
+        </div>
+      </div>
+
+      <div class="campo">
+        <div class="cabecera">
+          <label for="presion">🧭 Presión atmosférica</label>
+          <span class="unidad">hectopascales (hPa)</span>
+        </div>
+        <div class="fila-entrada">
+          <input type="range" id="presion-rango" min="480" max="1060" step="0.1" value="733">
+          <input type="number" id="presion" min="480" max="1060" step="0.1" value="733">
+        </div>
+      </div>
+
+      <div class="ejemplos" id="ejemplos"></div>
+
+      <button class="boton" id="btn-calcular">🚁 Calcular altitud del dron</button>
+    </div>
+
+    <div>
+      <div class="resultado">
+        <div style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Altitud estimada por la RNA</div>
+        <div class="valor"><span id="altura">—</span><small>metros</small></div>
+        <div class="secundario"><span id="pies">—</span> pies · <span id="nivel">—</span></div>
+
+        <div class="escala" id="escala">
+          <div class="tramo" style="top:0;height:100%"></div>
+          <div class="marca" id="marca-escala" style="top:50%">
+            <div class="punto"></div>
+            <div class="texto" id="marca-texto">—</div>
+          </div>
+        </div>
+
+        <div class="comparacion">
+          🔬 <b>Contraste con la fórmula barométrica:</b> la física predice
+          <b id="altura-fisica">—</b> · diferencia de <b id="diferencia">—</b>
+        </div>
+      </div>
+
+      <div class="tarjeta" style="margin-top:18px">
+        <span class="etiqueta">Comportamiento del modelo</span>
+        <h2>Altura vs presión</h2>
+        <p>Curva que predice la RNA para la temperatura actual, comparada con la fórmula física.</p>
+        <svg class="grafica" id="grafica" viewBox="0 0 560 300" role="img" aria-label="Gráfica de altura frente a presión"></svg>
+        <div class="leyenda">
+          <span class="rna">Predicción de la RNA</span>
+          <span class="fisica">Fórmula barométrica</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODELO ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">La red neuronal</span>
+    <h2>Cómo funciona el modelo</h2>
+    <p>Es un <b>perceptrón multicapa de regresión</b> entrenado con ejemplos simulados de la
+       atmósfera estándar internacional: la temperatura desciende ~6,5 °C por kilómetro y la
+       presión cae según la fórmula barométrica. La red aprende por sí sola la relación que
+       convierte las lecturas de los sensores en altitud.</p>
+
+    <div class="diagrama">
+      <div class="capa">Entrada<br>temperatura + presión</div>
+      <div class="flecha">→</div>
+      <div class="capa">Oculta 1<br>32 neuronas · tanh</div>
+      <div class="flecha">→</div>
+      <div class="capa">Oculta 2<br>32 neuronas · tanh</div>
+      <div class="flecha">→</div>
+      <div class="capa oscura">Salida<br>altura (m)</div>
+    </div>
+
+    <div class="rejilla-metricas" id="metricas"></div>
+
+    <h3>Fórmulas físicas usadas para generar los datos de entrenamiento</h3>
+    <table>
+      <tbody>
+        <tr><td>Gradiente térmico</td><td><code>T(h) = T₀ − 0,0065 · h</code></td></tr>
+        <tr><td>Fórmula barométrica</td><td><code>P(h) = 1013,25 · (1 − 0,0065·h / T₀)^5,2559</code></td></tr>
+        <tr><td>Ruido de sensor simulado</td><td>±0,5 °C en temperatura · ±0,5 hPa en presión</td></tr>
+        <tr><td>Datos de entrenamiento</td><td><span id="datos-ent">—</span> simulaciones (alturas de 0 a 5 000 m)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">Metodología</span>
+    <h2>Del video al simulador</h2>
+    <p>Siguiendo la metodología del video <b>«Tu primera red neuronal en Python y TensorFlow»</b>
+       (canal <i>Ringa Tech</i>), la red aprende de pares de ejemplos entrada→salida sin que se
+       le programe la fórmula:</p>
+    <ol class="pasos">
+      <li><b>Generar los datos</b> — se simulan 40 000 mediciones realistas de altura,
+          temperatura y presión con las fórmulas de la atmósfera y ruido de sensor.</li>
+      <li><b>Entrenar la RNA</b> — en Python (PyTorch) se ajustan los pesos y sesgos para que la
+          salida se acerque a la altitud real; validación con datos nunca vistos.</li>
+      <li><b>Exportar los pesos</b> — se guardan en un archivo JSON con la normalización usada.</li>
+      <li><b>Simular en el navegador</b> — este archivo HTML implementa la red completa en
+          JavaScript puro: al mover los controles ejecuta la propagación hacia adelante
+          (<i>forward pass</i>) con los mismos pesos entrenados.</li>
+    </ol>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <div><b>Taller de Machine Learning</b> — Simulación de la altitud de un dron con una red neuronal artificial.</div>
+    <div>Metodología basada en el video «Tu primera red neuronal en Python y TensorFlow» (Ringa Tech) · Datos generados con la atmósfera estándar internacional (ISA).</div>
+    <div>Modelo entrenado con PyTorch · ejecutado en JavaScript puro, sin librerías ni servidor.</div>
+    <div style="margin-top:14px"><a href="index.html">📊 Volver a los trabajos publicados</a></div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   MODELO DE LA RED NEURONAL (pesos entrenados con PyTorch)
+   ===================================================================== */
+const MODELO = __MODELO_DRONE_JSON__;
+const METRICAS = __METRICAS_DRONE_JSON__;
+
+const P0 = 1013.25, GRADIENTE = 0.0065, EXPONENTE = 5.2559;
+
+/** Propagación hacia adelante de la RNA (2 → 32 → 32 → 1) */
+function predecirAltura(temperaturaC, presionHPa) {
+  const n = MODELO.normalizacion;
+  let x = [
+    (temperaturaC - n.entradas.media[0]) / n.entradas.desv[0],
+    (presionHPa - n.entradas.media[1]) / n.entradas.desv[1],
+  ];
+  for (const capa of MODELO.capas) {
+    const y = [];
+    for (let i = 0; i < capa.W.length; i++) {
+      let s = capa.b[i];
+      for (let j = 0; j < x.length; j++) s += capa.W[i][j] * x[j];
+      y.push(capa.activacion === "tanh" ? Math.tanh(s) : s);
+    }
+    x = y;
+  }
+  return x[0] * n.salida.desv + n.salida.media;
+}
+
+/** Fórmula barométrica (referencia física, inversa de la usada al generar los datos) */
+function alturaFisica(temperaturaC, presionHPa) {
+  return (temperaturaC + 273.15) / GRADIENTE * (Math.pow(P0 / presionHPa, 1 / EXPONENTE) - 1);
+}
+
+/* =====================================================================
+   INTERFAZ
+   ===================================================================== */
+const $ = (id) => document.getElementById(id);
+
+function actualizar() {
+  const t = parseFloat($("temperatura").value);
+  const p = parseFloat($("presion").value);
+  if (isNaN(t) || isNaN(p) || p <= 0) return;
+
+  $("temperatura-rango").value = t;
+  $("presion-rango").value = p;
+
+  const h = predecirAltura(t, p);
+  const hf = alturaFisica(t, p);
+  const dif = Math.abs(h - hf);
+
+  $("altura").textContent = Math.round(h).toLocaleString("es-CO");
+  $("pies").textContent = Math.round(h * 3.28084).toLocaleString("es-CO");
+  $("nivel").textContent = h < 120 ? "dentro del límite habitual de vuelo de drones (120 m)" :
+    h < 500 ? "vuelo alto — típico de drones profesionales" :
+    h < 2000 ? "altura de sierra — por encima del rango legal de vuelo" : "altitud de montaña";
+  $("altura-fisica").textContent = Math.round(hf).toLocaleString("es-CO") + " m";
+  $("diferencia").textContent = dif.toFixed(1) + " m";
+
+  // escala vertical (0–5000 m)
+  const porcentaje = Math.max(0, Math.min(100, (1 - h / 5000) * 100));
+  $("marca-escala").style.top = porcentaje + "%";
+  $("marca-texto").textContent = Math.round(h).toLocaleString("es-CO") + " m";
+
+  dibujarGrafica(t, p, h);
+}
+
+function dibujarGrafica(t, pActual, hActual) {
+  const svg = $("grafica");
+  const W = 560, H = 300, m = { izq: 58, der: 16, arr: 16, abj: 42 };
+  const pMin = 480, pMax = 1060;
+  const hMaxG = 5000;
+  const x = (p) => m.izq + (p - pMin) / (pMax - pMin) * (W - m.izq - m.der);
+  const y = (h) => H - m.abj - Math.max(0, Math.min(h, hMaxG)) / hMaxG * (H - m.arr - m.abj);
+
+  let puntosRNA = [], puntosFisica = [];
+  for (let p = pMin; p <= pMax; p += 10) {
+    puntosRNA.push(x(p).toFixed(1) + "," + y(predecirAltura(t, p)).toFixed(1));
+    puntosFisica.push(x(p).toFixed(1) + "," + y(alturaFisica(t, p)).toFixed(1));
+  }
+
+  let marcas = "";
+  for (let h = 0; h <= hMaxG; h += 1000) {
+    marcas += `<line x1="${m.izq}" y1="${y(h)}" x2="${W - m.der}" y2="${y(h)}" stroke="#e6eef5"/>` +
+              `<text x="${m.izq - 8}" y="${y(h) + 4}" text-anchor="end" font-size="11" fill="#56677a">${(h / 1000)} km</text>`;
+  }
+  for (let p = 500; p <= pMax; p += 100) {
+    marcas += `<text x="${x(p)}" y="${H - m.abj + 18}" text-anchor="middle" font-size="11" fill="#56677a">${p}</text>`;
+  }
+
+  svg.innerHTML = `
+    ${marcas}
+    <text x="${(W + m.izq) / 2}" y="${H - 6}" text-anchor="middle" font-size="12" fill="#56677a">Presión (hPa)</text>
+    <polyline points="${puntosFisica.join(" ")}" fill="none" stroke="#d98e32" stroke-width="2" stroke-dasharray="6 5"/>
+    <polyline points="${puntosRNA.join(" ")}" fill="none" stroke="#2277c4" stroke-width="3"/>
+    <circle cx="${x(pActual)}" cy="${y(hActual)}" r="7" fill="#0b2a4a" stroke="#fff" stroke-width="3"/>
+    <rect x="${x(pActual) - 52}" y="${y(hActual) - 34}" width="104" height="24" rx="7" fill="#0b2a4a"/>
+    <text x="${x(pActual)}" y="${y(hActual) - 17}" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">${Math.round(hActual).toLocaleString("es-CO")} m · ${Math.round(pActual)} hPa</text>
+  `;
+}
+
+function pintarEjemplos() {
+  $("ejemplos").innerHTML = METRICAS.ejemplos.map((e, i) =>
+    `<button class="ejemplo" data-i="${i}">${e.nombre} · ${e.altura.toLocaleString("es-CO")} m</button>`
+  ).join("");
+  document.querySelectorAll(".ejemplo").forEach((b) => {
+    b.addEventListener("click", () => {
+      const e = METRICAS.ejemplos[+b.dataset.i];
+      $("temperatura").value = e.temperatura;
+      $("presion").value = e.presion;
+      actualizar();
+    });
+  });
+}
+
+function pintarMetricas() {
+  $("metricas").innerHTML = [
+    { v: METRICAS.mae_m + " m", t: "Error absoluto medio (MAE) en datos de prueba" },
+    { v: METRICAS.rmse_m + " m", t: "Error cuadrático medio (RMSE)" },
+    { v: (METRICAS.r2 * 100).toFixed(2) + " %", t: "Coeficiente de determinación R²" },
+    { v: METRICAS.muestras_entrenamiento.toLocaleString("es-CO"), t: "Simulaciones usadas para entrenar la red" },
+    { v: METRICAS.neuronas + " + " + METRICAS.neuronas, t: "Neuronas en las capas ocultas" },
+    { v: METRICAS.epocas, t: "Épocas de entrenamiento" },
+  ].map((m) => `<div class="metrica"><div class="v">${m.v}</div><div class="t">${m.t}</div></div>`).join("");
+  $("datos-ent").textContent = (METRICAS.muestras_entrenamiento + METRICAS.muestras_prueba).toLocaleString("es-CO");
+}
+
+/* eventos */
+$("temperatura").addEventListener("input", actualizar);
+$("presion").addEventListener("input", actualizar);
+$("temperatura-rango").addEventListener("input", (e) => { $("temperatura").value = e.target.value; actualizar(); });
+$("presion-rango").addEventListener("input", (e) => { $("presion").value = e.target.value; actualizar(); });
+$("btn-calcular").addEventListener("click", actualizar);
+
+/* arranque */
+pintarEjemplos();
+pintarMetricas();
+actualizar();
+</script>
+</body>
+</html>

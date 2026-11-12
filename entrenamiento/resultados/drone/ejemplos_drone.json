@@ -1,0 +1,32 @@
+[
+ {
+  "nombre": "Nivel del mar",
+  "altura": 10.0,
+  "temperatura": 24.0,
+  "presion": 1012.1
+ },
+ {
+  "nombre": "Bogotá (Colombia)",
+  "altura": 2640.0,
+  "temperatura": 14.0,
+  "presion": 746.8
+ },
+ {
+  "nombre": "Medellín (Colombia)",
+  "altura": 1495.0,
+  "temperatura": 22.0,
+  "presion": 854.6
+ },
+ {
+  "nombre": "Vuelo bajo de dron",
+  "altura": 120.0,
+  "temperatura": 23.0,
+  "presion": 999.3
+ },
+ {
+  "nombre": "Zona montañosa",
+  "altura": 4000.0,
+  "temperatura": -6.0,
+  "presion": 621.9
+ }
+]

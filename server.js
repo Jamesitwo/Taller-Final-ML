@@ -31,7 +31,10 @@ const servidor = http.createServer((peticion, respuesta) => {
   let ruta = decodeURIComponent(peticion.url.split("?")[0]);
   if (ruta === "/") ruta = "/index.html";
 
-  const archivo = path.normalize(path.join(RAIZ, ruta));
+  let archivo = path.normalize(path.join(RAIZ, ruta));
+  if (ruta.endsWith("/") || ruta === "") {
+    archivo = path.join(archivo, "index.html");   // índice de la carpeta
+  }
   if (!archivo.startsWith(RAIZ)) {
     respuesta.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
     return respuesta.end("Prohibido");

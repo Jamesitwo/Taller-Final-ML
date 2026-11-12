@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Trabajos del curso</title>
+<style>
+  :root {
+    --verde-900: #14432a; --verde-700: #1f6b3d; --verde-500: #2e9e5b;
+    --verde-050: #eef7f0; --texto: #1d2a22; --suave: #55645b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--verde-050), #f7faf6 40%, #fff);
+    color: var(--texto); min-height: 100vh; padding: 28px 16px 60px;
+  }
+  .contenedor { max-width: 860px; margin: 0 auto; }
+  header { margin-bottom: 26px; }
+  h1 { font-size: clamp(1.5rem, 5vw, 2.1rem); letter-spacing: -.02em; }
+  .sub { color: var(--suave); margin-top: 8px; max-width: 65ch; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+  a.tarjeta {
+    display: block; text-decoration: none; color: inherit;
+    background: #fff; border: 1px solid #e4ece6; border-radius: 18px; padding: 22px;
+    box-shadow: 0 10px 30px rgba(20, 67, 42, .10); transition: transform .15s, box-shadow .2s;
+  }
+  a.tarjeta:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(20, 67, 42, .16); }
+  .emoji { font-size: 34px; }
+  .tarjeta h2 { font-size: 1.12rem; margin: 12px 0 6px; }
+  .tarjeta p { color: var(--suave); font-size: .92rem; }
+  .etiqueta {
+    display: inline-block; margin-top: 14px; font-size: .78rem; font-weight: 700;
+    color: var(--verde-700); background: var(--verde-050); border-radius: 999px; padding: 5px 12px;
+  }
+  footer { margin-top: 34px; font-size: .85rem; color: var(--suave); }
+  footer a { color: var(--verde-700); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="contenedor">
+  <header>
+    <h1>📊 Trabajos del curso</h1>
+    <p class="sub">Colección de trabajos publicados en este sitio. Cada uno es una
+       página independiente que se abre directamente en el navegador.</p>
+  </header>
+
+  <div class="rejilla">
+    <a class="tarjeta" href="tipo_cambio_usd_cop_boxplot.html">
+      <div class="emoji">💱</div>
+      <h2>Box Plot del tipo de cambio diario USD/COP</h2>
+      <p>Análisis estadístico del tipo de cambio diario del dólar respecto al peso
+         colombiano mediante diagramas de caja y bigotes.</p>
+      <span class="etiqueta">Análisis de datos</span>
+    </a>
+
+    <a class="tarjeta" href="dashboard_mytienda.html">
+      <div class="emoji">🏪</div>
+      <h2>Dashboard MiTienda — Análisis de Ventas</h2>
+      <p>Panel de control interactivo con el análisis de las ventas de MiTienda:
+         indicadores, tendencias y visualizaciones.</p>
+      <span class="etiqueta">Visualización</span>
+    </a>
+
+    <a class="tarjeta" href="../index.html">
+      <div class="emoji">🌿</div>
+      <h2>Identificador de Hojas · RNA Convolucional</h2>
+      <p>Red neuronal convolucional que reconoce 185 especies de árboles a partir de
+         una foto de su hoja, con la cámara del celular.</p>
+      <span class="etiqueta">Machine Learning</span>
+    </a>
+  </div>
+
+  <footer>
+    <a href="../index.html">← Volver al identificador de hojas</a>
+  </footer>
+</div>
+</body>
+</html>

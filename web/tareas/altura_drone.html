@@ -7,135 +7,316 @@
 <title>🚁 Simulador de Altitud del Dron · RNA</title>
 <style>
   :root {
-    --cielo-900: #0b2a4a; --cielo-700: #14497a; --cielo-500: #2277c4;
-    --cielo-300: #85c1f2; --cielo-050: #eaf3fc; --crema: #f7fafd;
-    --texto: #16222e; --suave: #56677a; --blanco: #fff;
-    --sombra: 0 10px 30px rgba(11, 42, 74, .12); --radio: 18px;
+    --navy-950: #071a33;
+    --navy-900: #0a2140;
+    --navy-800: #0e2c52;
+    --azul-600: #1d6fe0;
+    --azul-500: #2f86f6;
+    --cian-400: #45cbf2;
+    --cian-300: #7fe3ff;
+    --ambar-400: #ffb054;
+    --texto: #0f2033;
+    --suave: #5a6f86;
+    --fondo: #edf3fa;
+    --cristal: rgba(255, 255, 255, .72);
+    --borde-cristal: rgba(255, 255, 255, .65);
+    --sombra: 0 18px 45px rgba(10, 33, 64, .13);
+    --sombra-suave: 0 8px 24px rgba(10, 33, 64, .08);
+    --radio: 22px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(180deg, var(--cielo-050), var(--crema) 30%, var(--blanco));
+    background: var(--fondo);
     color: var(--texto); line-height: 1.55; min-height: 100vh;
   }
-  .contenedor { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  .contenedor { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
+  /* ============ HERO ============ */
   header {
-    background: radial-gradient(1200px 400px at 80% -10%, rgba(133, 193, 242, .35), transparent),
-                linear-gradient(135deg, var(--cielo-900), var(--cielo-700));
-    color: var(--blanco); padding: 30px 0 24px;
+    position: relative; overflow: hidden; color: #fff;
+    background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 45%, var(--azul-600) 100%);
+    padding: 44px 0 56px;
   }
-  .marca { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .logo { width: 58px; height: 58px; border-radius: 16px; flex: none; background: rgba(255,255,255,.14); display: grid; place-items: center; font-size: 30px; }
-  h1 { font-size: clamp(1.35rem, 4.5vw, 2.15rem); line-height: 1.15; letter-spacing: -.02em; }
-  .subtitulo { opacity: .92; font-size: clamp(.92rem, 2.6vw, 1.06rem); max-width: 65ch; margin-top: 8px; }
-  .insignias { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-  .insignia { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.22); padding: 5px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; }
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(2px); opacity: .5;
+    background: radial-gradient(circle at 30% 30%, rgba(127, 227, 255, .55), rgba(69, 203, 242, .08) 70%);
+    animation: flotar 14s ease-in-out infinite;
+  }
+  .orb.o1 { width: 340px; height: 340px; top: -140px; right: -80px; }
+  .orb.o2 { width: 240px; height: 240px; bottom: -120px; left: -60px; animation-delay: -6s; }
+  .orb.o3 { width: 150px; height: 150px; top: 30%; right: 22%; animation-delay: -3s; opacity: .35; }
+  @keyframes flotar {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-26px, 22px) scale(1.07); }
+  }
+  header .contenedor { position: relative; z-index: 2; }
+  .marca { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .logo {
+    width: 66px; height: 66px; border-radius: 20px; flex: none; font-size: 34px;
+    display: grid; place-items: center;
+    background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .25);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .22);
+    animation: hover-drone 5s ease-in-out infinite;
+  }
+  @keyframes hover-drone {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+  h1 {
+    font-size: clamp(1.7rem, 5.4vw, 2.75rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 800;
+  }
+  .subtitulo {
+    opacity: .93; font-size: clamp(1rem, 2.8vw, 1.18rem); max-width: 62ch; margin-top: 12px; font-weight: 400;
+  }
+  .subtitulo b { color: var(--cian-300); font-weight: 700; }
+  .insignias { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .insignia {
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .24);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 8px 15px; border-radius: 999px; font-size: .82rem; font-weight: 600;
+    transition: transform .2s, background .2s;
+  }
+  .insignia:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .2); }
 
-  main { padding: 26px 0 60px; }
-  .tarjeta { background: var(--blanco); border-radius: var(--radio); box-shadow: var(--sombra); padding: 22px; margin-bottom: 18px; border: 1px solid #e3ecf4; }
-  h2 { font-size: clamp(1.15rem, 3.5vw, 1.5rem); margin-bottom: 6px; letter-spacing: -.01em; }
-  h3 { font-size: 1.02rem; margin: 18px 0 8px; }
+  /* ============ TARJETAS ============ */
+  main { padding: 34px 0 70px; margin-top: -26px; position: relative; z-index: 3; }
+  .tarjeta {
+    background: var(--cristal); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--borde-cristal); border-radius: var(--radio);
+    box-shadow: var(--sombra); padding: 26px; margin-bottom: 22px;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .tarjeta:hover { transform: translateY(-3px); box-shadow: 0 26px 55px rgba(10, 33, 64, .17); }
+  h2 { font-size: clamp(1.25rem, 3.8vw, 1.65rem); margin-bottom: 8px; letter-spacing: -.02em; font-weight: 800; }
+  h3 { font-size: 1.05rem; margin: 20px 0 10px; font-weight: 700; }
   p { color: var(--suave); }
-  .etiqueta { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cielo-700); background: var(--cielo-050); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .etiqueta {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--azul-600); background: linear-gradient(135deg, rgba(47, 134, 246, .13), rgba(69, 203, 242, .18));
+    padding: 6px 13px; border-radius: 999px; margin-bottom: 12px;
+  }
 
-  .rejilla { display: grid; grid-template-columns: 1fr; gap: 18px; }
-  @media (min-width: 820px) { .rejilla { grid-template-columns: 1fr 1fr; } }
+  .rejilla { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 860px) { .rejilla { grid-template-columns: 1.05fr 1fr; } }
 
-  .campo { margin-bottom: 18px; }
-  .campo .cabecera { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-  .campo label { font-weight: 700; font-size: .95rem; }
-  .campo .unidad { color: var(--suave); font-size: .85rem; }
-  .fila-entrada { display: flex; gap: 12px; align-items: center; }
-  input[type="range"] { flex: 1; accent-color: var(--cielo-500); height: 34px; }
+  /* ============ CONTROLES ============ */
+  .campo { margin: 22px 0; }
+  .campo .cabecera { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .campo label { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+  .pastilla {
+    background: linear-gradient(135deg, var(--azul-600), var(--cian-400));
+    color: #fff; font-weight: 800; font-size: .95rem;
+    padding: 6px 14px; border-radius: 999px; min-width: 92px; text-align: center;
+    box-shadow: 0 6px 16px rgba(29, 111, 224, .35);
+  }
+  .fila-entrada { display: flex; gap: 14px; align-items: center; }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; flex: 1; height: 10px; border-radius: 999px; outline: none;
+    background: linear-gradient(90deg, var(--azul-600) 0%, var(--cian-400) var(--pos, 50%), #d7e3f1 var(--pos, 50%), #d7e3f1 100%);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%;
+    background: #fff; border: 5px solid var(--azul-600); cursor: pointer;
+    box-shadow: 0 6px 18px rgba(29, 111, 224, .45); transition: transform .15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.12); }
+  input[type="range"]::-moz-range-thumb {
+    width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 5px solid var(--azul-600); cursor: pointer;
+    box-shadow: 0 6px 18px rgba(29, 111, 224, .45);
+  }
+  input[type="range"]::-moz-range-track { height: 10px; border-radius: 999px; background: #d7e3f1; }
+
   input[type="number"] {
-    width: 110px; padding: 10px 12px; border-radius: 12px; border: 1px solid #c9d8e6;
-    font-size: 1.05rem; font-weight: 700; text-align: center; color: var(--cielo-900); outline: none;
+    width: 116px; padding: 12px 12px; border-radius: 14px; border: 2px solid #d4e2f1;
+    font-size: 1.1rem; font-weight: 800; text-align: center; color: var(--navy-900); outline: none;
+    background: #fff; transition: border-color .2s, box-shadow .2s;
   }
-  input[type="number"]:focus { border-color: var(--cielo-500); box-shadow: 0 0 0 4px rgba(34, 119, 196, .15); }
+  input[type="number"]:focus { border-color: var(--azul-500); box-shadow: 0 0 0 4px rgba(47, 134, 246, .18); }
 
-  .ejemplos { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 18px; }
+  .ejemplos { display: flex; flex-wrap: wrap; gap: 9px; margin: 20px 0 22px; }
   .ejemplo {
-    border: 1px solid #cfe0ee; background: var(--cielo-050); color: var(--cielo-700);
-    padding: 8px 13px; border-radius: 999px; font-size: .83rem; font-weight: 700; cursor: pointer; transition: .15s;
+    border: 1.5px solid rgba(29, 111, 224, .25); background: rgba(255, 255, 255, .8);
+    color: var(--azul-600); padding: 9px 15px; border-radius: 999px; font-size: .85rem; font-weight: 700;
+    cursor: pointer; transition: all .18s ease;
   }
-  .ejemplo:hover { background: var(--cielo-500); color: #fff; border-color: var(--cielo-500); }
+  .ejemplo:hover {
+    background: linear-gradient(135deg, var(--azul-600), var(--cian-400)); color: #fff;
+    border-color: transparent; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(29, 111, 224, .35);
+  }
 
   .boton {
-    display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
-    padding: 16px 18px; border-radius: 14px; border: 0; font-size: 1.05rem; font-weight: 800;
-    cursor: pointer; background: var(--cielo-700); color: #fff; box-shadow: 0 8px 20px rgba(20, 73, 122, .3); transition: transform .12s;
+    display: flex; align-items: center; justify-content: center; gap: 11px; width: 100%;
+    padding: 18px 20px; border-radius: 17px; border: 0; font-size: 1.12rem; font-weight: 800;
+    cursor: pointer; color: #fff; letter-spacing: -.01em;
+    background: linear-gradient(135deg, var(--azul-600), var(--cian-400));
+    box-shadow: 0 14px 32px rgba(29, 111, 224, .42); transition: transform .15s, box-shadow .2s;
   }
-  .boton:active { transform: scale(.98); }
+  .boton:hover { transform: translateY(-3px); box-shadow: 0 20px 42px rgba(29, 111, 224, .5); }
+  .boton:active { transform: translateY(0) scale(.98); }
 
-  /* resultado */
-  .resultado { background: linear-gradient(135deg, var(--cielo-900), var(--cielo-700)); color: #fff; border-radius: var(--radio); padding: 22px; }
-  .resultado .valor { font-size: clamp(2.4rem, 9vw, 3.8rem); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
-  .resultado .valor small { font-size: .35em; font-weight: 700; opacity: .85; margin-left: 6px; }
-  .resultado .secundario { opacity: .9; margin-top: 6px; font-size: .95rem; }
-  .comparacion { margin-top: 16px; background: rgba(255,255,255,.12); border-radius: 12px; padding: 12px 14px; font-size: .88rem; }
-  .comparacion b { color: var(--cielo-300); }
+  /* ============ RESULTADO ============ */
+  .resultado {
+    position: relative; overflow: hidden; color: #fff; border-radius: var(--radio); padding: 28px;
+    background: linear-gradient(150deg, var(--navy-950), var(--navy-800) 55%, var(--azul-600));
+    box-shadow: 0 22px 50px rgba(10, 33, 64, .35);
+  }
+  .resultado .orb { opacity: .35; }
+  .resultado > * { position: relative; z-index: 2; }
+  .valor {
+    font-size: clamp(3rem, 11vw, 4.6rem); font-weight: 800; letter-spacing: -.045em; line-height: 1;
+    background: linear-gradient(120deg, #fff 30%, var(--cian-300));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .valor small {
+    -webkit-text-fill-color: rgba(255, 255, 255, .85); font-size: .32em; font-weight: 700;
+    margin-left: 8px; letter-spacing: 0;
+  }
+  @keyframes aparecer {
+    0% { transform: scale(.92); opacity: .45; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .secundario { opacity: .92; margin-top: 10px; font-size: .98rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip {
+    background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22);
+    padding: 5px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600;
+  }
 
-  /* escala vertical */
-  .escala { position: relative; height: 240px; margin: 10px 0 4px; border-left: 3px solid rgba(255,255,255,.35); }
-  .escala .marca { position: absolute; left: 0; transform: translate(-50%, -50%); transition: top .4s ease; }
-  .escala .marca .punto { width: 18px; height: 18px; border-radius: 50%; background: var(--cielo-300); border: 3px solid #fff; margin-left: -8px; }
-  .escala .marca .texto { position: absolute; left: 22px; top: -8px; white-space: nowrap; font-size: .82rem; font-weight: 700; }
-  .escala .tramo { position: absolute; left: -3px; width: 3px; background: rgba(255,255,255,.18); }
+  /* medidor vertical */
+  .escala {
+    position: relative; height: 230px; margin: 26px 4px 10px;
+    border-radius: 14px;
+    background: linear-gradient(to top, rgba(69, 203, 242, .16), rgba(255, 255, 255, .06));
+    border: 1px solid rgba(255, 255, 255, .16);
+  }
+  .escala .guia { position: absolute; left: 50%; top: 12px; bottom: 12px; width: 4px; transform: translateX(-50%); border-radius: 999px; background: rgba(255, 255, 255, .18); }
+  .escala .marca { position: absolute; left: 50%; transform: translate(-50%, -50%); transition: top .55s cubic-bezier(.3, 1.2, .4, 1); }
+  .escala .marca .punto {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--cian-300);
+    border: 4px solid #fff; margin-left: -11px; margin-top: -11px;
+    box-shadow: 0 0 0 8px rgba(127, 227, 255, .25), 0 0 28px rgba(127, 227, 255, .8);
+    animation: pulso 2.2s ease-in-out infinite;
+  }
+  @keyframes pulso {
+    0%, 100% { box-shadow: 0 0 0 8px rgba(127, 227, 255, .25), 0 0 28px rgba(127, 227, 255, .8); }
+    50% { box-shadow: 0 0 0 15px rgba(127, 227, 255, .12), 0 0 38px rgba(127, 227, 255, .95); }
+  }
+  .escala .marca .texto {
+    position: absolute; left: 26px; top: -12px; white-space: nowrap;
+    font-size: .88rem; font-weight: 800; letter-spacing: -.01em;
+  }
+  .escala .limite { position: absolute; right: 12px; font-size: .72rem; opacity: .65; font-weight: 600; }
 
-  /* gráfica */
-  .grafica { width: 100%; height: auto; display: block; margin-top: 8px; }
-  .leyenda { display: flex; gap: 18px; flex-wrap: wrap; font-size: .84rem; color: var(--suave); margin-top: 8px; }
-  .leyenda span::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 6px; vertical-align: middle; border-radius: 2px; }
-  .leyenda .rna::before { background: var(--cielo-500); }
-  .leyenda .fisica::before { background: #d98e32; }
+  .comparacion {
+    margin-top: 20px; border-radius: 15px; padding: 15px 17px; font-size: .9rem; line-height: 1.6;
+    background: rgba(255, 255, 255, .11); border: 1px solid rgba(255, 255, 255, .18);
+  }
+  .comparacion b { color: var(--cian-300); }
+  .comparacion .fis-icon { font-size: 1.15em; margin-right: 6px; }
 
-  .diagrama { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 6px; }
-  .capa { background: var(--cielo-050); border: 1px solid #cfe0ee; color: var(--cielo-900); padding: 9px 12px; border-radius: 11px; font-size: .8rem; font-weight: 600; text-align: center; }
-  .capa.oscura { background: var(--cielo-700); color: #fff; border-color: var(--cielo-700); }
-  .flecha { color: var(--cielo-300); font-size: 1.15rem; font-weight: 700; }
+  /* ============ GRÁFICA ============ */
+  .grafica { width: 100%; height: auto; display: block; margin-top: 12px; }
+  .leyenda { display: flex; gap: 20px; flex-wrap: wrap; font-size: .86rem; color: var(--suave); margin-top: 12px; font-weight: 600; }
+  .leyenda span::before { content: ""; display: inline-block; width: 22px; height: 4px; margin-right: 7px; vertical-align: middle; border-radius: 3px; }
+  .leyenda .rna::before { background: linear-gradient(90deg, var(--azul-600), var(--cian-400)); }
+  .leyenda .fisica::before { background: repeating-linear-gradient(90deg, var(--ambar-400) 0 6px, transparent 6px 11px); }
 
-  .rejilla-metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
-  .metrica { background: var(--cielo-050); border: 1px solid #d4e4f1; border-radius: 14px; padding: 15px; text-align: center; }
-  .metrica .v { font-size: clamp(1.35rem, 4.5vw, 1.9rem); font-weight: 800; color: var(--cielo-700); letter-spacing: -.02em; }
-  .metrica .t { font-size: .8rem; color: var(--suave); margin-top: 2px; }
+  /* ============ MODELO ============ */
+  .diagrama { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 8px; }
+  .capa-nodo {
+    background: #fff; border: 1.5px solid rgba(29, 111, 224, .22); color: var(--navy-900);
+    padding: 12px 16px; border-radius: 15px; font-size: .84rem; font-weight: 700; text-align: center;
+    box-shadow: var(--sombra-suave); transition: transform .2s;
+  }
+  .capa-nodo:hover { transform: translateY(-3px); }
+  .capa-nodo.oscura {
+    background: linear-gradient(135deg, var(--navy-900), var(--azul-600)); color: #fff;
+    border-color: transparent; box-shadow: 0 12px 26px rgba(29, 111, 224, .35);
+  }
+  .flecha { color: var(--cian-400); font-size: 1.35rem; font-weight: 800; }
 
-  table { width: 100%; border-collapse: collapse; font-size: .88rem; margin-top: 10px; }
-  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e6eef5; }
-  th { color: var(--suave); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+  .rejilla-metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 13px; margin: 20px 0; }
+  .metrica {
+    background: linear-gradient(160deg, #fff, #f2f8ff); border: 1px solid #e1ecf8;
+    border-radius: 17px; padding: 18px 14px; text-align: center;
+    box-shadow: var(--sombra-suave); transition: transform .2s;
+  }
+  .metrica:hover { transform: translateY(-4px); }
+  .metrica .v {
+    font-size: clamp(1.4rem, 4.6vw, 1.95rem); font-weight: 800; letter-spacing: -.03em;
+    background: linear-gradient(120deg, var(--azul-600), var(--cian-400));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .metrica .t { font-size: .79rem; color: var(--suave); margin-top: 4px; font-weight: 600; }
 
-  .pasos { counter-reset: paso; list-style: none; margin-top: 12px; }
-  .pasos li { counter-increment: paso; position: relative; padding: 4px 0 16px 46px; border-left: 2px solid #d7e4ef; margin-left: 16px; }
-  .pasos li::before { content: counter(paso); position: absolute; left: -17px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--cielo-700); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .9rem; }
-  .pasos li b { display: block; margin-bottom: 2px; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: 12px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid #e4eef8; }
+  th { color: var(--suave); font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 800; }
+  tr:last-child td { border-bottom: 0; }
 
-  code { background: var(--cielo-050); border-radius: 6px; padding: 2px 7px; font-size: .88em; color: var(--cielo-900); }
+  /* pasos */
+  .pasos { counter-reset: paso; list-style: none; margin-top: 16px; }
+  .pasos li {
+    counter-increment: paso; position: relative; padding: 6px 0 22px 52px;
+    border-left: 2px dashed rgba(29, 111, 224, .3); margin-left: 18px;
+  }
+  .pasos li::before {
+    content: counter(paso); position: absolute; left: -19px; top: 0;
+    width: 36px; height: 36px; border-radius: 13px;
+    background: linear-gradient(135deg, var(--azul-600), var(--cian-400)); color: #fff;
+    display: grid; place-items: center; font-weight: 800; font-size: .95rem;
+    box-shadow: 0 8px 18px rgba(29, 111, 224, .35);
+  }
+  .pasos li b { display: block; margin-bottom: 3px; font-size: 1.02rem; }
 
-  footer { background: var(--cielo-900); color: rgba(255,255,255,.85); padding: 28px 0 38px; font-size: .86rem; }
-  footer a { color: var(--cielo-300); }
-  footer .contenedor > div + div { margin-top: 8px; }
+  code {
+    background: linear-gradient(135deg, rgba(29, 111, 224, .1), rgba(69, 203, 242, .14));
+    border-radius: 8px; padding: 3px 9px; font-size: .88em; color: var(--navy-800); font-weight: 600;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
+    color: rgba(255, 255, 255, .85); padding: 36px 0 46px; font-size: .88rem;
+  }
+  footer a {
+    color: var(--cian-300); text-decoration: none; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px; transition: gap .2s;
+  }
+  footer a:hover { gap: 13px; }
+  footer .contenedor > div + div { margin-top: 9px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
   <div class="contenedor">
     <div class="marca">
       <div class="logo">🚁</div>
       <div>
-        <h1>Simulador de Altitud del Dron</h1>
+        <h1>Simulador de Altitud<br>del Dron con RNA</h1>
         <div class="subtitulo">
-          Red neuronal artificial que estima la <b>altura de vuelo de un dron</b> a partir de
-          la <b>temperatura</b> y la <b>presión atmosférica</b> que miden sus sensores.
+          Red neuronal artificial que estima la <b>altura de vuelo</b> de un dron a partir de la
+          <b>temperatura</b> y la <b>presión atmosférica</b> que miden sus sensores.
           Todo el cálculo ocurre en tu navegador.
         </div>
       </div>
     </div>
     <div class="insignias">
-      <span class="insignia">🧠 RNA perceptrón multicapa · 2→32→32→1</span>
+      <span class="insignia">🧠 RNA · perceptrón multicapa 2→32→32→1</span>
       <span class="insignia">🌡️ Entradas: temperatura y presión</span>
       <span class="insignia">📏 Salida: altitud en metros</span>
-      <span class="insignia">⚡ Inferencia local (sin servidor)</span>
+      <span class="insignia">⚡ Inferencia local · sin servidor</span>
     </div>
   </div>
 </header>
@@ -146,14 +327,14 @@
   <!-- ============ SIMULADOR ============ -->
   <section class="rejilla">
     <div class="tarjeta">
-      <span class="etiqueta">Entradas del dron</span>
+      <span class="etiqueta">📡 Sensores del dron</span>
       <h2>Temperatura y presión</h2>
       <p>Mueve los controles o escribe los valores que reportarían los sensores del dron.</p>
 
-      <div class="campo" style="margin-top:16px">
+      <div class="campo">
         <div class="cabecera">
           <label for="temperatura">🌡️ Temperatura del aire</label>
-          <span class="unidad">grados Celsius (°C)</span>
+          <span class="pastilla"><span id="temp-pastilla">14,0</span> °C</span>
         </div>
         <div class="fila-entrada">
           <input type="range" id="temperatura-rango" min="-40" max="45" step="0.1" value="14">
@@ -164,7 +345,7 @@
       <div class="campo">
         <div class="cabecera">
           <label for="presion">🧭 Presión atmosférica</label>
-          <span class="unidad">hectopascales (hPa)</span>
+          <span class="pastilla"><span id="pres-pastilla">733,0</span> hPa</span>
         </div>
         <div class="fila-entrada">
           <input type="range" id="presion-rango" min="480" max="1060" step="0.1" value="733">
@@ -179,12 +360,20 @@
 
     <div>
       <div class="resultado">
-        <div style="font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Altitud estimada por la RNA</div>
+        <div class="orb o2" style="left:auto;right:-90px;bottom:-90px"></div>
+        <div style="font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;opacity:.85;font-weight:700;">
+          Altitud estimada por la RNA
+        </div>
         <div class="valor"><span id="altura">—</span><small>metros</small></div>
-        <div class="secundario"><span id="pies">—</span> pies · <span id="nivel">—</span></div>
+        <div class="secundario">
+          <span class="chip">✈️ <span id="pies">—</span> pies</span>
+          <span class="chip" id="nivel">—</span>
+        </div>
 
         <div class="escala" id="escala">
-          <div class="tramo" style="top:0;height:100%"></div>
+          <div class="guia"></div>
+          <div class="limite" style="top:10px">5 000 m</div>
+          <div class="limite" style="bottom:10px">nivel del mar</div>
           <div class="marca" id="marca-escala" style="top:50%">
             <div class="punto"></div>
             <div class="texto" id="marca-texto">—</div>
@@ -192,41 +381,44 @@
         </div>
 
         <div class="comparacion">
-          🔬 <b>Contraste con la fórmula barométrica:</b> la física predice
+          <span class="fis-icon">🔬</span>
+          <b>Contraste con la fórmula barométrica:</b> la física predice
           <b id="altura-fisica">—</b> · diferencia de <b id="diferencia">—</b>
-        </div>
-      </div>
-
-      <div class="tarjeta" style="margin-top:18px">
-        <span class="etiqueta">Comportamiento del modelo</span>
-        <h2>Altura vs presión</h2>
-        <p>Curva que predice la RNA para la temperatura actual, comparada con la fórmula física.</p>
-        <svg class="grafica" id="grafica" viewBox="0 0 560 300" role="img" aria-label="Gráfica de altura frente a presión"></svg>
-        <div class="leyenda">
-          <span class="rna">Predicción de la RNA</span>
-          <span class="fisica">Fórmula barométrica</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ============ GRÁFICA ============ -->
+  <section class="tarjeta">
+    <span class="etiqueta">📈 Comportamiento del modelo</span>
+    <h2>Altura frente a presión</h2>
+    <p>Curva que predice la RNA para la temperatura actual, comparada con la fórmula física.
+       El punto marcado es tu simulación en curso.</p>
+    <svg class="grafica" id="grafica" viewBox="0 0 560 300" role="img" aria-label="Gráfica de altura frente a presión"></svg>
+    <div class="leyenda">
+      <span class="rna">Predicción de la RNA</span>
+      <span class="fisica">Fórmula barométrica</span>
+    </div>
+  </section>
+
   <!-- ============ MODELO ============ -->
   <section class="tarjeta">
-    <span class="etiqueta">La red neuronal</span>
+    <span class="etiqueta">🧠 La red neuronal</span>
     <h2>Cómo funciona el modelo</h2>
     <p>Es un <b>perceptrón multicapa de regresión</b> entrenado con ejemplos simulados de la
-       atmósfera estándar internacional: la temperatura desciende ~6,5 °C por kilómetro y la
+       atmósfera estándar internacional: la temperatura desciende ≈6,5 °C por kilómetro y la
        presión cae según la fórmula barométrica. La red aprende por sí sola la relación que
        convierte las lecturas de los sensores en altitud.</p>
 
     <div class="diagrama">
-      <div class="capa">Entrada<br>temperatura + presión</div>
+      <div class="capa-nodo">Entrada<br>temperatura + presión</div>
       <div class="flecha">→</div>
-      <div class="capa">Oculta 1<br>32 neuronas · tanh</div>
+      <div class="capa-nodo">Oculta 1<br>32 neuronas · tanh</div>
       <div class="flecha">→</div>
-      <div class="capa">Oculta 2<br>32 neuronas · tanh</div>
+      <div class="capa-nodo">Oculta 2<br>32 neuronas · tanh</div>
       <div class="flecha">→</div>
-      <div class="capa oscura">Salida<br>altura (m)</div>
+      <div class="capa-nodo oscura">Salida<br>altura (m)</div>
     </div>
 
     <div class="rejilla-metricas" id="metricas"></div>
@@ -244,7 +436,7 @@
 
   <!-- ============ PROCESO ============ -->
   <section class="tarjeta">
-    <span class="etiqueta">Metodología</span>
+    <span class="etiqueta">⚙️ Metodología</span>
     <h2>Del video al simulador</h2>
     <p>Siguiendo la metodología del video <b>«Tu primera red neuronal en Python y TensorFlow»</b>
        (canal <i>Ringa Tech</i>), la red aprende de pares de ejemplos entrada→salida sin que se
@@ -269,7 +461,7 @@
     <div><b>Taller de Machine Learning</b> — Simulación de la altitud de un dron con una red neuronal artificial.</div>
     <div>Metodología basada en el video «Tu primera red neuronal en Python y TensorFlow» (Ringa Tech) · Datos generados con la atmósfera estándar internacional (ISA).</div>
     <div>Modelo entrenado con PyTorch · ejecutado en JavaScript puro, sin librerías ni servidor.</div>
-    <div style="margin-top:14px"><a href="index.html">📊 Volver a los trabajos publicados</a></div>
+    <div style="margin-top:16px"><a href="index.html">📊 Volver a los trabajos publicados →</a></div>
   </div>
 </footer>
 
@@ -301,7 +493,7 @@ function predecirAltura(temperaturaC, presionHPa) {
   return x[0] * n.salida.desv + n.salida.media;
 }
 
-/** Fórmula barométrica (referencia física, inversa de la usada al generar los datos) */
+/** Fórmula barométrica (referencia física) */
 function alturaFisica(temperaturaC, presionHPa) {
   return (temperaturaC + 273.15) / GRADIENTE * (Math.pow(P0 / presionHPa, 1 / EXPONENTE) - 1);
 }
@@ -311,6 +503,21 @@ function alturaFisica(temperaturaC, presionHPa) {
    ===================================================================== */
 const $ = (id) => document.getElementById(id);
 
+function animarAltura(objetivo) {
+  // actualización síncrona + efecto visual (robusta incluso en pestañas ocultas)
+  $("altura").textContent = Math.round(objetivo).toLocaleString("es-CO");
+  const valor = $("altura").closest(".valor");
+  valor.style.animation = "none";
+  void valor.offsetWidth;                       // reinicia la animación
+  valor.style.animation = "aparecer .45s cubic-bezier(.3, 1.2, .4, 1)";
+}
+
+function pintarRango(input) {
+  const min = parseFloat(input.min), max = parseFloat(input.max);
+  const pos = ((parseFloat(input.value) - min) / (max - min)) * 100;
+  input.style.setProperty("--pos", pos + "%");
+}
+
 function actualizar() {
   const t = parseFloat($("temperatura").value);
   const p = parseFloat($("presion").value);
@@ -318,20 +525,24 @@ function actualizar() {
 
   $("temperatura-rango").value = t;
   $("presion-rango").value = p;
+  pintarRango($("temperatura-rango"));
+  pintarRango($("presion-rango"));
+  $("temp-pastilla").textContent = t.toFixed(1).replace(".", ",");
+  $("pres-pastilla").textContent = p.toFixed(1).replace(".", ",");
 
   const h = predecirAltura(t, p);
   const hf = alturaFisica(t, p);
   const dif = Math.abs(h - hf);
 
-  $("altura").textContent = Math.round(h).toLocaleString("es-CO");
+  animarAltura(h);
+  const hr = Math.round(h);
   $("pies").textContent = Math.round(h * 3.28084).toLocaleString("es-CO");
-  $("nivel").textContent = h < 120 ? "dentro del límite habitual de vuelo de drones (120 m)" :
-    h < 500 ? "vuelo alto — típico de drones profesionales" :
-    h < 2000 ? "altura de sierra — por encima del rango legal de vuelo" : "altitud de montaña";
+  $("nivel").textContent = hr <= 120 ? "🟢 dentro del límite habitual de vuelo (≤ 120 m)" :
+    hr < 500 ? "🟡 vuelo alto — típico de drones profesionales" :
+    hr < 2000 ? "🟠 altura de sierra — por encima del rango legal de vuelo" : "🔴 altitud de montaña";
   $("altura-fisica").textContent = Math.round(hf).toLocaleString("es-CO") + " m";
   $("diferencia").textContent = dif.toFixed(1) + " m";
 
-  // escala vertical (0–5000 m)
   const porcentaje = Math.max(0, Math.min(100, (1 - h / 5000) * 100));
   $("marca-escala").style.top = porcentaje + "%";
   $("marca-texto").textContent = Math.round(h).toLocaleString("es-CO") + " m";
@@ -342,34 +553,51 @@ function actualizar() {
 function dibujarGrafica(t, pActual, hActual) {
   const svg = $("grafica");
   const W = 560, H = 300, m = { izq: 58, der: 16, arr: 16, abj: 42 };
-  const pMin = 480, pMax = 1060;
-  const hMaxG = 5000;
+  const pMin = 480, pMax = 1060, hMaxG = 5000;
   const x = (p) => m.izq + (p - pMin) / (pMax - pMin) * (W - m.izq - m.der);
   const y = (h) => H - m.abj - Math.max(0, Math.min(h, hMaxG)) / hMaxG * (H - m.arr - m.abj);
 
-  let puntosRNA = [], puntosFisica = [];
+  let rna = [], fis = [];
   for (let p = pMin; p <= pMax; p += 10) {
-    puntosRNA.push(x(p).toFixed(1) + "," + y(predecirAltura(t, p)).toFixed(1));
-    puntosFisica.push(x(p).toFixed(1) + "," + y(alturaFisica(t, p)).toFixed(1));
+    rna.push([x(p), y(predecirAltura(t, p))]);
+    fis.push([x(p), y(alturaFisica(t, p))]);
   }
+  const linea = (pts) => pts.map((q) => q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" ");
+  const area = "M " + rna[0][0].toFixed(1) + "," + y(0) + " L " + linea(rna).replace(/ /g, " L ") +
+               " L " + rna[rna.length - 1][0].toFixed(1) + "," + y(0) + " Z";
 
   let marcas = "";
   for (let h = 0; h <= hMaxG; h += 1000) {
-    marcas += `<line x1="${m.izq}" y1="${y(h)}" x2="${W - m.der}" y2="${y(h)}" stroke="#e6eef5"/>` +
-              `<text x="${m.izq - 8}" y="${y(h) + 4}" text-anchor="end" font-size="11" fill="#56677a">${(h / 1000)} km</text>`;
+    marcas += `<line x1="${m.izq}" y1="${y(h)}" x2="${W - m.der}" y2="${y(h)}" stroke="#e4eef8" stroke-width="1"/>` +
+              `<text x="${m.izq - 9}" y="${y(h) + 4}" text-anchor="end" font-size="11" fill="#5a6f86" font-weight="600">${h / 1000} km</text>`;
   }
   for (let p = 500; p <= pMax; p += 100) {
-    marcas += `<text x="${x(p)}" y="${H - m.abj + 18}" text-anchor="middle" font-size="11" fill="#56677a">${p}</text>`;
+    marcas += `<text x="${x(p)}" y="${H - m.abj + 19}" text-anchor="middle" font-size="11" fill="#5a6f86" font-weight="600">${p}</text>`;
   }
 
+  const cx = x(pActual), cy = y(hActual);
   svg.innerHTML = `
+    <defs>
+      <linearGradient id="areaRna" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2f86f6" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#45cbf2" stop-opacity=".03"/>
+      </linearGradient>
+      <linearGradient id="lineaRna" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1d6fe0"/><stop offset="100%" stop-color="#45cbf2"/>
+      </linearGradient>
+    </defs>
     ${marcas}
-    <text x="${(W + m.izq) / 2}" y="${H - 6}" text-anchor="middle" font-size="12" fill="#56677a">Presión (hPa)</text>
-    <polyline points="${puntosFisica.join(" ")}" fill="none" stroke="#d98e32" stroke-width="2" stroke-dasharray="6 5"/>
-    <polyline points="${puntosRNA.join(" ")}" fill="none" stroke="#2277c4" stroke-width="3"/>
-    <circle cx="${x(pActual)}" cy="${y(hActual)}" r="7" fill="#0b2a4a" stroke="#fff" stroke-width="3"/>
-    <rect x="${x(pActual) - 52}" y="${y(hActual) - 34}" width="104" height="24" rx="7" fill="#0b2a4a"/>
-    <text x="${x(pActual)}" y="${y(hActual) - 17}" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">${Math.round(hActual).toLocaleString("es-CO")} m · ${Math.round(pActual)} hPa</text>
+    <text x="${(W + m.izq) / 2}" y="${H - 6}" text-anchor="middle" font-size="12" fill="#5a6f86" font-weight="700">Presión (hPa)</text>
+    <path d="${area}" fill="url(#areaRna)"/>
+    <polyline points="${linea(fis)}" fill="none" stroke="#ffb054" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+    <polyline points="${linea(rna)}" fill="none" stroke="url(#lineaRna)" stroke-width="4" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${y(0)}" stroke="#0a2140" stroke-opacity=".18" stroke-dasharray="4 4"/>
+    <circle cx="${cx}" cy="${cy}" r="16" fill="#45cbf2" fill-opacity=".18"/>
+    <circle cx="${cx}" cy="${cy}" r="8" fill="#0a2140" stroke="#fff" stroke-width="3.5"/>
+    <rect x="${Math.max(4, Math.min(W - 196, cx - 94))}" y="${Math.max(4, cy - 42)}" width="188" height="28" rx="9" fill="#0a2140"/>
+    <text x="${Math.max(4, Math.min(W - 196, cx - 94)) + 94}" y="${Math.max(4, cy - 42) + 19}" text-anchor="middle" font-size="12.5" fill="#fff" font-weight="700">
+      ${Math.round(hActual).toLocaleString("es-CO")} m · ${Math.round(pActual)} hPa · ${t.toFixed(1).replace(".", ",")} °C
+    </text>
   `;
 }
 
